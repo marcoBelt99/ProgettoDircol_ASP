@@ -11,7 +11,8 @@ namespace ProgettoDircol_ASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //ConnessioneDAL conn = new ConnessioneDAL();
+       
         }
     }
 }

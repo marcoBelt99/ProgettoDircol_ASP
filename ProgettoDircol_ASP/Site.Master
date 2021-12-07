@@ -4,7 +4,7 @@
 
 <html lang="it">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Applicazione ASP.NET</title>
@@ -12,9 +12,9 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link rel="stylesheet" href="~/Content/stili.css" />
 </head>
 <body>
     <form runat="server">
@@ -37,42 +37,148 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+        <navbar>
+            <nav class="navbar navbar-expand-md navbar-expand-xl navbar-dark static-top stileNavbar">
+                <%--<div class="navbar navbar-inverse navbar-fixed-top">--%>
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" runat="server" href="~/">Dircol</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a runat="server" href="~/">Home</a></li>
+                                <li><a runat="server" href="~/About">Informazioni</a></li>
+                                <li><a runat="server" href="~/Contact">Contatto</a></li>
+                            </ul>
+                            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                                <AnonymousTemplate>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Register">Esegui registrazione</a></li>
+                                        <li><a runat="server" href="~/Account/Login">Accedi</a></li>
+                                    </ul>
+                                </AnonymousTemplate>
+                                <LoggedInTemplate>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Salve, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
+                                    </ul>
+                                </LoggedInTemplate>
+                            </asp:LoginView>
+                        </div>
+                    </div>
+                <%--</div>--%>
+            </nav>
+        </navbar>
+        <%-- Provo a mettere la navbar che ho creato in Precedenza in PHP --%>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nome applicazione</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">Informazioni</a></li>
-                        <li><a runat="server" href="~/Contact">Contatto</a></li>
-                    </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Esegui registrazione</a></li>
-                                <li><a runat="server" href="~/Account/Login">Accedi</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Salve, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
-                </div>
-            </div>
+
+
+
+        <!--  navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl shift py-4-->
+        <div class="navbar-brand">
+            <img src="immagini\D.png" alt="logo" class="logo" width="40" height="40">
         </div>
+        <!-- Bottone Hamburger menù -->
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <!-- Lista di link della navbar -->
+            <ul class="navbar-nav mr-auto">
+                <!-- Home -->
+                <li class="nav-item">
+                    <!-- posso aggiungere active per lasciarlo active-->
+                    <a class="nav-link text-nowrap" href="index.php">
+                        <i class="bi bi-house-fill"></i>Home<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <!-- Chi siamo -->
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="chiSiamo.php">
+                        <i class="bi bi-people-fill"></i>Chi siamo <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <!-- Contatti -->
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="contatti.php">
+                        <i class="bi bi-telephone-fill"></i>Contatti <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <!-- Visualizza tabelle -->
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="visualizzaTabelle.php" target="_blank">
+                        <i class="bi bi-file-spreadsheet-fill"></i>Visualizza tabelle
+                    </a>
+                </li>
+                <!-- Dropdown menù: Operazioni Di Data Manipulation Language -->
+                <li class="nav-item dropdown drop">
+                    <a class="nav-link dropdown-toggle text-nowrap" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-list-task"></i>Operazioni DML
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <!-- Inserisci -->
+                        <a class="dropdown-item" href="inserisci.php">
+                            <i class="bi bi-plus-circle-fill"></i>Inserisci
+                        </a>
+                        <!-- Aggiorna -->
+                        <a class="dropdown-item" href="aggiorna.php">
+                            <i class="bi bi-pencil-square"></i>Aggiorna
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <!-- Divisore tra le voci del dropdown menu -->
+                        <!-- Elimina -->
+                        <a class="dropdown-item link-danger linkElimina" href="elimina.php">
+                            <i class="bi bi-x-circle-fill"></i>Elimina
+                        </a>
+                    </div>
+                </li>
+                <!-- Fine dropdown menù-->
+
+                <!-- Interrogazioni -->
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="interrogazioni.php">
+                        <i class="bi bi-clipboard-data"></i>Interrogazioni
+                    </a>
+                </li>
+
+                <!-- Link disabilitato -->
+                <!-- <li class="nav-item">
+                <a class="nav-link disabled " href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li> -->
+            </ul>
+            <!-- Gestione Utenti -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="gestioneUtenti.php">
+                        <i class="bi bi-person-square"></i>Gestione Utenti <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Fine lista di link della navbar -->
+
+            <!-- Form della navbar -->
+            <!-- <div class="navbar-right">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Cerca" aria-label="Search">
+              <button class="btn btn-outline-warning" type="submit">Cerca</button>
+            </form>
+          </div> -->
+
+
+            <!-- Fine form della navbar -->
+
+        </div>
+
+
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
