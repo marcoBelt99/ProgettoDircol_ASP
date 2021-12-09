@@ -2,43 +2,103 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <h1><%:Title %></h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+    
+    <%--<p class="provaFunzionamento">provaClasse</p>--%>
+    <!-- PAGINA DI PRESENTAZIONE -->
+
+    <%-- Includo lo stile per il testo personalizzato --%>
+    <link rel="stylesheet" href="~/Content/testo.css" />
+
+    <!-- CAROUSEL -->
+
+    <div id="slider_vestiti" class="carousel slide carouselStile" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#slider_vestiti" data-slide-to="0" class="active"></li>
+            <li data-target="#slider_vestiti" data-slide-to="1"></li>
+            <li data-target="#slider_vestiti" data-slide-to="2"></li>
+            <li data-target="#slider_vestiti" data-slide-to="3"></li>
+            <li data-target="#slider_vestiti" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <!-- Immagine 1 -->
+            <div class="carousel-item active">
+                <img class="d-block img-fluid" src="Images/armadio1.jpg" alt="Slide1" width="100%">
+
+                <div class="carousel-caption d-none d-md d-md-block">
+                    <h3>Caption per la slide 1</h3>
+                    <p>Descrizione slide 1</p>
+                </div>
+            </div>
+            <!-- Immagine 2 -->
+            <div class="carousel-item">
+                <img class="d-block img-fluid" src="Images/hm.jpg" alt="Slide1" width="100%">
+
+                <div class="carousel-caption d-none d-md d-md-block">
+                    <h3>Caption per la slide 2</h3>
+                    <p>Descrizione slide 2</p>
+                </div>
+            </div>
+            <!-- Immagine 3 -->
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="Images/scarpe.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md d-md-block">
+                    <h3>Caption per la slide 3</h3>
+                    <p>Descrizione slide 3</p>
+                </div>
+            </div>
+            <!-- Immagine 4 -->
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="Images/armadio2.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md d-md-block">
+                    <h3>Caption per la slide 4</h3>
+                    <p>Descrizione slide 4</p>
+                </div>
+            </div>
+            <!-- Immagine 5 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/wardrobe.jpg " alt="Slide5" width="100%">
+
+                <div class="carousel-caption d-none d-md d-md-block">
+                    <h3>Caption per la slide 5</h3>
+                    <p>Descrizione slide 5</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#slider_vestiti" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#slider_vestiti" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
+    <div style="margin-bottom: 2px;"></div>
+    <!-- FINE CAROUSEL -->
+
+
+    <!-- JUMBOTRON -->
+    <div class="jumbotron jumbotron-fluid text-white">
+        <div class="container">
+            <!-- <h1 class="display-1">Dircol s.p.a.</h1> -->
+            <div class="testoAnimato">
+                <h1 class="display-1" data-text="Dircol">Dircol</h1>
+            </div>
+
+            <p class="lead">Cambia il tuo modo di vestirti! Rivitalizza il tuo guardaroba!</p>
+            <footer class="blockquote-footer text-white">
+                <cite title="Source Title">Marco Beltrame</cite>
+            </footer>
+            <button class="btn btn-outline-warning">Scopri di più</button>
         </div>
     </div>
 
-    <p class="provaFunzionamento">provaClasse</p>
+    <!-- FINE JUMBOTRON -->
+    <!-- Implementazione sistema di feedback -->
+    <section>
+        <h2>Alcune statistiche dei nostri utenti</h2>
+    </section>
 
 </asp:Content>

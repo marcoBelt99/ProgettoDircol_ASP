@@ -166,7 +166,10 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="aggiorna.aspx" />
+    <Content Include="chiSiamo.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="contatti.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-Original.css" />
@@ -175,10 +178,12 @@
     <Content Include="Content\bootstrap-SitoTutorial.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site-Original.css" />
     <Content Include="Content\stili.css" />
+    <Content Include="Content\testo.css" />
     <Content Include="Default.aspx" />
     <Content Include="dircol_SQLSERVER.sql" />
+    <Content Include="elimina.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -191,7 +196,17 @@
     <Content Include="Account\Web.config" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\vestiti.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Images\armadio1.jpg" />
+    <Content Include="Images\armadio2.jpg" />
+    <Content Include="Images\D.png" />
+    <Content Include="Images\hm.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo1.png" />
+    <Content Include="Images\wardrobe.jpg" />
+    <Content Include="inserisci.aspx" />
+    <Content Include="interrogazioni.aspx" />
     <Content Include="STUDIO\bottone.gif" />
     <Content Include="STUDIO\BottoniComando.aspx" />
     <Content Include="STUDIO\EventiServerDifferitiaspx.aspx" />
@@ -229,6 +244,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="visualizzaTabelle.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -339,6 +355,13 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="aggiorna.aspx.cs">
+      <DependentUpon>aggiorna.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aggiorna.aspx.designer.cs">
+      <DependentUpon>aggiorna.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -350,6 +373,41 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="chiSiamo.aspx.cs">
+      <DependentUpon>chiSiamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="chiSiamo.aspx.designer.cs">
+      <DependentUpon>chiSiamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contatti.aspx.cs">
+      <DependentUpon>contatti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contatti.aspx.designer.cs">
+      <DependentUpon>contatti.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="elimina.aspx.cs">
+      <DependentUpon>elimina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="elimina.aspx.designer.cs">
+      <DependentUpon>elimina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="inserisci.aspx.cs">
+      <DependentUpon>inserisci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inserisci.aspx.designer.cs">
+      <DependentUpon>inserisci.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="interrogazioni.aspx.cs">
+      <DependentUpon>interrogazioni.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="interrogazioni.aspx.designer.cs">
+      <DependentUpon>interrogazioni.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ConnessioneDAL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -377,6 +435,7 @@
     <Compile Include="STUDIO\BottoniComando.aspx.designer.cs">
       <DependentUpon>BottoniComando.aspx</DependentUpon>
     </Compile>
+    <Compile Include="STUDIO\EsempioQuery.cs" />
     <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.cs">
       <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,6 +443,7 @@
     <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
       <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
     </Compile>
+    <Compile Include="STUDIO\IsExternalInitcs.cs" />
     <Compile Include="STUDIO\LoginHtmlControl.aspx.cs">
       <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -419,6 +479,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="visualizzaTabelle.aspx.cs">
+      <DependentUpon>visualizzaTabelle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visualizzaTabelle.aspx.designer.cs">
+      <DependentUpon>visualizzaTabelle.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

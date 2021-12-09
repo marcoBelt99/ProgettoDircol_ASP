@@ -15,17 +15,28 @@ public class ConnessioneDAL
     // private string strConn = System.Configuration.ConfigurationManager.ConnectionStrings["strConn"].ConnectionString;
     private string strConn = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-    // Funzione che mi permette di fare una query di stampa
+
+    /// <summary>
+    /// GetDataTable: Effettua la stampa per righe degli elementi di una tabella.
+    /// </summary>
+    /// <param name="strSql">Stringa che contiene un comando SQL </param>
+    /// <param name="sqlParametri">Insieme di parametri che compongono il mio comando SQL</param>
+    /// <param name="commandTimeout">Tempo di connessione</param>
+    /// <returns></returns>
     public DataTable GetDataTable(string strSql, Collection<SqlParameter> sqlParametri = null, int commandTimeout = 30)
     {
-        // DataTable ha la stessa funzione degli array associativi del PHP. Contiene un insieme di righe (come risultato di una generica query)
+        // Creo una nuova tabella di dati. Essa  ha la stessa funzione degli array associativi del PHP.
+        // Contiene un insieme di righe (come risultato di una generica query)
         DataTable dt = new DataTable();
 
         // Quando metto questo using, alla fine devo sempre mettere un Dispose per chiudere tutte le conessioni
+        // Creo un nuovo oggetto 'conn' di tipo SqlConnection, a cui passo la stringa di connessione ottenuta prima
         using (SqlConnection conn = new SqlConnection(strConn))
         {
+            // Creo un nuovo oggetto 'cmd' di tipo SqlCommand
             using (SqlCommand cmd = new SqlCommand(strSql, conn))
             {
+                // Controllo e gestisco il "tempo di esecuzione"
                 if (commandTimeout > 30)
                 {
                     try
@@ -37,19 +48,30 @@ public class ConnessioneDAL
                         Console.WriteLine(ex.Message);
                     }
                 }
+                // Rimuovo tutti gli oggetti 'SqlParameter' dalla collezione 'SqlParameterCollection'
                 cmd.Parameters.Clear();
 
+                // Se è falso che sqlParametri è == null
                 if (!(sqlParametri == null))
                 {
+                    // Per ogni parametro nella collezione 'sqlParametri'
                     foreach (SqlParameter parametro in sqlParametri)
+                        // Aggiungilo al comando
                         cmd.Parameters.Add(parametro);
                 }
 
+                // Apre una connessione a un database con le impostazioni delle proprietà specificate
+                // dalla proprietà System.Data.SqlClient.SqlConnection.ConnectionString.
                 conn.Open();
+
+                // SqlDataAdapter è una classe che serve per contenere un set di comandi ('cmd') ed una connessione
                 using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                 {
                     try
                     {
+                        // Aggiungo o aggiorno righe in un determinato intervallo del DataSet 'dt'
+                        // affinché corrispondano a quelle nell'origine dati con il System.Data.DataTable
+                        // nome.
                         ad.Fill(dt);
                     }
                     catch (Exception ex)
@@ -62,31 +84,55 @@ public class ConnessioneDAL
             }
             conn.Dispose();
         }
-
-
+        // Ritorno l'elemento dt
         return dt;
-    }
+    } // Fine GetDataTable 
 
+
+
+
+
+    /// <summary>
+    /// GetScalar: Effettua la stampa di un singolo valore (di una singola riga)
+    /// </summary>
+    /// <param name="strSql">Stringa che contiene un comando SQL</param>
+    /// <param name="sqlParametri">Insieme di parametri che compongono il mio comando SQL</param>
+    /// <returns></returns>
     protected object GetScalar(string strSql, Collection<SqlParameter> sqlParametri = null)
     {/* TODO Change to default(_) if this is not a reference type */
+
+        // Creo una nuova tabella di dati
         DataTable dt = new DataTable();
         object obj = new object();
 
+        // Creo una nuova connessione, usando la stringa di connessione
         using (SqlConnection conn = new SqlConnection(strConn))
         {
+            // Creo un nuovo comando (insieme di parametri)
             using (SqlCommand cmd = new SqlCommand(strSql, conn))
             {
+                // Rimuovo tutti gli oggetti SqlParameter dalla SqlParameterCollections
                 cmd.Parameters.Clear();
 
+                // Se è falso che sqlParametri è == null
                 if (!(sqlParametri == null))
                 {
+                    // Per ogni parametro nella collezione 'sqlParametri'
                     foreach (SqlParameter parametro in sqlParametri)
+                        // Aggiungilo al comando
                         cmd.Parameters.Add(parametro);
                 }
 
+                // Apre una connessione a un database con le impostazioni delle proprietà specificate
+                // dalla proprietà System.Data.SqlClient.SqlConnection.ConnectionString.
                 conn.Open();
+
+                // SqlDataAdapter è una classe che serve per contenere un set di comandi ('cmd') ed una connessione
                 using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                 {
+                    // Aggiungo o aggiorno righe in un determinato intervallo del DataSet 'dt'
+                    // affinché corrispondano a quelle nell'origine dati con il System.Data.DataTable
+                    // nome.
                     ad.Fill(dt);
                     ad.Dispose();
                 }
@@ -94,14 +140,27 @@ public class ConnessioneDAL
             conn.Dispose();
         }
 
+        // Mi salvo la riga della tabella (di fatto, lo scalare che sto cercando)
         obj = dt.Rows[0][0];
 
+        // Ritorno lo scalare
         return obj;
-        // obj = dt.Rows(0).Item(0);
-
-        // return obj;
     }
 
+
+   
+
+
+
+
+
+
+    /// <summary>
+    /// Insert: Funzione di inserimento
+    /// </summary>
+    /// <param name="strSql"></param>
+    /// <param name="sqlParametri"></param>
+    /// <returns></returns>
     protected int Insert(Collection<string> strSql, Collection<Collection<SqlParameter>> sqlParametri)
     {
         int rowAffected = -1;

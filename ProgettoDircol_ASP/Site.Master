@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Applicazione ASP.NET</title>
+    <title><%: Page.Title %> - Dircol</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -15,10 +15,16 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="~/Content/stili.css" />
+
+    <!-- Includo le icone di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+
+    <!-- Includo i Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -39,145 +45,135 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+
+
+        <%-- NAVBAR --%>
         <navbar>
             <nav class="navbar navbar-expand-md navbar-expand-xl navbar-dark static-top stileNavbar">
-                <%--<div class="navbar navbar-inverse navbar-fixed-top">--%>
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" runat="server" href="~/">Dircol</a>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a runat="server" href="~/">Home</a></li>
-                                <li><a runat="server" href="~/About">Informazioni</a></li>
-                                <li><a runat="server" href="~/Contact">Contatto</a></li>
+                <div class="navbar-brand">
+                    <img src="Images/D.png" alt="logo" class="logo" width="40" height="40">
+                </div>
+
+                <!-- Bottone Hamburger menù -->
+                <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+                    <!-- Lista di link della navbar -->
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+
+                            <!-- Home -->
+                            <a class="nav-link text-nowrap" runat="server" href="~/">
+                                <i class="bi bi-house-fill"></i>&nbsp;Home<span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <!-- Chi siamo -->
+                        <li class="nav-item">
+                            <a class="nav-link text-nowrap" runat="server" href="~/chiSiamo">
+                                <i class="bi bi-people-fill"></i>&nbsp;Chi siamo <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <!-- Contatti -->
+                        <li class="nav-item">
+                            <a class="nav-link text-nowrap" runat="server" href="~/contatti">
+                                <i class="bi bi-telephone-fill"></i>&nbsp;Contatti<span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <!-- Visualizza tabelle -->
+                        <li class="nav-item">
+                            <a class="nav-link text-nowrap" runat="server" href="~/visualizzaTabelle" target="_blank">
+                                <i class="bi bi-file-spreadsheet-fill"></i>&nbsp;Visualizza tabelle
+                            </a>
+                        </li>
+
+                        <!-- Dropdown menù: Operazioni Di Data Manipulation Language -->
+                        <li class="nav-item dropdown drop">
+                            <a class="nav-link dropdown-toggle text-nowrap" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-list-task"></i>&nbsp;Operazioni DML
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+
+                                <!-- Inserisci -->
+                                <a class="dropdown-item" runat="server" href="~/inserisci">
+                                    <i class="bi bi-plus-circle-fill"></i>&nbsp;Inserisci
+                                </a>
+
+                                <!-- Aggiorna -->
+                                <a class="dropdown-item" runat="server" href="~/aggiorna">
+                                    <i class="bi bi-pencil-square"></i>&nbsp;Aggiorna
+                                </a>
+
+                                <!-- Divisore tra le voci del dropdown menu -->
+                                <div class="dropdown-divider"></div>
+                                <!-- Elimina -->
+                                <a class="dropdown-item link-danger linkElimina" runat="server" href="~/elimina">
+                                    <i class="bi bi-x-circle-fill"></i>&nbsp;Elimina
+                                </a>
+                            </div>
+                        </li>
+                        <!-- Fine dropdown menù-->
+
+                        <!-- Interrogazioni -->
+                        <li class="nav-item">
+                            <a class="nav-link text-nowrap" runat="server" href="~/interrogazioni">
+                                <i class="bi bi-clipboard-data"></i>&nbsp;Interrogazioni
+                            </a>
+                        </li>
+                    </ul>
+
+                    <%-- Gestione utenti e Log-in --%>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item">
+                                    <a class="nav-link text-nowrap" runat="server" href="~/Account/Register">Esegui registrazione</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-nowrap" runat="server" href="~/Account/Login">Accedi</a>
+                                </li>
                             </ul>
-                            <asp:LoginView runat="server" ViewStateMode="Disabled">
-                                <AnonymousTemplate>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/Register">Esegui registrazione</a></li>
-                                        <li><a runat="server" href="~/Account/Login">Accedi</a></li>
-                                    </ul>
-                                </AnonymousTemplate>
-                                <LoggedInTemplate>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Salve, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                        <li>
-                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                        </li>
-                                    </ul>
-                                </LoggedInTemplate>
-                            </asp:LoginView>
-                        </div>
-                    </div>
-                <%--</div>--%>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a runat="server" href="~/Account/Manage" title="Manage your account">Salve, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
             </nav>
         </navbar>
-        <%-- Provo a mettere la navbar che ho creato in Precedenza in PHP --%>
 
 
-
-
-        <!--  navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-expand-xl shift py-4-->
-        <div class="navbar-brand">
-            <img src="immagini\D.png" alt="logo" class="logo" width="40" height="40">
-        </div>
-        <!-- Bottone Hamburger menù -->
-        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <!-- Lista di link della navbar -->
-            <ul class="navbar-nav mr-auto">
-                <!-- Home -->
-                <li class="nav-item">
-                    <!-- posso aggiungere active per lasciarlo active-->
-                    <a class="nav-link text-nowrap" href="index.php">
-                        <i class="bi bi-house-fill"></i>Home<span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <!-- Chi siamo -->
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="chiSiamo.php">
-                        <i class="bi bi-people-fill"></i>Chi siamo <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <!-- Contatti -->
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="contatti.php">
-                        <i class="bi bi-telephone-fill"></i>Contatti <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <!-- Visualizza tabelle -->
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="visualizzaTabelle.php" target="_blank">
-                        <i class="bi bi-file-spreadsheet-fill"></i>Visualizza tabelle
-                    </a>
-                </li>
-                <!-- Dropdown menù: Operazioni Di Data Manipulation Language -->
-                <li class="nav-item dropdown drop">
-                    <a class="nav-link dropdown-toggle text-nowrap" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="bi bi-list-task"></i>Operazioni DML
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <!-- Inserisci -->
-                        <a class="dropdown-item" href="inserisci.php">
-                            <i class="bi bi-plus-circle-fill"></i>Inserisci
-                        </a>
-                        <!-- Aggiorna -->
-                        <a class="dropdown-item" href="aggiorna.php">
-                            <i class="bi bi-pencil-square"></i>Aggiorna
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <!-- Divisore tra le voci del dropdown menu -->
-                        <!-- Elimina -->
-                        <a class="dropdown-item link-danger linkElimina" href="elimina.php">
-                            <i class="bi bi-x-circle-fill"></i>Elimina
-                        </a>
-                    </div>
-                </li>
-                <!-- Fine dropdown menù-->
-
-                <!-- Interrogazioni -->
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="interrogazioni.php">
-                        <i class="bi bi-clipboard-data"></i>Interrogazioni
-                    </a>
-                </li>
-
-                <!-- Link disabilitato -->
-                <!-- <li class="nav-item">
-                <a class="nav-link disabled " href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li> -->
-            </ul>
-            <!-- Gestione Utenti -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="gestioneUtenti.php">
-                        <i class="bi bi-person-square"></i>Gestione Utenti <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Fine lista di link della navbar -->
-
-        </div>
-
-
-
-        <div class="container body-content">
+        <%-- Sezione principale --%>
+        <%--<div class="container body-content">--%>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Applicazione ASP.NET</p>
-            </footer>
-        </div>
+       <%-- </div>--%>
+
+        <!-- Footer -->
+        <footer class="dark stileFooter ">
+            <a href="https://www.dircol/facebook.com"><i class="bi bi-facebook"></i></a>
+            &nbsp; &nbsp;
+    <a href="https://www.dircol/twitter.com"><i class="bi bi-twitter"></i></a>
+            &nbsp; &nbsp;
+    <a href="https://www.instagram.com/dircolSPA"><i class="bi bi-instagram"></i></a>
+            &nbsp; &nbsp;
+    <a href="mailto:info@dircol.it"><i class="bi bi-mail"></i></a>
+            &nbsp; &nbsp;
+    Copyright &copy; <%: DateTime.Now.Year %>  Dircol S.P.A.
+        </footer>
+        <!-- Fine Footer -->
     </form>
 </body>
 </html>

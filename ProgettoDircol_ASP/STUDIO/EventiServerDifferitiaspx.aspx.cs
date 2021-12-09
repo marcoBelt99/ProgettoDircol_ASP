@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,22 @@ namespace ProgettoDircol_ASP.STUDIO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            chk1.ForeColor = Color.Black;
+            chk2.ForeColor = Color.Black;
+            chk3.ForeColor = Color.Black;
+            txt.ForeColor = Color.Black;
 
+        }
+
+        protected void CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = (CheckBox)sender;
+            chk.ForeColor = Color.Red;
+        }
+
+        protected void TextChanged(object sender, EventArgs e)
+        {
+            txt.ForeColor = Color.Red;
         }
     }
 }
