@@ -14,7 +14,7 @@ namespace ProgettoDircol_ASP
 
         }
 
-        // Evento click su un bottone
+        // All' evento click sul bottone di id btnSaluta, si scatena l'esecuzione di questa procedura
         protected void btnSaluta_Click(object sender, EventArgs e)
         {
             lblSaluto.Text = "Salve, Mondo !";
@@ -22,7 +22,8 @@ namespace ProgettoDircol_ASP
     }
 }
 
-/*  separazione del layout della pagina dal codice esecutivo che ne governa il 
-comportamento */
+/*  Separazione del layout della pagina dal codice esecutivo che ne governa il 
+    comportamento
+*/
 
 
