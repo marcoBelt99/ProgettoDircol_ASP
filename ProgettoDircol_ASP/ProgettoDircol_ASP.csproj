@@ -175,9 +175,10 @@
     <Content Include="Content\bootstrap-SitoTutorial.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\stili.css" />
-    <Content Include="CreaTabellaCapiSQLServer.sql" />
     <Content Include="Default.aspx" />
+    <Content Include="dircol_SQLSERVER.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -191,6 +192,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="STUDIO\SalveMondoSingle.aspx" />
     <Content Include="Scripts\bootstrap-Original.js" />
     <Content Include="Scripts\bootstrap-Original.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -364,6 +366,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="STUDIO\SalveMondoSingle.aspx.cs">
+      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\SalveMondoSingle.aspx.designer.cs">
+      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

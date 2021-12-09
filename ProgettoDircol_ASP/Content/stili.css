@@ -652,3 +652,10 @@ fieldset option {
         z-index: 10;
         width: auto;
     }
+
+
+/* Classi varie */
+.provaFunzionamento {
+    color: red;
+    font-size: 90px;
+}

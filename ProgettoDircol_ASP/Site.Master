@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="~/Content/stili.css" />
 </head>
 <body>
+
+
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -163,17 +165,6 @@
             </ul>
 
             <!-- Fine lista di link della navbar -->
-
-            <!-- Form della navbar -->
-            <!-- <div class="navbar-right">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Cerca" aria-label="Search">
-              <button class="btn btn-outline-warning" type="submit">Cerca</button>
-            </form>
-          </div> -->
-
-
-            <!-- Fine form della navbar -->
 
         </div>
 
