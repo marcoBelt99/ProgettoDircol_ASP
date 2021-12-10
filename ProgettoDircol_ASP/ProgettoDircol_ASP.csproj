@@ -168,7 +168,6 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="aggiorna.aspx" />
     <Content Include="chiSiamo.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="contatti.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -409,13 +408,6 @@
       <DependentUpon>interrogazioni.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ConnessioneDAL.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -443,7 +435,6 @@
     <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
       <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
     </Compile>
-    <Compile Include="STUDIO\IsExternalInitcs.cs" />
     <Compile Include="STUDIO\LoginHtmlControl.aspx.cs">
       <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
