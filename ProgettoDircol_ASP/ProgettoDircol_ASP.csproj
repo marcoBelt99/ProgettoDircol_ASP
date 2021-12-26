@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -145,9 +148,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
@@ -206,11 +206,7 @@
     <Content Include="Images\wardrobe.jpg" />
     <Content Include="inserisci.aspx" />
     <Content Include="interrogazioni.aspx" />
-    <Content Include="STUDIO\bottone.gif" />
-    <Content Include="STUDIO\BottoniComando.aspx" />
-    <Content Include="STUDIO\EventiServerDifferitiaspx.aspx" />
-    <Content Include="STUDIO\LoginHtmlControl.aspx" />
-    <Content Include="STUDIO\SalveMondoSingle.aspx" />
+    <Content Include="prove.aspx" />
     <Content Include="Scripts\bootstrap-Original.js" />
     <Content Include="Scripts\bootstrap-Original.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -386,6 +382,11 @@
     <Compile Include="contatti.aspx.designer.cs">
       <DependentUpon>contatti.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dati\Capo.cs" />
+    <Compile Include="Dati\Dipendente.cs" />
+    <Compile Include="Dati\Modello.cs" />
+    <Compile Include="Dati\PuntoVendita.cs" />
+    <Compile Include="Dati\Vendita.cs" />
     <Compile Include="elimina.aspx.cs">
       <DependentUpon>elimina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -420,34 +421,12 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="STUDIO\BottoniComando.aspx.cs">
-      <DependentUpon>BottoniComando.aspx</DependentUpon>
+    <Compile Include="prove.aspx.cs">
+      <DependentUpon>prove.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="STUDIO\BottoniComando.aspx.designer.cs">
-      <DependentUpon>BottoniComando.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="STUDIO\EsempioQuery.cs" />
-    <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.cs">
-      <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
-      <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="STUDIO\LoginHtmlControl.aspx.cs">
-      <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="STUDIO\LoginHtmlControl.aspx.designer.cs">
-      <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="STUDIO\SalveMondoSingle.aspx.cs">
-      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="STUDIO\SalveMondoSingle.aspx.designer.cs">
-      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
+    <Compile Include="prove.aspx.designer.cs">
+      <DependentUpon>prove.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -479,9 +458,7 @@
       <DependentUpon>visualizzaTabelle.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />

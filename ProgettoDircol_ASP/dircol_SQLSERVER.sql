@@ -18,6 +18,7 @@ USE dircol;
 DROP TABLE IF EXISTS modelli;
 CREATE TABLE modelli (
   [CodModello] int NOT NULL IDENTITY(1, 1),
+  [Immagine] varchar(200) NOT NULL,
   [Nome] text NOT NULL,
   [Descrizione] text NOT NULL,
   [PrezzoListino] float NOT NULL,
@@ -30,12 +31,25 @@ TRUNCATE TABLE modelli;
 -- Dump dei dati per la tabella `modelli`
 --
 
-INSERT INTO modelli (Nome, Descrizione, PrezzoListino, Genere, Collezione) VALUES
-( 'Gonna 2.0', 'Gonna per ragazze di cotone', 23, 'F', 'Autunnale'),
-( 'CapoGuc', 'Cappellino Gucci per ragazzi verde ed oro', 45, 'F', 'Estiva'),
-( 'MaglioneG', 'Maglione Zara giallo', 35, 'M', 'Invernale'),
-( 'PantaBlu', 'Pantaloni blu Sorbino', 49.9, 'M', 'Primaverile'),
-( 'Felpa 1.5', 'Felpa di paille', 66, 'F', 'Autunnale');
+INSERT INTO modelli (Immagine,Nome, Descrizione, PrezzoListino, Genere, Collezione) VALUES
+( 'Gonna.jpg', 'Gonna 2.0', 'Gonna per ragazze di cotone', 23, 'F', 'Autunnale'),
+( 'CappellinoGucci.jpg', 'CapoGuc', 'Cappellino Gucci per ragazzi verde ed oro', 45, 'F', 'Estiva'),
+( 'MaglioneZaraGiallo.jpg',  'MaglioneG', 'Maglione Zara giallo', 35, 'M', 'Invernale'),
+( 'PantaloniBlu.jpg',  'PantaBlu', 'Pantaloni blu Sorbino', 49.9, 'M', 'Primaverile'),
+( 'MagliaVerde.jpg',  'Maglia Verde', 'T-shirt verde lime', 23, 'M', 'Estiva'),
+( 'MagliaRossa.jpg',  'Maglia Rossa', 'T-shirt rosso acceso', 24.10, 'M', 'Estiva'),
+( 'MagliaGialla.jpg',  'Maglia Gialla', 'T-shirt gialla con girocollo da uomo', 23, 'M', 'Estiva'),
+( 'CamiciaAzzurra.jpg',  'Camicia Azzurra', 'Polo Ralph Lauren NATURAL SLIM FIT - Camicia', 103.99, 'M', 'Autunnale'),
+( 'CamiciaNera.jpg',  'Camicia Nera', 'Polo Ralph Lauren NATURAL SLIM FIT - Camicia', 103.99, 'M', 'Autunnale'),
+( 'JeansDonnaNeri.jpg',  'WIDE LEG FLARED', 'Jeans a Zampa', 20.99, 'F', 'Autunnale'),
+( 'JeansDonnaVerdi.jpg',  'Berska Jeans', 'Jeans a sigaretta', 29.99, 'F', 'Autunnale'),
+( 'ScarpeNikeDonna.jpg',  'AIR FORCE 1 FONTANKA', ' Nike Sportswear - Sneakers basse', 109.99, 'F', 'Autunnale'),
+( 'FelpaDiPileDonna.jpg',  '7 AM MOUNTAIN PILE', 'Giacca leggera', 180.99, 'F', 'Autunnale'),
+( 'FelpaDiPileDonnaNera.jpg',  'CHUTE', 'Giacca in pile', 82, 'F', 'Autunnale'),
+( 'FelpaNikeRossaCappuccio.jpg',  'Felpa con cappuccio', 'NIKE SPORTSWEAR CLUB FLEECE HOODIE', 44.19, 'M', 'Invernale'),
+( 'BerrettoNikeVerde.jpg',  'Berretto Nike', 'BEANIE FISHERMAN UNISEX', 19.99, 'M', 'Invernale'),
+( 'Giacca.jpg',  'Giacca Uomo', 'Comoda Giacca da Uomo economica', 45, 'M', 'Invernale'),
+( 'SharpaRossa.jpg',  'Sciarpa Carnhartt WIP', 'CLAN SCARF UNISEX', 48.99, 'M', 'Invernale');
 
 -- --------------------------------------------------------
 
