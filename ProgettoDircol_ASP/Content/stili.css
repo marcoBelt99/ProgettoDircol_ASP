@@ -665,3 +665,12 @@ fieldset option {
     color: red;
     font-size: 90px;
 }
+
+/* ACCORDION */
+.accordion card-head {
+    /* font-size: 25px; */
+    background-color: #7952b3;
+    box-shadow: 5px 5px 5px #5e0add;
+}
+
+.corpoAccordion {}

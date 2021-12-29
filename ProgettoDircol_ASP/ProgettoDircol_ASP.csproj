@@ -227,6 +227,8 @@
     <Content Include="Images\wardrobe.jpg" />
     <Content Include="inserisci.aspx" />
     <Content Include="interrogazioni.aspx" />
+    <Content Include="loginAdmin.aspx" />
+    <Content Include="loginUtente.aspx" />
     <Content Include="prove.aspx" />
     <Content Include="Scripts\bootstrap-Original.js" />
     <Content Include="Scripts\bootstrap-Original.min.js" />
@@ -436,6 +438,20 @@
     </Compile>
     <Compile Include="interrogazioni.aspx.designer.cs">
       <DependentUpon>interrogazioni.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loginAdmin.aspx.cs">
+      <DependentUpon>loginAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginAdmin.aspx.designer.cs">
+      <DependentUpon>loginAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loginUtente.aspx.cs">
+      <DependentUpon>loginUtente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginUtente.aspx.designer.cs">
+      <DependentUpon>loginUtente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ConnessioneDAL.cs" />
     <Compile Include="Default.aspx.cs">
