@@ -195,6 +195,27 @@
     <Content Include="Account\Web.config" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\fotoModelli\BerrettoNikeVerde.jpg" />
+    <Content Include="Images\fotoModelli\CamiciaAzzurra.jpg" />
+    <Content Include="Images\fotoModelli\CamiciaNera.jpg" />
+    <Content Include="Images\fotoModelli\CappellinoGucci.jpg" />
+    <Content Include="Images\fotoModelli\FelpaDiPile.jpg" />
+    <Content Include="Images\fotoModelli\FelpaDiPileDonna.jpg" />
+    <Content Include="Images\fotoModelli\FelpaDiPileDonnaNera.jpg" />
+    <Content Include="Images\fotoModelli\FelpaNikeRossaCappuccio.jpg" />
+    <Content Include="Images\fotoModelli\Giacca.jpg" />
+    <Content Include="Images\fotoModelli\Giacca1.jpg" />
+    <Content Include="Images\fotoModelli\Gonna.jpg" />
+    <Content Include="Images\fotoModelli\JeansDonnaNeri.jpg" />
+    <Content Include="Images\fotoModelli\JeansDonnaVerdi.jpg" />
+    <Content Include="Images\fotoModelli\Maglia1.jpg" />
+    <Content Include="Images\fotoModelli\MagliaGialla.jpg" />
+    <Content Include="Images\fotoModelli\MagliaRossa.jpg" />
+    <Content Include="Images\fotoModelli\MagliaVerde.jpg" />
+    <Content Include="Images\fotoModelli\MaglioneZaraGiallo.jpg" />
+    <Content Include="Images\fotoModelli\PantaloniBlu.jpg" />
+    <Content Include="Images\fotoModelli\ScarpeNikeDonna.jpg" />
+    <Content Include="Images\fotoModelli\SharpaRossa.jpg" />
     <Content Include="Images\vestiti.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\armadio1.jpg" />
@@ -238,6 +259,13 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="STUDIO\bottone.gif" />
+    <Content Include="STUDIO\BottoniComando.aspx" />
+    <Content Include="STUDIO\DataBindingSemplice.aspx" />
+    <Content Include="STUDIO\EsempioValidazione.aspx" />
+    <Content Include="STUDIO\EventiServerDifferitiaspx.aspx" />
+    <Content Include="STUDIO\LoginHtmlControl.aspx" />
+    <Content Include="STUDIO\SalveMondoSingle.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="visualizzaTabelle.aspx" />
     <Content Include="Web.config" />
@@ -386,6 +414,7 @@
     <Compile Include="Dati\Dipendente.cs" />
     <Compile Include="Dati\Modello.cs" />
     <Compile Include="Dati\PuntoVendita.cs" />
+    <Compile Include="Dati\Operazione.cs" />
     <Compile Include="Dati\Vendita.cs" />
     <Compile Include="elimina.aspx.cs">
       <DependentUpon>elimina.aspx</DependentUpon>
@@ -443,6 +472,50 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="STUDIO\BottoniComando.aspx.cs">
+      <DependentUpon>BottoniComando.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\BottoniComando.aspx.designer.cs">
+      <DependentUpon>BottoniComando.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\Compagnia.cs" />
+    <Compile Include="STUDIO\DataBindingSemplice.aspx.cs">
+      <DependentUpon>DataBindingSemplice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\DataBindingSemplice.aspx.designer.cs">
+      <DependentUpon>DataBindingSemplice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\EsempioQuery.cs" />
+    <Compile Include="STUDIO\EsempioValidazione.aspx.cs">
+      <DependentUpon>EsempioValidazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\EsempioValidazione.aspx.designer.cs">
+      <DependentUpon>EsempioValidazione.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.cs">
+      <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
+      <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\LoginHtmlControl.aspx.cs">
+      <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\LoginHtmlControl.aspx.designer.cs">
+      <DependentUpon>LoginHtmlControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\SalveMondoSingle.aspx.cs">
+      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\SalveMondoSingle.aspx.designer.cs">
+      <DependentUpon>SalveMondoSingle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

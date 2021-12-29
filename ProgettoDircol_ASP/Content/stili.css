@@ -204,6 +204,7 @@ fieldset {
     /* componenti del fieldset */
 
     fieldset p {
+        display: table-row;
         padding-bottom: 5px;
         padding-top: 5px;
         margin-bottom: 5px;
@@ -211,6 +212,7 @@ fieldset {
     }
 
     fieldset label {
+        display: table-cell;
         color: #181818;
         text-align: left;
         margin-left: 10px;
@@ -219,6 +221,7 @@ fieldset {
     }
 
     fieldset input {
+        display: table-cell;
         margin-left: 30px;
     }
 
@@ -300,9 +303,12 @@ input[type="date"] {
     color: #5e0add;
 }
 
-/* input type submit */
 
-input[type="submit"] {
+
+/* Classe per creare gli stili ai bottoni 'Submit'
+   A scopo di facilitare la scrittura del codice
+*/
+.Stile_btnSubmit {
     background-color: #a2ec9c;
     border-color: black;
     margin-top: 20px;
@@ -317,7 +323,7 @@ input[type="submit"] {
     -moz-border-radius: 20px;
 }
 
-    input[type="submit"]:hover {
+    .Stile_btnSubmit:hover {
         background-color: #4bdb3e;
         border-color: black;
         margin-top: 20px;
@@ -331,10 +337,10 @@ input[type="submit"] {
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
     }
-
-/* input type reset */
-
-input[type="reset"] {
+/* Classe per creare gli stili ai bottoni 'Annulla'
+    Non esiste un controllo in ASP per gli input type reset
+*/
+.Stile_bntAnnulla {
     background-color: #f6504a;
     border-color: black;
     margin-top: 20px;
@@ -349,7 +355,7 @@ input[type="reset"] {
     -moz-border-radius: 20px;
 }
 
-    input[type="reset"]:hover {
+    .Stile_bntAnnulla:hover {
         background-color: #df1212;
         border-color: black;
         margin-top: 12px;

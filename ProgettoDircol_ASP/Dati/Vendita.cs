@@ -22,7 +22,7 @@ namespace ProgettoDircol_ASP.Dati
         public int ID { get; set; }
         public string DataVendita { get; set; }
         public double PrezzoVendita { get; set; }
-        public string Matricola  { get; set; }
+        public string Matricola { get; set; }
         public int IDCapo { get; set; }
 
         // COSTRUTTORE VUOTO
@@ -50,7 +50,7 @@ namespace ProgettoDircol_ASP.Dati
 
         // METODI
         /// <summary>
-        /// Ritorna la lista di capi andando a leggere dal Database
+        /// Ritorna la lista delle vendite andando a leggere dal Database
         /// impostato nella stringa di connessione.
         /// Questo metodo mi serve per la VISUALIZZAZIONE dei dati dal Database.
         /// </summary>
@@ -102,6 +102,50 @@ namespace ProgettoDircol_ASP.Dati
             return listaVendite;
         }
 
+
+
+        /// <summary>
+        /// Metodo di inserimento di un vendita nella tabella vendite.
+        /// </summary>
+        /// <param name="connectionString">stringa di connessione al database</param>
+        /// <param name="vendita">oggetto da inserire nella tabella</param>
+        public void InserisciVendita(string connectionString, Vendita vendita)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // Query parametrizzata: DataVendita, PrezzoVendita, Matricola, IDCapo
+                    string strSQL = "INSERT INTO vendite (DataVendita, PrezzoVendita, Matricola, IDCapo) " +
+                        "VALUES (@DataVendita, @PrezzoVendita, @Matricola, @IDCapo);";
+
+                    SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Creo sia un comando di test, di sicuro non una stored procedure
+                    cmd.CommandType = CommandType.Text;
+
+                    // Aggiungo i parametri che ho usato nella query
+                    cmd.Parameters.Add(new SqlParameter("@DataVendita", vendita.DataVendita));
+                    cmd.Parameters.Add(new SqlParameter("@PrezzoVendita", vendita.PrezzoVendita));
+                    cmd.Parameters.Add(new SqlParameter("@Matricola", vendita.Matricola));
+                    cmd.Parameters.Add(new SqlParameter("@IDCapo", vendita.IDCapo));
+
+                    // Apro la connessione
+                    con.Open();
+
+                    // Eseguo la query di inserimento
+                    cmd.ExecuteNonQuery();
+
+                    // chiudo la connessione
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
 
     } // fine classe

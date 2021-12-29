@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Data;
 
+using System.Diagnostics; // Per scrivere l'output della console nelle eccezioni
+
 namespace ProgettoDircol_ASP.Dati
 {
 
@@ -105,6 +107,60 @@ namespace ProgettoDircol_ASP.Dati
 
             // Ritorno la lista di dipendenti
             return listaDipendenti;
+        }
+
+
+        /// <summary>
+        /// Metodo di inserimento di un dipendente nella tabella dipendenti.
+        /// </summary>
+        /// <param name="connectionString">stringa di connessione al database</param>
+        /// <param name="capo">oggetto da inserire nella tabella</param>
+        public void InserisciDipendente(string connectionString, Dipendente dipendente)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // Query parametrizzata
+                    string strSQL = "INSERT INTO dipendenti (Matricola, Cognome, Nome," +
+                        " CodiceFiscale, Qualifica, PuntoVendita) " +
+                        "VALUES (@Matricola, @Cognome, @Nome," +
+                        " @CodiceFiscale, @Qualifica, @PuntoVendita);";
+
+                    SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Creo sia un comando di test, di sicuro non una stored procedure
+                    cmd.CommandType = CommandType.Text;
+
+                    // Aggiungo i parametri che ho usato nella query
+                    cmd.Parameters.Add(new SqlParameter("@Matricola", dipendente.Matricola));
+                    cmd.Parameters.Add(new SqlParameter("@Cognome", dipendente.Cognome));
+                    cmd.Parameters.Add(new SqlParameter("@Nome", dipendente.Nome));
+                    cmd.Parameters.Add(new SqlParameter("@CodiceFiscale", dipendente.CodiceFiscale));
+                    cmd.Parameters.Add(new SqlParameter("@Qualifica", dipendente.Qualifica));
+                    cmd.Parameters.Add(new SqlParameter("@PuntoVendita", dipendente.PuntoVendita));
+
+
+                    // Apro la connessione
+                    con.Open();
+
+                    // Eseguo la query di inserimento
+                    cmd.ExecuteNonQuery();
+
+                    // chiudo la connessione
+                    con.Close();
+                }
+            }
+            catch (SqlException exSQL)
+            {
+                System.Diagnostics.Debug.WriteLine(exSQL.Message);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                // Console.WriteLine(  ex.Message);
+                throw ex;
+            }
         }
 
 

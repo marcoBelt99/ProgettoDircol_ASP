@@ -101,5 +101,50 @@ namespace ProgettoDircol_ASP.Dati
         }
 
 
+        /// <summary>
+        /// Metodo di inserimento di un capo nella tabella puntivendita.
+        /// </summary>
+        /// <param name="connectionString">stringa di connessione al database</param>
+        /// <param name="capo">oggetto da inserire nella tabella</param>
+        public void InserisciPuntoVendita(string connectionString, PuntoVendita puntovendita)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // Query parametrizzata
+                    string strSQL = "INSERT INTO puntivendita (Indirizzo, Telefono, Citta, DataInizio, Nazione) " +
+                        "VALUES (@Indirizzo, @Telefono, @Citta, @DataInizio, @Nazione);";
+
+                    SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Creo sia un comando di test, di sicuro non una stored procedure
+                    cmd.CommandType = CommandType.Text;
+
+                    // Aggiungo i parametri che ho usato nella query
+                    cmd.Parameters.Add(new SqlParameter("@Indirizzo", puntovendita.Indirizzo));
+                    cmd.Parameters.Add(new SqlParameter("@Telefono", puntovendita.Telefono));
+                    cmd.Parameters.Add(new SqlParameter("@Citta", puntovendita.Citta));
+                    cmd.Parameters.Add(new SqlParameter("@DataInizio", puntovendita.DataInizio));
+                    cmd.Parameters.Add(new SqlParameter("@Nazione", puntovendita.Nazione));
+
+                    // Apro la connessione
+                    con.Open();
+
+                    // Eseguo la query di inserimento
+                    cmd.ExecuteNonQuery();
+
+                    // chiudo la connessione
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
     } // fine classe
 } // fine namespace

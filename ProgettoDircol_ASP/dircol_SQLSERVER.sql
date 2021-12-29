@@ -7,7 +7,8 @@ DROP SCHEMA IF EXISTS dircol;
 USE dircol;
 
 -- --------------------------------------------------------
-
+-- Prima aggiungo le tabelle che non hanno chiavi esterne, poi ci metto quelle
+-- che referenziano una tabella (quelle che hanno chiavi esterne)
 
 
 
@@ -59,41 +60,6 @@ INSERT INTO modelli (Immagine,Nome, Descrizione, PrezzoListino, Genere, Collezio
 
 
 
---
--- Struttura della tabella `capi`
---
-
--- --------------------------------------------------------
-
-
-DROP TABLE IF EXISTS capi;
-	CREATE TABLE capi (
-	  [ID] int NOT NULL IDENTITY(1, 1),
-	  [Taglia] text NOT NULL,
-	  [Colore] text NOT NULL,
-	  [PuntoVendita] varchar(5) NOT NULL,
-	  [CodModello] int NOT NULL,
-	  PRIMARY KEY (ID),
-	  FOREIGN KEY (CodModello) REFERENCES modelli (CodModello)
-	  -- IDENTITY(1,1) è come se fosse AUTO_INCREMENT
-	);
-TRUNCATE TABLE capi;
-
-INSERT INTO capi (Taglia, Colore, PuntoVendita, CodModello) VALUES
-('XXS', '#FF0000', '1', 1),
-('S', '#000000', '6', 2),
-('L', '#FFFF00', '1', 2),
-('XL', '#008000', '1', 1),
-('XS', '#0000FF', '5', 3),
-('M', '#800000', '4', 3),
-('L', '#8F00FF', '4', 4),
-('L', '	#008000', '3', 2),
-('XXL', '#FF0000', '1', 3);
-
-
--- --------------------------------------------------------
-
-
 
 
 --
@@ -126,6 +92,47 @@ INSERT INTO puntivendita (Indirizzo, Telefono, Citta, DataInizio, Nazione) VALUE
 
 -- --------------------------------------------------------
 
+
+
+
+
+
+
+
+--
+-- Struttura della tabella `capi`
+--
+
+-- --------------------------------------------------------
+
+
+DROP TABLE IF EXISTS capi;
+	CREATE TABLE capi (
+	  [ID] int NOT NULL IDENTITY(1, 1),
+	  [Taglia] text NOT NULL,
+	  [Colore] text NOT NULL,
+	  [PuntoVendita] int NOT NULL,
+	  [CodModello] int NOT NULL,
+	  PRIMARY KEY (ID),
+	  FOREIGN KEY (CodModello) REFERENCES modelli (CodModello),
+	  FOREIGN KEY (PuntoVendita) REFERENCES puntivendita (CodPV)
+	  -- IDENTITY(1,1) è come se fosse AUTO_INCREMENT
+	);
+TRUNCATE TABLE capi;
+
+INSERT INTO capi (Taglia, Colore, PuntoVendita, CodModello) VALUES
+('XXS', '#FF0000', '1', 1),
+('S', '#000000', '6', 2),
+('L', '#FFFF00', '1', 2),
+('XL', '#008000', '1', 1),
+('XS', '#0000FF', '5', 3),
+('M', '#800000', '4', 3),
+('L', '#8F00FF', '4', 4),
+('L', '	#008000', '3', 2),
+('XXL', '#FF0000', '1', 3);
+
+
+-- --------------------------------------------------------
 
 
 

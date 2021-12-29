@@ -34,7 +34,7 @@ namespace ProgettoDircol_ASP.Dati
             this.Nome = "";
             this.Descrizione = "";
             this.PrezzoListino = 0.0;
-            this.Genere = 'M';
+            this.Genere = 'M'; // carattere
             this.Collezione = "";
         }
 
@@ -108,5 +108,53 @@ namespace ProgettoDircol_ASP.Dati
             return listaModelli;
         }
 
+
+
+        /// <summary>
+        /// Metodo di inserimento di un modello nella tabella modelli.
+        /// </summary>
+        /// <param name="connectionString">stringa di connessione al database</param>
+        /// <param name="capo">oggetto da inserire nella tabella</param>
+        public void InserisciCapo(string connectionString, Modello modello)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // Query parametrizzata
+                    string strSQL = "INSERT INTO modelli (Immagine, Nome, Descrizione, " +
+                        "PrezzoListino, Genere, Collezione) " +
+                        "VALUES (@Immagine, @Nome, @Descrizione, " +
+                        "@PrezzoListino, @Genere, @Collezione);";
+
+                    SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Creo sia un comando di test, di sicuro non una stored procedure
+                    cmd.CommandType = CommandType.Text;
+
+                    // Aggiungo i parametri che ho usato nella query
+                    cmd.Parameters.Add(new SqlParameter("@Immagine", modello.Immagine));
+                    cmd.Parameters.Add(new SqlParameter("@Nome", modello.Nome));
+                    cmd.Parameters.Add(new SqlParameter("@Descrizione", modello.Descrizione));
+                    cmd.Parameters.Add(new SqlParameter("@PrezzoListino", modello.PrezzoListino));
+                    cmd.Parameters.Add(new SqlParameter("@Genere", modello.Genere));
+                    cmd.Parameters.Add(new SqlParameter("@Collezione", modello.Collezione));
+
+                    // Apro la connessione
+                    con.Open();
+
+                    // Eseguo la query di inserimento
+                    cmd.ExecuteNonQuery();
+
+                    // chiudo la connessione
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     } // fine classe
 } // fine namespace

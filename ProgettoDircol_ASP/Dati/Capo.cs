@@ -89,7 +89,7 @@ namespace ProgettoDircol_ASP.Dati
                     capo.Colore = dr["Colore"].ToString();
                     capo.PuntoVendita = Convert.ToInt32(dr["PuntoVendita"]);
                     capo.CodModello = Convert.ToInt32(dr["CodModello"]);
-                    
+
                     // Aggiungi il capo alla lista
                     listaCapi.Add(capo);
 
@@ -99,5 +99,58 @@ namespace ProgettoDircol_ASP.Dati
             // Ritorno la lista di capi
             return listaCapi;
         }
+
+
+        /// <summary>
+        /// Metodo di inserimento di un capo nella tabella capi.
+        /// </summary>
+        /// <param name="connectionString">stringa di connessione al database</param>
+        /// <param name="capo">oggetto da inserire nella tabella</param>
+        public void InserisciCapo(string connectionString, Capo capo)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    // Query parametrizzata
+                    string strSQL = "INSERT INTO capi (Taglia, Colore, PuntoVendita, CodModello) " +
+                        "VALUES (@Taglia, @Colore, @PuntoVendita, @CodModello);";
+
+                    SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Creo sia un comando di test, di sicuro non una stored procedure
+                    cmd.CommandType = CommandType.Text;
+
+                    // Aggiungo i parametri che ho usato nella query
+                    cmd.Parameters.Add(new SqlParameter("@Taglia", capo.Taglia));
+                    cmd.Parameters.Add(new SqlParameter("@Colore", capo.Colore));
+                    cmd.Parameters.Add(new SqlParameter("@PuntoVendita", capo.PuntoVendita));
+                    cmd.Parameters.Add(new SqlParameter("@CodModello", capo.CodModello));
+
+                    // Apro la connessione
+                    con.Open();
+
+                    // Eseguo la query di inserimento
+                    cmd.ExecuteNonQuery();
+
+                    // chiudo la connessione
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public override string ToString()
+        {
+            return this.ID + "\t" + this.Taglia + "\t"
+                + this.Colore + "\t" + this.PuntoVendita + "\t" + this.CodModello;
+        }
+
+
     } // fine classe
 } // fine namespace

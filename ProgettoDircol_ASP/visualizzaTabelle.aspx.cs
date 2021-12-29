@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // Aggiungo riferimento per accedere al file Web.config
-using System.Web.Configuration;
+// using System.Web.Configuration;
 
 // Aggiungo riferimento alla cartella che contiene la classe che comunica col database
 using ProgettoDircol_ASP.Dati;
@@ -17,7 +17,9 @@ namespace ProgettoDircol_ASP
     {
 
         // Mi salvo la stringa di connessione presente in Web.config
-        private readonly string connectionString = WebConfigurationManager.ConnectionStrings["dircolDB"].ConnectionString;
+        //  private readonly string connectionString = WebConfigurationManager.ConnectionStrings["dircolDB"].ConnectionString;
+        Operazione op = new Operazione(); // per accedere al metodo op.GetConnectionString()
+        
 
         /// <summary>
         /// Procedura di popolamento della Grid presente in 'visualizzaTabelle.aspx' con i dati letti dal
@@ -31,7 +33,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo Capo
             Capo capo = new Capo();
 
-            ListaCapi = capo.GetCapi(connectionString);
+            ListaCapi = capo.GetCapi(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -54,7 +56,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo Dipendente
             Dipendente dipendente = new Dipendente();
 
-            ListaDipendenti = dipendente.GetDipendenti(connectionString);
+            ListaDipendenti = dipendente.GetDipendenti(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -77,7 +79,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo Modello
             Modello modello = new Modello();
 
-            ListaModelli = modello.GetModelli(connectionString);
+            ListaModelli = modello.GetModelli(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -101,7 +103,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo Modello
             PuntoVendita puntovendita = new PuntoVendita();
             
-            ListaPuntiVendita = puntovendita.GetPuntiVendita(connectionString);
+            ListaPuntiVendita = puntovendita.GetPuntiVendita(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -125,7 +127,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo Vendita
             Vendita vendita = new Vendita();
 
-            ListaVendite = vendita.GetVendite(connectionString);
+            ListaVendite = vendita.GetVendite(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -141,7 +143,11 @@ namespace ProgettoDircol_ASP
         {
             if (!IsPostBack)
             {
-                pnTabelle.CssClass = "padding: 50px;";
+                pnTabelle.Style.Add("padding", "50px"); // Do un po' di padding
+                //gvCapi.Style.Add("max-height", "60px");
+                //gvCapi.Style.Add("overflow", "scroll");
+                //gvModelli.Style.Add("max-height", "60px");
+                //gvModelli.Style.Add("overflow", "scroll");
                 RiempiGridCapi();
                 RiempiGridDipendenti();
                 RiempiGridModelli();
