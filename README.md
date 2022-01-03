@@ -59,12 +59,12 @@ In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/mas
 
 | Pagina\utente     | Utente non loggato | Utente loggato | Amministratore |
 | ---| --- | --- | --- |
-| *interrogazioni.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x:] |
+| *interrogazioni.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | *inserisci.aspx* | :heavy_check_mark:  | :heavy_check_mark: | :x: |
 | *aggiorna.aspx*  | :heavy_check_mark: | :heavy_check_mark: | :x:|
 | *elimina.aspx*   | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | *loginUtente.aspx* | :x: | :heavy_check_mark: | :heavy_check_mark: |
 | *loginAdmin.aspx* | :x: | :x: | :heavy_check_mark: |
-| *registrazioneUtente.aspx* | [x] | :heavy_check_mark: | :heavy_check_mark: |
-| *visualizzaTabelle.aspx* | :heavy_check_mark: | :heavy_check_mark: | [x] |
-| *gestioneModelli.aspx* | :heavy_check_mark: | [x] | :heavy_check_mark: |
+| *registrazioneUtente.aspx* | :x: | :heavy_check_mark: | :heavy_check_mark: |
+| *visualizzaTabelle.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| *gestioneModelli.aspx* | :heavy_check_mark: | :x: | :heavy_check_mark: |
