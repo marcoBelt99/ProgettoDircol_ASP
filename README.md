@@ -63,8 +63,8 @@ In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/mas
 | *inserisci.aspx* | :x:  | :x: | :heavy_check_mark: |
 | *aggiorna.aspx*  | :x: | :x: | :heavy_check_mark:|
 | *elimina.aspx*   | :x: | :x: | :heavy_check_mark: |
-| *loginUtente.aspx* | :x: | :heavy_check_mark: | :x: |
-| *loginAdmin.aspx* | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| *loginUtente.aspx* | :heavy_check_mark: | :x: | :x: |
+| *loginAdmin.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | *registrazioneUtente.aspx* | :heavy_check_mark: | :x: | :x: |
 | *visualizzaTabelle.aspx* | :x: | :x: | :heavy_check_mark: |
 | *gestioneModelli.aspx* | :x: | :heavy_check_mark: | :x: |
