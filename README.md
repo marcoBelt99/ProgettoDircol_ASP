@@ -59,7 +59,7 @@ In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/mas
 
 | Pagina\utente     | Utente non loggato | Utente loggato | Amministratore |
 | ---| --- | --- | --- |
-| *interrogazioni.aspx* | [] | [] | [x] |
+| *interrogazioni.aspx* | - [] | [] | - [x] |
 | *inserisci.aspx* | []  | [] | [x] |
 | *aggiorna.aspx*  | [] | [] | [x]|
 | *elimina.aspx*   | [] | [] | [x] |
