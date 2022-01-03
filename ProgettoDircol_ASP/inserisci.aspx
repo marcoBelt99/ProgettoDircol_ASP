@@ -24,8 +24,11 @@
                 <div class="form-group">
                     <%-- TAGLIA --%>
                     <p>
-                        <asp:Label Text="Seleziona una taglia:" runat="server" ID="lblTaglia" />
-                        <asp:DropDownList ID="ddlTaglia" runat="server">
+                        <asp:Label Text="Seleziona una taglia:" runat="server" ID="lblTaglia"
+                            Style="float: left;" />
+                        &emsp;
+                        <asp:DropDownList ID="ddlTaglia" runat="server"
+                            Style="float: right;">
                             <asp:ListItem Value="---" EnableViewState="true" />
                         </asp:DropDownList>
                         <%-- Validazione input --%>
@@ -58,8 +61,11 @@
                     </p>
                     <%-- COLORE --%>
                     <p>
-                        <asp:Label Text="Colore del nuovo capo:" runat="server" ID="lblColore" />
-                        <input type="color" id="colorInput" runat="server" />
+                        <asp:Label Text="Colore del nuovo capo:" runat="server" ID="lblColore"
+                            Style="float: left;" />
+                        &emsp;
+                        <input type="color" id="colorInput" runat="server"
+                            style="float: right;" />
                         <%-- validatori --%>
                         <asp:RequiredFieldValidator runat="server" ID="rfvColore"
                             ControlToValidate="colorInput"
@@ -69,8 +75,11 @@
                     </p>
                     <%-- PUNTO VENDITA --%>
                     <p>
-                        <asp:Label Text="Punto vendita di interesse:" runat="server" ID="lblPuntoVendita" />
-                        <asp:DropDownList ID="ddlPuntoVendita" runat="server">
+                        <asp:Label Text="Punto vendita di interesse:" runat="server" ID="lblPuntoVendita"
+                            Style="float: left" />
+                        &emsp;
+                        <asp:DropDownList ID="ddlPuntoVendita" runat="server"
+                            Style="float: right;">
                             <asp:ListItem Value="---" />
                         </asp:DropDownList>
                         <%-- Validazione input --%>
@@ -103,8 +112,11 @@
                     </p>
                     <%-- CODICE MODELLO --%>
                     <p>
-                        <asp:Label Text="Codice modello del capo:" runat="server" ID="lblCodiceModello" />
-                        <asp:DropDownList ID="ddlCodiceModello" runat="server">
+                        <asp:Label Text="Codice modello del capo:" runat="server" ID="lblCodiceModello"
+                            Style="float: left;" />
+                        &emsp;
+                        <asp:DropDownList ID="ddlCodiceModello" runat="server"
+                            Style="float: right;">
                             <asp:ListItem Value="---" />
                         </asp:DropDownList>
                         <%-- Validazione input --%>
@@ -513,7 +525,7 @@
         <%-- ################################# --%>
         <%-- ########### VENDITE ############# --%>
         <%-- ################################# --%>
-        <h2>Registrazione di un nuovo Dipendente</h2>
+        <h2>Registrazione di una nuova vendita</h2>
         <div class="d-flex justify-content-center">
             <fieldset runat="server" id="Fieldset4">
                 <div class="form-group">
@@ -631,5 +643,21 @@
             </fieldset>
         </div>
     </asp:Panel>
+
+    <div id="UserLoggedinMessage" style="float: right; width: 280px;">
+
+        <!-- removed width of 350, 350 inside div of 280 doesn't make sense -->
+        <!-- also separated everything into separate divs and reordered them -->
+        <div style="float: right;">
+            <asp:LinkButton ID="LinkButton1" runat="server">Login now</asp:LinkButton>
+        </div>
+        <div style="float: right;">
+            <asp:Label ID="Label3" runat="server" />
+        </div>
+        <!-- Search Box -->
+        <div id="WLSearchBoxDiv" style="float: right">
+        </div>
+        <!-- Seach Box -->
+    </div>
 
 </asp:Content>

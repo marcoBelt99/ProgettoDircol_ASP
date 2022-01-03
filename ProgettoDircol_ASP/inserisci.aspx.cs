@@ -338,7 +338,7 @@ namespace ProgettoDircol_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            pnInserimento.Style.Add("padding", "50px"); // Do un po' di padding
+           /* pnInserimento.Style.Add("padding", "50px");*/ // Do un po' di padding
 
             if (IsPostBack)
                 return;

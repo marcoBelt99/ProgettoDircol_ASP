@@ -137,8 +137,16 @@ footer {
 
 /*********************** FORM ***********************/
 
+label {
+    float: left;
+}
+
+input {
+    float: right;
+}
+
 .formOperazioniDML form {
-    display: table;
+    /*display: table;*/
     /* display: inline-block; */
     margin-left: 40px;
 }
@@ -148,13 +156,13 @@ footer {
 }
 
 .formOperazioniDML label {
-    display: table-cell;
+    /* display: table-cell;*/
     /* display: inline-block; */
     text-align: left;
 }
 
 .formOperazioniDML select {
-    display: table-row;
+    /*display: table-row;*/
     /* display: inline-block; */
 
     text-align: center;
@@ -162,7 +170,7 @@ footer {
 
 .formOperazioniDML option {
     /* display: inline-block; */
-    display: table-row;
+    /*display: table-row;*/
     text-align: center;
 }
 
@@ -204,25 +212,25 @@ fieldset {
     /* componenti del fieldset */
 
     fieldset p {
-        display: table-row;
+        /* display: table-row;
         padding-bottom: 5px;
         padding-top: 5px;
         margin-bottom: 5px;
-        margin-top: 5px;
+        margin-top: 5px;*/
     }
 
     fieldset label {
-        display: table-cell;
+        /* display: table-cell;
         color: #181818;
         text-align: left;
         margin-left: 10px;
         margin-right: 30px;
-        width: auto;
+        width: auto;*/
     }
 
     fieldset input {
-        display: table-cell;
-        margin-left: 30px;
+        /* display: table-cell;
+        margin-left: 30px;*/
     }
 
         fieldset input[type="submit"] {
@@ -235,7 +243,7 @@ fieldset {
         }
 
 /* input type text */
-
+/*
 input[type="text"] {
     background-color: #ceadff;
     margin-top: 10px;
@@ -257,9 +265,10 @@ input[type="text"] {
         -webkit-border-radius: 20px;
         -moz-border-radius: 20px;
     }
+    */
 
 /* input type number */
-
+/*
 input[type="number"] {
     background-color: #ceadff;
     margin-top: 10px;
@@ -278,24 +287,25 @@ input[type="number"] {
         background-color: rgb(255, 182, 251);
         outline: none;
     }
+    */
 
 /* input type date */
 
 input[type="date"] {
-    background-color: #ceadff;
+    /* background-color: #ceadff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 20px;
     border-color: #7952b3;
     -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    -moz-border-radius: 20px;*/
 }
 
     input[type="date"]:focus {
-        margin-top: 10px;
+        /* margin-top: 10px;
         margin-bottom: 10px;
         border: 1px solid #7952b3;
-        background-color: rgb(255, 182, 251);
+        background-color: rgb(255, 182, 251);*/
     }
 
 ::-webkit-calendar-picker-indicator {
@@ -321,21 +331,11 @@ input[type="date"] {
     border-color: rgb(14, 112, 44);
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+    float: none;
 }
 
     .Stile_btnSubmit:hover {
         background-color: #4bdb3e;
-        border-color: black;
-        margin-top: 20px;
-        margin-bottom: 0px;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        border-radius: 20px;
-        border-color: rgb(14, 112, 44);
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
     }
 /* Classe per creare gli stili ai bottoni 'Annulla'
     Non esiste un controllo in ASP per gli input type reset
@@ -353,38 +353,28 @@ input[type="date"] {
     border-color: rgb(172, 0, 0);
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
+    float: none;
 }
 
     .Stile_bntAnnulla:hover {
         background-color: #df1212;
-        border-color: black;
-        margin-top: 12px;
-        margin-bottom: 0px;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        border-radius: 20px;
-        border-color: rgb(172, 0, 0);
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
     }
 
 /* textarea */
 textarea {
-    background-color: #ceadff;
+    /* background-color: #ceadff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-color: #7952b3;
-    width: auto;
+    width: auto;*/
 }
 
     textarea:focus {
-        background-color: rgb(255, 182, 251);
+        /* background-color: rgb(255, 182, 251);
         margin-top: 10px;
         margin-bottom: 10px;
         border-color: #7952b3;
-        width: auto;
+        width: auto;*/
     }
 
 /* input type radio */
@@ -489,8 +479,7 @@ section {
 }
 
 fieldset select {
-    width: auto;
-    /* 150px */
+    /*width: auto;
     padding: 5px 35px 5px 5px;
     font-size: 16px;
     height: 34px;
@@ -498,7 +487,7 @@ fieldset select {
     border-radius: 20px;
     border-color: #7952b3;
     -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
+    -moz-border-radius: 20px;*/
 }
 
     fieldset select :focus {
@@ -515,11 +504,11 @@ fieldset select {
     }
 
 fieldset option {
-    background-color: rgb(255, 182, 251);
+    /*background-color: rgb(255, 182, 251);*/
 }
 
     fieldset option:hover {
-        background-color: rgb(255, 182, 251);
+        /* background-color: rgb(255, 182, 251);*/
     }
 
 /************************* CALLOUT ******************************/
@@ -673,4 +662,5 @@ fieldset option {
     box-shadow: 5px 5px 5px #5e0add;
 }
 
-.corpoAccordion {}
+.corpoAccordion {
+}

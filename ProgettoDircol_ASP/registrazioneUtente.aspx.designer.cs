@@ -11,124 +11,133 @@ namespace ProgettoDircol_ASP
 {
 
 
-    public partial class SiteMaster
+    public partial class registrazioneUtente
     {
 
         /// <summary>
-        /// Controllo linkGestioneModelli.
+        /// Controllo pnRegistrazioneUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkGestioneModelli;
+        protected global::System.Web.UI.WebControls.Panel pnRegistrazioneUtente;
 
         /// <summary>
-        /// Controllo linkVisualizzaTabelle.
+        /// Controllo txtNomeUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkVisualizzaTabelle;
+        protected global::System.Web.UI.WebControls.TextBox txtNomeUtente;
 
         /// <summary>
-        /// Controllo navbarDropdown.
+        /// Controllo txtCognomeUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarDropdown;
+        protected global::System.Web.UI.WebControls.TextBox txtCognomeUtente;
 
         /// <summary>
-        /// Controllo linkInserisciDML.
+        /// Controllo txtDataNascitaUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkInserisciDML;
+        protected global::System.Web.UI.WebControls.TextBox txtDataNascitaUtente;
 
         /// <summary>
-        /// Controllo linkAggiornaDML.
+        /// Controllo txtTelefonoUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkAggiornaDML;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoUtente;
 
         /// <summary>
-        /// Controllo linkEliminaDML.
+        /// Controllo txtEmailUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkEliminaDML;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailUtente;
 
         /// <summary>
-        /// Controllo linkInterrogazioni.
+        /// Controllo ddlStatoUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkInterrogazioni;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatoUtente;
 
         /// <summary>
-        /// Controllo navbarDropdownAccesso.
+        /// Controllo txtCittaUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarDropdownAccesso;
+        protected global::System.Web.UI.WebControls.TextBox txtCittaUtente;
 
         /// <summary>
-        /// Controllo linkLoginUtente.
+        /// Controllo txtCAPUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkLoginUtente;
+        protected global::System.Web.UI.WebControls.TextBox txtCAPUtente;
 
         /// <summary>
-        /// Controllo linkEsciUtente.
+        /// Controllo txtIndirizzoUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkEsciUtente;
+        protected global::System.Web.UI.WebControls.TextBox txtIndirizzoUtente;
 
         /// <summary>
-        /// Controllo linkRegistrazioneUtente.
+        /// Controllo txtUsernameUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkRegistrazioneUtente;
+        protected global::System.Web.UI.WebControls.TextBox txtUsernameUtente;
 
         /// <summary>
-        /// Controllo MainContent.
+        /// Controllo txtPasswordUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordUtente;
 
         /// <summary>
-        /// Controllo btnAdminLogin.
+        /// Controllo btnRegistrati.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAdminLogin;
+        protected global::System.Web.UI.WebControls.Button btnRegistrati;
+
+        /// <summary>
+        /// Controllo btnTornaHome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnTornaHome;
     }
 }

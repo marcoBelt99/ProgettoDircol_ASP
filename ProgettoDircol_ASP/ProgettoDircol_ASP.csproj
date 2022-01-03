@@ -185,6 +185,7 @@
     <Content Include="elimina.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="gestioneModelli.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -195,6 +196,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\accesso.png" />
     <Content Include="Images\fotoModelli\BerrettoNikeVerde.jpg" />
     <Content Include="Images\fotoModelli\CamiciaAzzurra.jpg" />
     <Content Include="Images\fotoModelli\CamiciaNera.jpg" />
@@ -216,6 +218,10 @@
     <Content Include="Images\fotoModelli\PantaloniBlu.jpg" />
     <Content Include="Images\fotoModelli\ScarpeNikeDonna.jpg" />
     <Content Include="Images\fotoModelli\SharpaRossa.jpg" />
+    <Content Include="Images\keyAdmin.png" />
+    <Content Include="Images\LoginAdmin.png" />
+    <Content Include="Images\LoginUtente.png" />
+    <Content Include="Images\scarpe.jpg" />
     <Content Include="Images\vestiti.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\armadio1.jpg" />
@@ -230,6 +236,7 @@
     <Content Include="loginAdmin.aspx" />
     <Content Include="loginUtente.aspx" />
     <Content Include="prove.aspx" />
+    <Content Include="registrazioneUtente.aspx" />
     <Content Include="Scripts\bootstrap-Original.js" />
     <Content Include="Scripts\bootstrap-Original.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -261,6 +268,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="statiMembri.txt" />
     <Content Include="STUDIO\bottone.gif" />
     <Content Include="STUDIO\BottoniComando.aspx" />
     <Content Include="STUDIO\DataBindingSemplice.aspx" />
@@ -425,6 +433,13 @@
     <Compile Include="elimina.aspx.designer.cs">
       <DependentUpon>elimina.aspx</DependentUpon>
     </Compile>
+    <Compile Include="gestioneModelli.aspx.cs">
+      <DependentUpon>gestioneModelli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gestioneModelli.aspx.designer.cs">
+      <DependentUpon>gestioneModelli.aspx</DependentUpon>
+    </Compile>
     <Compile Include="inserisci.aspx.cs">
       <DependentUpon>inserisci.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -472,6 +487,13 @@
     </Compile>
     <Compile Include="prove.aspx.designer.cs">
       <DependentUpon>prove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="registrazioneUtente.aspx.cs">
+      <DependentUpon>registrazioneUtente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="registrazioneUtente.aspx.designer.cs">
+      <DependentUpon>registrazioneUtente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

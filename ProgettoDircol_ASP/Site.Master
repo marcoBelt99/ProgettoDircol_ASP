@@ -62,7 +62,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
                     <!-- Lista di link della navbar -->
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item">
 
                             <!-- Home -->
@@ -85,34 +85,41 @@
                             </a>
                         </li>
 
+                        <!-- Gestione modelli -->
+                        <li class="nav-item">
+                            <a class="nav-link text-nowrap" runat="server" href="~/gestioneModelli" id="linkGestioneModelli">
+                                <i class="bi bi-bag-fill"></i>&nbsp;Acquista modelli<span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
                         <!-- Visualizza tabelle -->
                         <li class="nav-item">
-                            <a class="nav-link text-nowrap" runat="server" href="~/visualizzaTabelle" target="_blank">
+                            <a class="nav-link text-nowrap" id="linkVisualizzaTabelle" runat="server" href="~/visualizzaTabelle" target="_blank">
                                 <i class="bi bi-file-spreadsheet-fill"></i>&nbsp;Visualizza tabelle
                             </a>
                         </li>
 
                         <!-- Dropdown menù: Operazioni Di Data Manipulation Language -->
                         <li class="nav-item dropdown drop">
-                            <a class="nav-link dropdown-toggle text-nowrap" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a runat="server" class="nav-link dropdown-toggle text-nowrap" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-list-task"></i>&nbsp;Operazioni DML
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
 
                                 <!-- Inserisci -->
-                                <a class="dropdown-item" runat="server" href="~/inserisci">
+                                <a class="dropdown-item" runat="server" id="linkInserisciDML" href="~/inserisci">
                                     <i class="bi bi-plus-circle-fill"></i>&nbsp;Inserisci
                                 </a>
 
                                 <!-- Aggiorna -->
-                                <a class="dropdown-item" runat="server" href="~/aggiorna">
+                                <a class="dropdown-item" runat="server" id="linkAggiornaDML" href="~/aggiorna">
                                     <i class="bi bi-pencil-square"></i>&nbsp;Aggiorna
                                 </a>
 
                                 <!-- Divisore tra le voci del dropdown menu -->
                                 <div class="dropdown-divider"></div>
                                 <!-- Elimina -->
-                                <a class="dropdown-item link-danger linkElimina" runat="server" href="~/elimina">
+                                <a class="dropdown-item link-danger linkElimina" id="linkEliminaDML" runat="server" href="~/elimina">
                                     <i class="bi bi-x-circle-fill"></i>&nbsp;Elimina
                                 </a>
                             </div>
@@ -121,13 +128,14 @@
 
                         <!-- Interrogazioni -->
                         <li class="nav-item">
-                            <a class="nav-link text-nowrap" runat="server" href="~/interrogazioni">
+                            <a class="nav-link text-nowrap" runat="server" id="linkInterrogazioni" href="~/interrogazioni">
                                 <i class="bi bi-clipboard-data"></i>&nbsp;Interrogazioni
                             </a>
                         </li>
                     </ul>
 
-                    <%-- Gestione utenti e Log-in --%>
+                    <%-- Gestione utenti e Log-in  di asp.net --%>
+                    <%-- 
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
@@ -149,6 +157,39 @@
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
+                    --%>
+
+                    <ul class="navbar-nav">
+                        <!-- Dropdown menù: Gestione utenti e Log-in mio personale / Accesso -->
+                        <li class="nav-item dropdown drop">
+                            <a class="nav-link dropdown-toggle text-nowrap" 
+                                href="#" 
+                                id="navbarDropdownAccesso" runat="server"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-person-lines-fill"></i>&nbsp;Accesso
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownAccesso">
+
+                                <!-- Accedi -->
+                                <a class="dropdown-item" runat="server" href="~/loginUtente" id="linkLoginUtente">
+                                    <i class="bi bi-box-arrow-in-right"></i>&nbsp;Accedi
+                                </a>
+
+
+                                 <%-- Esci --%>
+                                <a class="dropdown-item" runat="server" href="~/Default" id="linkEsciUtente">
+                                    <i class="bi bi-box-arrow-in-left"></i>&nbsp;Esci
+                                </a>
+
+                                <!-- Registrati -->
+                                <a class="dropdown-item" runat="server" href="~/registrazioneUtente" id="linkRegistrazioneUtente">
+                                    <i class="bi  bi-pen-fill"></i>&nbsp;Registrati
+                                </a>
+
+                            </div>
+                        </li>
+                        <!-- Fine dropdown menù -->
+                    </ul>
                 </div>
             </nav>
         </navbar>
@@ -156,10 +197,10 @@
 
         <%-- Sezione principale --%>
         <%--<div class="container body-content">--%>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-       <%-- </div>--%>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <hr />
+        <%-- </div>--%>
 
         <!-- Footer -->
         <footer class="dark stileFooter ">
@@ -172,6 +213,18 @@
     <a href="mailto:info@dircol.it"><i class="bi bi-mail"></i></a>
             &nbsp; &nbsp;
     Copyright &copy; <%: DateTime.Now.Year %>  Dircol S.P.A.
+            &emsp; &emsp; &emsp; &emsp; &emsp;
+
+            <asp:LinkButton CssClass="btn btn-outline-warning text-white"
+                ID="btnAdminLogin" runat="server"
+                OnClick="btnAdminLogin_Click"
+                Height="40"
+                >
+               <div class="fs-2 mb-3">
+                <img src="Images/keyAdmin.png" height="40" width="40" />
+                &emsp;Accedi come Amministratore
+                   </div>
+            </asp:LinkButton>
         </footer>
         <!-- Fine Footer -->
     </form>

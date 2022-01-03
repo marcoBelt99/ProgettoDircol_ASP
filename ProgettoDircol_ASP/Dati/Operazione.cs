@@ -4,8 +4,9 @@ using System.Data.SqlTypes;
 using System.Data;
 using System;
 using System.Collections.Generic;
-// Aggiungo riferimento per accedere al file Web.config
-using System.Web.Configuration;
+using System.IO; // Per leggere/scrivere da file
+using System.Web.Configuration; // Aggiungo riferimento per accedere al file Web.config
+using System.Web; // Per gestire il percorso del file
 
 
 
@@ -21,21 +22,38 @@ namespace ProgettoDircol_ASP.Dati
     public class Operazione
     {
 
-        /// Mi salvo la stringa di connessione presente in Web.config
+        /// <summary> 
+        /// Mi salvo la stringa di connessione presente in Web.config 
+        /// </summary>
         private readonly string connectionString = WebConfigurationManager.ConnectionStrings["dircolDB"].ConnectionString;
+        /// <summary>
         /// Array di stringhe delle taglie
+        /// </summary>
         private string[] taglie = { "M", "L", "S", "XL", "XS", "XXS", "XXL" };
-        /// Stinga di controllo
+        /// <summary> 
+        /// Stinga di controllo 
+        /// </summary>
         public string stringaDicontrollo = "---";
-        /// Lista di interi che contiene i codici dei punti vendita
+        /// <summary> 
+        /// Lista di interi che contiene i codici dei punti vendita 
+        /// </summary>
         private List<int> codiciPuntiVendita = new List<int>();
-        /// Lista di interi che contiene i codici dei modelli di un capo
+        /// <summary> 
+        /// Lista di interi che contiene i codici dei modelli di un capo 
+        /// </summary>
         private List<int> codiciModelli = new List<int>();
-        /// Lista di interi che contiene gli ID dei capi
+        /// <summary> 
+        /// Lista di interi che contiene gli ID dei capi 
+        /// </summary>
         private List<int> IDCapi = new List<int>();
-        /// Lista di stringhe che contiene le matricole di tutti i dipendenti
+        /// <summary> 
+        /// Lista di stringhe che contiene le matricole di tutti i dipendenti 
+        /// </summary>
         private List<string> matricoleDipendenti = new List<string>();
-
+        /// <summary>
+        /// Lista di stringhe che contiene i nomi degli stati letti dal file 'statiMembri.txt'
+        /// </summary>
+        private List<string> statiMembri = new List<string>();
 
         /// <summary>
         /// Ottiene la stringa di connessione al Database.
@@ -278,8 +296,71 @@ namespace ProgettoDircol_ASP.Dati
         }
 
 
+        /// <summary>
+        /// Ritorna la lista degli stati che vado a leggere dal file 'statiMembri.txt'
+        /// La richiamo in 'registraUtente.aspx' per andare a popolare
+        /// la drop down list degli stati membri.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetStatiMembriUE()
+        {
 
-        // altre operazioni utili in futuro
+            // Dichiaro il nome del file (comprensivo del percorso, in questo caso si trova nella stessa directory del progetto)
+           //  string file = "~/statiMembri.txt";
+            string file = HttpContext.Current.Server.MapPath("~/statiMembri.txt");
+            
+
+            // Se il file esiste, allora fai le operazioni che vuoi
+            // if (File.Exists(file)
+            // {
+            // Lettore di stream (flussi-->sequenze di byte--> che derivano da un supporto di memorizzazione di massa)
+            using (StreamReader leggi = new StreamReader(file))
+            {
+
+                // Stringa che legge le stringhe di ogni riga del file
+                string riga = "";
+
+                // Gestione eccezioni
+                try
+                {
+                    // Lettura: Finchè hai ancora da leggere qualcosa. (Se arrivi alla fine del file è false)
+                    while (!leggi.EndOfStream) // leggi.EndOfStream != false
+                    {
+                        // Leggo il contenuto della riga del file e lo salvo in riga
+                        riga = leggi.ReadLine();
+
+                        // Aggiungo alla lista di stringhe 'stati'
+                        statiMembri.Add(riga);
+                    }
+                }
+                catch (IOException ex)
+                {
+                    Console.Write(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.Message);
+                }
+                finally
+                {
+                    // Libero il file, così il SO può far accedere altri processi al file
+                    // Inoltre, resituisco le risorse aperte precedentemente
+                    leggi.Close();
+                }
+
+            } // fine using
+
+            // } // fine if esistenza file
+            /*
+            else
+            {
+                // Crea il file ecc....
+            }
+            */
+
+            // Ritorno la lista degli stati
+            return statiMembri;
+        }
 
 
     } // fine classe

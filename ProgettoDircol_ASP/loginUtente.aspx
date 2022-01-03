@@ -1,70 +1,78 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="loginUtente.aspx.cs" Inherits="ProgettoDircol_ASP.loginUtente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:Panel ID="pnLoginUtente" runat="server">
-        <div class="form-group">
-            <%-- USERNAME --%>
-            <asp:Label Text="Username:" ID="lblUsername" runat="server"></asp:Label>
-            <asp:TextBox CssClass="form-control"
-                ID="txtEmailUtente" runat="server"
-                aria-describedby="emailHelp" placeholder="Inserisci lo username" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <center>
+                                        <img width="100px" src="Images/LoginUtente.png" />
+                                    </center>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <center>
+                                        <h3>Login Utente</h3>
+                                    </center>
+                                </div>
+                            </div>
+                            <%-- USERNAME --%>
+                            <div class="row">
+                                <div class="col">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <asp:Label Text="Username:" ID="lblUsername" runat="server"></asp:Label>
+                                    <div class="form-group">
+                                        <asp:TextBox CssClass="form-control"
+                                            ID="txtUsernameUtente" runat="server"
+                                            aria-describedby="usernameHelp" placeholder="Inserisci lo username" />
+                                        <small id="usernameHelp" class="form-text text-muted">Non mostreremo mai il tuo account a nessuno</small>
+                                    </div>
+
+
+                                    <%-- PASSWORD --%>
+
+                                    <asp:Label Text="Password:" ID="lblPasswordUtente" runat="server" />
+                                    <div class="form-group">
+
+                                        <asp:TextBox TextMode="Password" CssClass="form-control"
+                                            ID="txtPasswordUtente" runat="server" placeholder="Password" />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <asp:Button ID="btnAccedi" runat="server"
+                                            CssClass="btn btn-success btn-block btn-lg"
+                                            Text="Accedi"
+                                            OnClick="btnAccedi_Click" />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <asp:Button ID="btnRegistrati" runat="server"
+                                            CssClass="btn btn-primary btn-block btn-lg"
+                                            Text="Registrati"
+                                            OnClick="btnRegistrati_Click" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%-- Torna indietro --%>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <%-- PASSWORD --%>
-            <asp:Label Text="Password:" ID="lblPasswordUtente" runat="server" />
-            <asp:TextBox TextMode="Password" CssClass="form-control"
-                ID="txtPasswordUtente" runat="server" placeholder="Password" />
-        </div>
-        <asp:Button ID="btnAccedi" runat="server" 
-            class="btn btn-primary" 
-            Text="Accedi"/>
     </asp:Panel>
 
-    <%-- Esempio di Accordion: --%>
-    <div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h2>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h2>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h2>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
 </asp:Content>

@@ -33,13 +33,13 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.WebControls.Label lblUsername;
 
         /// <summary>
-        /// Controllo txtEmailUtente.
+        /// Controllo txtUsernameUtente.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmailUtente;
+        protected global::System.Web.UI.WebControls.TextBox txtUsernameUtente;
 
         /// <summary>
         /// Controllo lblPasswordUtente.
@@ -67,5 +67,14 @@ namespace ProgettoDircol_ASP
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAccedi;
+
+        /// <summary>
+        /// Controllo btnRegistrati.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistrati;
     }
 }
