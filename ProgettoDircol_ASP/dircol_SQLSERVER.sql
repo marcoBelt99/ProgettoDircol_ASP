@@ -229,16 +229,16 @@ TRUNCATE TABLE utenti;
 INSERT INTO utenti (UsernameUtente, PasswordUtente, NomeUtente, CognomeUtente, DataNascitaUtente, EmailUtente,
 					TelefonoUtente, CittaUtente, IndirizzoUtente, StatoUtente, CAPUtente, StatoAccount) VALUES
 ('mark99', '123456', 'Marco','Beltrame', '1999-08-30','beltrame.marco.99@gmail.com',
- 3403183848,'Adria (RO)', 'Via Domenico Sampieri 74', 'Italia', 45011, 'pending'),
+ 3403183848,'Adria (RO)', 'Via Domenico Sampieri 74', 'Italia', 45011, 'active'),
 
 ('ale1', '0000', 'Alessia','Manfrinato', '1998-12-02','manfriale98@gmail.com',
- 3456912307,'Padova (PD)', 'Via della Solidarietà 2', 'Italia', 35100, 'pending'),
+ 3456912307,'Padova (PD)', 'Via della Solidarietà 2', 'Italia', 35100, 'active'),
  
  ('gioDR3', '9876', 'Giovanni','De Rosa', '1981-10-22','derosagiovanni@hotmail.com',
- 0423611728,'Selvazzano Dentro (PD)', 'Viale Fratelli Bandiera 14/A', 'Italia', 35123, 'pending'),
+ 0423611728,'Selvazzano Dentro (PD)', 'Viale Fratelli Bandiera 14/A', 'Italia', 35123, 'active'),
  
  ('grbele2000', 'ABCDE', 'Elisabetta','Garbin', '2000-05-01','betta.garbin.00@libero.it',
- 3217534193,'Adria (RO)', 'Strada Cavedon 9', 'Italia', 45011, 'pending');
+ 3217534193,'Adria (RO)', 'Strada Cavedon 9', 'Italia', 45011, 'active');
 
 
 

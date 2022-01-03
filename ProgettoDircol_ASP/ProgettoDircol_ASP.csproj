@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AccessoNegato.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -183,6 +184,7 @@
     <Content Include="Default.aspx" />
     <Content Include="dircol_SQLSERVER.sql" />
     <Content Include="elimina.aspx" />
+    <Content Include="Errore.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="gestioneModelli.aspx" />
@@ -283,6 +285,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessoNegato.aspx.cs">
+      <DependentUpon>AccessoNegato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessoNegato.aspx.designer.cs">
+      <DependentUpon>AccessoNegato.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -432,6 +441,13 @@
     </Compile>
     <Compile Include="elimina.aspx.designer.cs">
       <DependentUpon>elimina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Errore.aspx.cs">
+      <DependentUpon>Errore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Errore.aspx.designer.cs">
+      <DependentUpon>Errore.aspx</DependentUpon>
     </Compile>
     <Compile Include="gestioneModelli.aspx.cs">
       <DependentUpon>gestioneModelli.aspx</DependentUpon>

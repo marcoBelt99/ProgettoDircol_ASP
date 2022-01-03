@@ -162,8 +162,8 @@
                     <ul class="navbar-nav">
                         <!-- Dropdown menù: Gestione utenti e Log-in mio personale / Accesso -->
                         <li class="nav-item dropdown drop">
-                            <a class="nav-link dropdown-toggle text-nowrap" 
-                                href="#" 
+                            <a class="nav-link dropdown-toggle text-nowrap"
+                                href="#"
                                 id="navbarDropdownAccesso" runat="server"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-person-lines-fill"></i>&nbsp;Accesso
@@ -176,10 +176,18 @@
                                 </a>
 
 
-                                 <%-- Esci --%>
-                                <a class="dropdown-item" runat="server" href="~/Default" id="linkEsciUtente">
-                                    <i class="bi bi-box-arrow-in-left"></i>&nbsp;Esci
-                                </a>
+                                <%-- Esci --%>
+
+                                <%-- <a class="dropdown-item" runat="server" href="~/Default" id="linkEsciUtente">
+                                    <i class="bi bi-box-arrow-in-left"
+                                        on ></i>&nbsp;Esci
+                                </a>--%>
+
+                                <asp:LinkButton ID="LinkButton1" runat="server"
+                                    OnClick="LinkButton1_Click"
+                                    CssClass="dropdown-item"
+                                    ><i class="bi bi-box-arrow-in-left">
+                                        </i>&nbsp;Esci</asp:LinkButton>
 
                                 <!-- Registrati -->
                                 <a class="dropdown-item" runat="server" href="~/registrazioneUtente" id="linkRegistrazioneUtente">
@@ -218,8 +226,7 @@
             <asp:LinkButton CssClass="btn btn-outline-warning text-white"
                 ID="btnAdminLogin" runat="server"
                 OnClick="btnAdminLogin_Click"
-                Height="40"
-                >
+                Height="40">
                <div class="fs-2 mb-3">
                 <img src="Images/keyAdmin.png" height="40" width="40" />
                 &emsp;Accedi come Amministratore

@@ -75,7 +75,7 @@ namespace ProgettoDircol_ASP
                         }
 
                         // Una volta loggato, rimando l'utente alla HomePage del sito
-                        //Response.Redirect("Default.aspx");
+                        Response.Redirect("Default.aspx");
                     }
                     else
                     {
@@ -100,6 +100,23 @@ namespace ProgettoDircol_ASP
         {
             Response.Redirect("~/registrazioneUtente.aspx", false);
         }
+
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            /* La fase 'Start' è completata e le proprietà di Page sono
+            * state caricate e sto per entrare nella fase 'Initialization'
+            * Ho ora l'accesso a proprietà come "Page.IsPostBack */
+            if (Session["ruolo"] != null)
+                op.GetAccessoPaginaUtenteComeNonLoggato(Session["ruolo"].ToString());
+            else
+            {
+                Response.Redirect("Errore.aspx");
+            }
+        }
+
+
 
 
         protected void Page_Load(object sender, EventArgs e)

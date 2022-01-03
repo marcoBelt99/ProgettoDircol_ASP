@@ -17,6 +17,13 @@ namespace ProgettoDircol_ASP
     {
         Operazione op = new Operazione();
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAccedi_Click(object sender, EventArgs e)
         {
             try
@@ -52,8 +59,16 @@ namespace ProgettoDircol_ASP
                         // dr.GetValue(numero di colonna della tabella nel database); si parte da 0
                         while (dr.Read())
                         {
-                            Response.Write("<script>alert('" + dr.GetValue(0).ToString() + "')</script>");
+                            // Response.Write("<script>alert('" + dr.GetValue(0).ToString() + "')</script>");
+                            Session["username"] = dr.GetValue(0).ToString();
+                            Session["nome"] = dr.GetValue(2).ToString();
+                            Session["cognome"] = dr.GetValue(3).ToString();
+                            Session["ruolo"] = "amministratore";
+
                         }
+
+                        // Una volta loggato, rimando l'amministratore alla HomePage del sito
+                        Response.Redirect("Default.aspx");
                     }
                     else
                     {
@@ -73,7 +88,21 @@ namespace ProgettoDircol_ASP
             }
         }
 
-  
+
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            /* La fase 'Start' è completata e le proprietà di Page sono
+            * state caricate e sto per entrare nella fase 'Initialization'
+            * Ho ora l'accesso a proprietà come "Page.IsPostBack */
+            if (Session["ruolo"] != null)
+                op.GetAccessoPagina_Utente_Ed_UtenteNonLoggato(Session["ruolo"].ToString());
+            else
+            {
+                Response.Redirect("Errore.aspx");
+            }
+        }
 
 
 

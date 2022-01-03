@@ -5,10 +5,34 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using ProgettoDircol_ASP.Dati; // Per accedere alle classi
+
 namespace ProgettoDircol_ASP
 {
     public partial class aggiorna : System.Web.UI.Page
     {
+
+
+        Operazione op = new Operazione();
+
+
+
+        // Gestione ruolo utente admin
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            /* La fase 'Start' è completata e le proprietà di Page sono
+            * state caricate e sto per entrare nella fase 'Initialization'
+            * Ho ora l'accesso a proprietà come "Page.IsPostBack */
+            if (Session["ruolo"] != null)
+                op.GetAccessoPaginaComeAmministratore(Session["ruolo"].ToString());
+            else
+            {
+                Response.Redirect("Errore.aspx");
+            }
+        }
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

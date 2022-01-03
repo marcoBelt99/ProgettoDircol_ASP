@@ -19,7 +19,7 @@ namespace ProgettoDircol_ASP
         // Mi salvo la stringa di connessione presente in Web.config
         //  private readonly string connectionString = WebConfigurationManager.ConnectionStrings["dircolDB"].ConnectionString;
         Operazione op = new Operazione(); // per accedere al metodo op.GetConnectionString()
-        
+
 
         /// <summary>
         /// Procedura di popolamento della Grid presente in 'visualizzaTabelle.aspx' con i dati letti dal
@@ -51,7 +51,7 @@ namespace ProgettoDircol_ASP
         private void RiempiGridDipendenti()
         {
             // Creo una nuova lista di oggetti di tipo Dipendente
-            List<Dipendente> ListaDipendenti= new List<Dipendente>();
+            List<Dipendente> ListaDipendenti = new List<Dipendente>();
 
             // Creo un nuovo oggetto di tipo Dipendente
             Dipendente dipendente = new Dipendente();
@@ -102,7 +102,7 @@ namespace ProgettoDircol_ASP
 
             // Creo un nuovo oggetto di tipo Modello
             PuntoVendita puntovendita = new PuntoVendita();
-            
+
             ListaPuntiVendita = puntovendita.GetPuntiVendita(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
@@ -111,7 +111,7 @@ namespace ProgettoDircol_ASP
 
             /* Associo la sorgente dati al controllo GridView*/
             gvPuntiVendita.DataBind();
-            
+
         }
 
 
@@ -136,6 +136,21 @@ namespace ProgettoDircol_ASP
             /* Associo la sorgente dati al controllo GridView*/
             gvVendite.DataBind();
 
+        }
+
+
+        // Gestione ruoli utente: solo l'admin può accedere a questa pagina
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            /* La fase 'Start' è completata e le proprietà di Page sono
+            * state caricate e sto per entrare nella fase 'Initialization'
+            * Ho ora l'accesso a proprietà come "Page.IsPostBack */
+            if (Session["ruolo"] != null)
+                op.GetAccessoPaginaComeAmministratore(Session["ruolo"].ToString());
+            else
+            {
+                Response.Redirect("Errore.aspx");
+            }
         }
 
 

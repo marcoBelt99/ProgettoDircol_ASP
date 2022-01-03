@@ -296,6 +296,12 @@ namespace ProgettoDircol_ASP.Dati
         }
 
 
+
+
+
+
+
+
         /// <summary>
         /// Ritorna la lista degli stati che vado a leggere dal file 'statiMembri.txt'
         /// La richiamo in 'registraUtente.aspx' per andare a popolare
@@ -306,9 +312,9 @@ namespace ProgettoDircol_ASP.Dati
         {
 
             // Dichiaro il nome del file (comprensivo del percorso, in questo caso si trova nella stessa directory del progetto)
-           //  string file = "~/statiMembri.txt";
+            //  string file = "~/statiMembri.txt";
             string file = HttpContext.Current.Server.MapPath("~/statiMembri.txt");
-            
+
 
             // Se il file esiste, allora fai le operazioni che vuoi
             // if (File.Exists(file)
@@ -361,6 +367,113 @@ namespace ProgettoDircol_ASP.Dati
             // Ritorno la lista degli stati
             return statiMembri;
         }
+
+
+
+
+
+
+
+        /// <summary>
+        /// Funzione da richiamare in ogni pagina, prima del Page_Load.
+        /// Controlla il ruolo attuale nell'oggetto Session.
+        /// Da richiamare solo nelle pagine in cui voglio che siano accedute 
+        /// solo da UTENTI NON LOGGATI.
+        /// </summary>
+        /// <param name="Ruolo">Valore di Session["ruolo"]</param>
+        public void GetAccessoPaginaUtenteComeNonLoggato(string Ruolo)
+        {
+            if ( (Ruolo.Equals("amministratore")==false) && (Ruolo.Equals("utente")==false) )
+            {
+                // Accesso consentito
+                return;
+            }
+            else
+            {
+                // Accesso negato, vengo rimandato alla pagina di errore
+                HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
+
+            }
+
+        }
+
+
+        /// <summary>
+        /// Funzione da richiamare in ogni pagina, prima del Page_Load.
+        /// Controlla il ruolo attuale nell'oggetto Session.
+        /// Da richiamare solo nelle pagine in cui voglio che siano accedute 
+        /// solo da UTENTI LOGGATI.
+        /// </summary>
+        /// <param name="Ruolo">Valore di Session["ruolo"]</param>
+        public void GetAccessoPaginaComeUtente(string Ruolo)
+        {
+            if(Ruolo.Equals("utente"))
+            {
+                // Accesso consentito
+                return;
+            }
+            else
+            {
+                // Accesso negato, vengo rimandato alla pagina di errore
+                HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
+                
+            }
+            
+        }
+
+
+        /// <summary>
+        /// Funzione da richiamare in ogni pagina, prima del Page_Load.
+        /// Controlla il ruolo attuale nell'oggetto Session.
+        /// Da richiamare solo nelle pagine in cui voglio che siano accedute 
+        /// solo da AMMINISTRATORI LOGGATI.
+        /// </summary>
+        /// <param name="Ruolo">Valore di Session["ruolo"]</param>
+        public void GetAccessoPaginaComeAmministratore(string Ruolo)
+        {
+            if (Ruolo.Equals("amministratore"))
+            {
+                // Accesso consentito
+                return;
+            }
+            else
+            {
+                // Accesso negato, vengo rimandato alla pagina di errore
+                HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
+
+            }
+
+        }
+
+        /* Accesso alle pagine con più utenti "sincrono" */
+        public void GetAccessoPagina_Utente_Ed_Amministratore(string Ruolo)
+        {
+            if (Ruolo.Equals("utente") || Ruolo.Equals("amministratore"))
+                return;
+            else
+                HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
+        }
+
+        public void GetAccessoPagina_Utente_Ed_UtenteNonLoggato(string Ruolo)
+        {
+            // Se il ruolo non è uguale ad amministratore, allora può essere uguale a tutte le altre stringhe,
+            // (compreso 'utente' e '""') basta appunto che non sia 'amministratore'
+            if ((Ruolo.Equals("amministratore") == false))
+                return;
+            else
+                HttpContext.Current.Response.Redirect("Errore.aspx");
+        }
+
+        public void GetAccessoPagina_Amministratore_Ed_UtenteNonLoggato(string Ruolo)
+        {
+            // Se il ruolo non è uguale ad utente, allora può essere uguale a tutte le altre stringhe,
+            // (compreso 'amministratore' e '""') basta appunto che non sia 'utente'
+            if ((Ruolo.Equals("utente") == false))
+                return;
+            else
+                HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
+        }
+
 
 
     } // fine classe

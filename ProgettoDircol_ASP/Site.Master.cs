@@ -76,10 +76,126 @@ namespace ProgettoDircol_ASP
         }
 
 
+
+        /* ##########  Funzioni definite da me  ########################################### */
         protected void btnAdminLogin_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/loginAdmin.aspx", false);
         }
+
+
+        /// <summary>
+        /// Inizializzo i valori della Session
+        /// </summary>
+        protected void InizializzaSessione()
+        {
+            Session["username"] = "";
+            Session["nome"] = "";
+            Session["cognome"] = "";
+            Session["ruolo"] = "";
+            Session["stato"] = "";
+        }
+
+
+        /// <summary>
+        /// Link di logout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            // Chiudo la sessione per questo utente
+            InizializzaSessione();
+
+            // Per default visualizzo/nascondo i link di un utente non loggato
+            GestioneUtenteNonLoggato();
+
+            // Torno alla home
+            Response.Redirect("Default.aspx");
+        }
+
+
+
+
+        /// <summary>
+        /// Mostra/Nasconde parti della pagina per un utente che non ha effettuato l'accesso
+        /// </summary>
+        protected void GestioneUtenteNonLoggato()
+        {
+            Response.Write("<script>alert('Ciao UTENTE NON LOGGATO');</script>");
+
+
+            // Link da mostrare ad utente non loggato
+            linkLoginUtente.Visible = true; // navbar dropdown accesso, link accedi
+            linkRegistrazioneUtente.Visible = true; // navbar dropdown accesso, link registrati
+            navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;Accesso"; // navbar dropdown accesso
+            btnAdminLogin.Visible = true;
+            // navbarDropdownAccesso.InnerText = "Ciao prova";
+
+            // Link da nascondere ad utente non loggato
+            LinkButton1.Visible = false; // navbar dropdown accesso, link esci
+            linkGestioneModelli.Visible = false; // navbar link gestione modelli
+            linkVisualizzaTabelle.Visible = false; // navbar link visualizza tabelle
+            navbarDropdown.Visible = false; // navbar drop down operazioni DML
+            linkInserisciDML.Visible = false;
+            linkAggiornaDML.Visible = false;
+            linkEliminaDML.Visible = false;
+            linkInterrogazioni.Visible = false; // navbar link interrogazioni
+
+            InizializzaSessione();
+
+        }
+
+        /// <summary>
+        /// Mostra/Nasconde parti della pagina per un utente che ha effettuato l'accesso
+        /// </summary>
+        protected void GestioneUtenteLoggato()
+        {
+            Response.Write("<script>alert('CIAO UTENTE LOGGATO:\n" + Session["nome"] + " " + Session["cognome"] + "');</script>");
+
+            // Link da mostrare ad utente ordinario
+            navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
+            LinkButton1.Visible = true; // navbar dropdown accesso, link esci
+            btnAdminLogin.Visible = true;
+            linkGestioneModelli.Visible = true; // navbar link gestione modelli
+
+            // Link da nascondere ad utente ordinario
+            linkLoginUtente.Visible = false; // navbar dropdown accesso, link accedi
+            linkRegistrazioneUtente.Visible = false; // navbar dropdown accesso, link registrati
+            linkVisualizzaTabelle.Visible = false; // navbar link visualizza tabelle
+            navbarDropdown.Visible = false; // navbar drop down operazioni DML
+            linkInserisciDML.Visible = false;
+            linkAggiornaDML.Visible = false;
+            linkEliminaDML.Visible = false;
+            linkInterrogazioni.Visible = false; // navbar link interrogazioni
+        }
+
+        /// <summary>
+        /// Mostra/Nasconde parti della pagina per un utente che ha effettuato l'accesso
+        /// come amministratore
+        /// </summary>
+        protected void GestioneAmministratoreLoggato()
+        {
+            Response.Write("<script>alert('CIAO UTENTE AMMINISTRATORE');</script>");
+            // Link da mostrare all'amministratore
+            navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
+            LinkButton1.Visible = true; // navbar dropdown accesso, link esci
+            navbarDropdown.Visible = true; // navbar drop down operazioni DML
+            linkInserisciDML.Visible = true;
+            linkAggiornaDML.Visible = true;
+            linkEliminaDML.Visible = true;
+            linkInterrogazioni.Visible = true; // navbar link interrogazioni
+
+
+            // Link da nascondere all'amministratore
+            btnAdminLogin.Visible = false;
+            linkGestioneModelli.Visible = false; // navbar link gestione modelli
+            linkLoginUtente.Visible = false; // navbar dropdown accesso, link accedi
+            linkRegistrazioneUtente.Visible = false; // navbar dropdown accesso, link registrati
+            linkVisualizzaTabelle.Visible = true; // navbar link visualizza tabelle
+        }
+
+
 
 
         /// <summary>
@@ -91,48 +207,29 @@ namespace ProgettoDircol_ASP
         {
             try
             {
+                // Inizializzo l'oggetto Session
+               //  InizializzaSessione();
+
                 // Se l'oggetto Session non è null
                 if (Session["ruolo"] != null)
                 {
-                    /* CASO UTENTE NON LOGGATO */
-                    if (Session["ruolo"].Equals(""))
-                    {
-                        Response.Write("<script>alert('Ciao');</script>");
+                    /* CASO UTENTE NON LOGGATO: Se il ruolo della sessione non è utente e se il ruolo della sessione non è amministratore */
+                    if ((Session["ruolo"].Equals("utente") == false) && (Session["ruolo"].Equals("amministratore") == false))
+                        GestioneUtenteNonLoggato();
 
-                        // Imposto i link della pagina da mostrare a questo tipo di utente
-                        linkLoginUtente.Visible = true; // navbar dropdown accesso, link accedi
-                        linkRegistrazioneUtente.Visible = true; // navbar dropdown accesso, link registrati
-                                                                //navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;Accesso"; // navbar dropdown accesso
-                        navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;Accesso"; // navbar dropdown accesso
-                        btnAdminLogin.Visible = true;
-                        // navbarDropdownAccesso.InnerText = "Ciao prova";
-
-                        // Imposto i link della pagina da nascondere a questo tipo di utente
-                        linkEsciUtente.Visible = false; // navbar dropdown accesso, link esci
-                        linkGestioneModelli.Visible = false; // navbar link gestione modelli
-                        linkVisualizzaTabelle.Visible = false; // navbar link visualizza tabelle
-                        navbarDropdown.Visible = false; // navbar drop down operazioni DML
-                        linkInserisciDML.Visible = false;
-                        linkAggiornaDML.Visible = false;
-                        linkEliminaDML.Visible = false;
-                        linkInterrogazioni.Visible = false; // navbar link interrogazioni
-                    }
                     /* CASO UTENTE LOGGATO */
                     else if (Session["ruolo"].Equals("utente"))
-                    {
+                        GestioneUtenteLoggato();
 
-
-                    }
                     /* CASO AMMINISTRATORE LOGGATO */
                     else if (Session["ruolo"].Equals("amministratore"))
-                    {
-
-                    }
+                        GestioneAmministratoreLoggato();
                 }
+                // Di default, non ho ancora popolato la variabile Session, quindi rientro nel caso di utente che non è loggato
                 else
                 {
-                    Response.Write("<script>alert('La variabile Session vale null');</script>");
-
+                    //  Response.Write("<script>alert('La variabile Session vale null');</script>");
+                    GestioneUtenteNonLoggato();
                 }
             }
             catch (NullReferenceException ex)
@@ -146,9 +243,13 @@ namespace ProgettoDircol_ASP
                 Response.Write("<script>alert('Eccezione generata.\nMessaggio di errore: " + ex.Message + ".\n');</script>");
             }
 
-            // Response.Redirect("~/Default.aspx", false);
 
         } // fine page load
+
+
+
+
+
     }
 
 }

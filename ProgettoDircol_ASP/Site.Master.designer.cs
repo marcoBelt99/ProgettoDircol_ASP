@@ -96,13 +96,13 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkLoginUtente;
 
         /// <summary>
-        /// Controllo linkEsciUtente.
+        /// Controllo LinkButton1.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkEsciUtente;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
         /// Controllo linkRegistrazioneUtente.
