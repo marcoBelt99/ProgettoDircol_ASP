@@ -54,4 +54,15 @@ In pratica, vi saranno **3 tipi di utenti**: utente non registrato, utente ordin
 1. Utente non registrato: non ha accesso ad alcune pagine web, ed ad alcuni link, es. il *log-out*.
 2. Utente ordinario registrato: ha accesso a tutte le pagine web, tranne quelle riservate all'amministratore.
 3. Amministratore: ha accesso a tutte le pagine, tranne quella di registrazione di un utente e di gestione modelli (non può acquistare).
-In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Site.Master.cs) sto utilizzando la variabile **Session[]** per poter gestire i diversi ruoli utenti. Session è inizializzata nei due file di login degli utenti (ordinari ed amministratori). Tuttavia, per il momento tale variabile risulta sempre *null*.
+In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Site.Master.cs) sto utilizzando la variabile **Session[]** per poter gestire i diversi ruoli utenti. Session è inizializzata nei due file di login degli utenti (ordinari ed amministratori). Tuttavia, per il momento tale variabile risulta sempre *null*. Ho bypassato questo problema inserendo alcune istruzioni di controllo nel *Site.Master.cs*. Di seguito riporto una tabella riepilogativa sull'accesso consentito e non consentito delle varie pagine del sito.
+| **Pagina\utente**     | **Utente non loggato** | **Utente loggato** | **Amministratore** |
+| -----------------     | ---------------------- | ------------------ | ------------------ |
+| *interrogazioni.aspx* | []       | Content Cell  | | |
+| *inserisci.aspx* | []  | | |
+| *aggiorna.aspx*  | [] |||
+| *elimina.aspx*   | [] | | |
+| *loginUtente.aspx* | [x] |   | |
+| *loginAdmin.aspx* | [x] | | |
+| *registrazioneUtente.aspx* | [x] | | |
+| *visualizzaTabelle.aspx* | [x] | | |
+| *gestioneModelli.aspx* |   | | |
