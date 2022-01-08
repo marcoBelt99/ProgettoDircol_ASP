@@ -24,6 +24,24 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.WebControls.Panel pnRegistrazioneUtente;
 
         /// <summary>
+        /// Controllo CardFormRegistrazione.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CardFormRegistrazione;
+
+        /// <summary>
+        /// Controllo CardBodyFormRegistrazione.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CardBodyFormRegistrazione;
+
+        /// <summary>
         /// Controllo txtNomeUtente.
         /// </summary>
         /// <remarks>

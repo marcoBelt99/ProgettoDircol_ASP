@@ -187,7 +187,15 @@ namespace ProgettoDircol_ASP
             ddlStatoUtente.DataBind();
             ddlStatoUtente.Items.Insert(0, new ListItem(op.stringaDicontrollo)); // Aggiungo un valore di default: "---"
 
+            // STILE:
+            // Form
+            CardFormRegistrazione.Style.Add("border", "1px solid #7952b3");
+            CardFormRegistrazione.Style.Add("box-shadow", "5px 5px 5px #5e0add");
+            CardBodyFormRegistrazione.Style.Add("border", "1px solid #7952b3");
+            CardBodyFormRegistrazione.Style.Add("box-shadow", "5px 5px 5px #5e0add"); // Rendo obbreggiato il bordo della card
 
+            // Input
+            txtNomeUtente.Style.Add("border", "1px solid #7952b3");
         }
 
 

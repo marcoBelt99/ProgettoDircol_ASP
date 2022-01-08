@@ -115,6 +115,28 @@
                     </div>
                 </div>
             </div>
+
+              <%-- Sesta Card --%>
+            <div class="card">
+                <div class="card-header intestazioneAccordion" id="headingSix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Visualizza Utenti
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <%-- contenuto --%>
+
+                        <h2 id="titolo6">UTENTI</h2>
+                        <asp:GridView runat="server" ID="gvUtenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                            HorizontalAlign="Center" GridLines="None">
+                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Fine div accordion-->
         <%-- FINE ACCORDION --%>

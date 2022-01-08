@@ -139,6 +139,25 @@ namespace ProgettoDircol_ASP
         }
 
 
+        private void RiempiGridUtenti()
+        {
+            // Creo una nuova lista di oggetti di tipo Vendita
+            List<UtenteOrdinario> ListaUtenti = new List<UtenteOrdinario>();
+
+            // Creo un nuovo oggetto di tipo UtenteOrdinario
+            UtenteOrdinario utenteOrdinario = new UtenteOrdinario();
+
+            ListaUtenti = utenteOrdinario.GetUtenteOrdinario( op.GetConnectionString() );
+
+            /* 'DataSource' serve per ottenere la sorgente dalla quale
+             *  si stanno recuperando i dati */
+            gvUtenti.DataSource = ListaUtenti;
+
+            /* Associo la sorgente dati al controllo GridView*/
+            gvUtenti.DataBind();
+        }
+
+
         // Gestione ruoli utente: solo l'admin può accedere a questa pagina
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -168,6 +187,7 @@ namespace ProgettoDircol_ASP
                 RiempiGridModelli();
                 RiempiGridPuntiVendita();
                 RiempiGridVendite();
+                RiempiGridUtenti();
             }
         }
     }

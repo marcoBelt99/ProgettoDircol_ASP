@@ -7,74 +7,92 @@
 // </generato automaticamente>
 //------------------------------------------------------------------------------
 
-namespace ProgettoDircol_ASP
+namespace ProgettoDircol_ASP.STUDIO
 {
 
 
-    public partial class visualizzaTabelle
+    public partial class GestioneViewState
     {
 
         /// <summary>
-        /// Controllo pnTabelle.
+        /// Controllo ltPostBack.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnTabelle;
+        protected global::System.Web.UI.WebControls.Literal ltPostBack;
 
         /// <summary>
-        /// Controllo gvCapi.
+        /// Controllo txtNome.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCapi;
+        protected global::System.Web.UI.WebControls.TextBox txtNome;
 
         /// <summary>
-        /// Controllo gvDipendenti.
+        /// Controllo txtCognome.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDipendenti;
+        protected global::System.Web.UI.WebControls.TextBox txtCognome;
 
         /// <summary>
-        /// Controllo gvModelli.
+        /// Controllo txtUsername.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvModelli;
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
-        /// Controllo gvPuntiVendita.
+        /// Controllo txtEmail.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPuntiVendita;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// Controllo gvVendite.
+        /// Controllo txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvVendite;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
-        /// Controllo gvUtenti.
+        /// Controllo txtCitta.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUtenti;
+        protected global::System.Web.UI.WebControls.TextBox txtCitta;
+
+        /// <summary>
+        /// Controllo ddlRegioni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRegioni;
+
+        /// <summary>
+        /// Controllo btnSubmit.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

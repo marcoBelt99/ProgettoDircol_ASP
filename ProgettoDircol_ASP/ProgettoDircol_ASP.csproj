@@ -182,6 +182,7 @@
     <Content Include="Content\stili.css" />
     <Content Include="Content\testo.css" />
     <Content Include="Default.aspx" />
+    <Content Include="dettaglioModello.aspx" />
     <Content Include="dircol_SQLSERVER.sql" />
     <Content Include="elimina.aspx" />
     <Content Include="Errore.aspx" />
@@ -276,6 +277,7 @@
     <Content Include="STUDIO\DataBindingSemplice.aspx" />
     <Content Include="STUDIO\EsempioValidazione.aspx" />
     <Content Include="STUDIO\EventiServerDifferitiaspx.aspx" />
+    <Content Include="STUDIO\GestioneViewState.aspx" />
     <Content Include="STUDIO\LoginHtmlControl.aspx" />
     <Content Include="STUDIO\SalveMondoSingle.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -404,6 +406,7 @@
     <Compile Include="aggiorna.aspx.designer.cs">
       <DependentUpon>aggiorna.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dati\Amministratore.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -434,7 +437,16 @@
     <Compile Include="Dati\Modello.cs" />
     <Compile Include="Dati\PuntoVendita.cs" />
     <Compile Include="Dati\Operazione.cs" />
+    <Compile Include="Dati\Utente.cs" />
+    <Compile Include="Dati\UtenteOrdinario.cs" />
     <Compile Include="Dati\Vendita.cs" />
+    <Compile Include="dettaglioModello.aspx.cs">
+      <DependentUpon>dettaglioModello.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dettaglioModello.aspx.designer.cs">
+      <DependentUpon>dettaglioModello.aspx</DependentUpon>
+    </Compile>
     <Compile Include="elimina.aspx.cs">
       <DependentUpon>elimina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,6 +567,13 @@
     </Compile>
     <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
       <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\GestioneViewState.aspx.cs">
+      <DependentUpon>GestioneViewState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\GestioneViewState.aspx.designer.cs">
+      <DependentUpon>GestioneViewState.aspx</DependentUpon>
     </Compile>
     <Compile Include="STUDIO\LoginHtmlControl.aspx.cs">
       <DependentUpon>LoginHtmlControl.aspx</DependentUpon>

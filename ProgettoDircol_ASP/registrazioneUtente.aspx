@@ -13,8 +13,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card stileCardForm" id="CardFormRegistrazione" runat="server">
+                        <div class="card-body stileCardForm" id="CardBodyFormRegistrazione" runat="server">
                             <div class="row">
                                 <div class="col">
                                     <center>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <hr>
+                                    <hr style="border-color:#7952b3;">
                                 </div>
                             </div>
                             <div class="row">
@@ -188,73 +188,9 @@
     </asp:Panel>
 
 
+<script type="text/javascript">
+    $("input").css("border", "1px solid #7952b3");
+    $("input).css("box-shadow", "5px 5px 5px #5e0add");
+</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <%-- 
-    <asp:Panel runat="server" ID="pnRegistrazioneUtente"
-        HorizontalAlign="Center">
-       
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <asp:Label ID="lblEmail" runat="server">Email</asp:Label>
-                <asp:TextBox TextMode="Email"  runat="server"
-                    ID="txtEmail"
-                    CssClass="form-control" id="inputEmail4" placeholder="Email"/>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-        <div class="form-group">
-            <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </asp:Panel>
-    --%>
 </asp:Content>

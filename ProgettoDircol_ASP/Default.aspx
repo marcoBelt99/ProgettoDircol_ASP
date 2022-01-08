@@ -3,13 +3,65 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    
+
     <%--<p class="provaFunzionamento">provaClasse</p>--%>
     <!-- PAGINA DI PRESENTAZIONE -->
 
     <%-- Includo lo stile per il testo personalizzato --%>
     <link rel="stylesheet" href="~/Content/testo.css" />
+    <%-- Inserisco lo stile per il testo personalizzato --%>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
+        .testoAnimato {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+            .testoAnimato div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: #fff;
+            }
+
+            .testoAnimato h1 {
+                position: relative;
+                font-size: 14vw;
+                color: #fff;
+                -webkit-text-stroke: 0.3vw rgb(190, 190, 190); /* #383d52 */
+                text-transform: uppercase;
+                border-color: #dd00ae;
+            }
+
+                .testoAnimato h1::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 100%;
+                    color: #ffc107;
+                    -webkit-text-stroke: 0vw #383d52;
+                    border-right: 2px solid #ffc107;
+                    border-color: #dd00ae;
+                    overflow: hidden;
+                    animation: animate 6s linear infinite;
+                }
+
+        @keyframes animate {
+            0%, 10%, 100% {
+                width: 0;
+            }
+
+            70%, 90% {
+                width: 100%;
+            }
+        }
+    </style>
     <!-- CAROUSEL -->
 
     <div id="slider_vestiti" class="carousel slide carouselStile" data-ride="carousel">
@@ -91,7 +143,7 @@
             <footer class="blockquote-footer text-white">
                 <cite title="Source Title">Marco Beltrame</cite>
             </footer>
-            <button class="btn btn-outline-warning">Scopri di più</button>
+            <button class="btn btn-outline-warning text-white">Scopri di più</button>
         </div>
     </div>
 

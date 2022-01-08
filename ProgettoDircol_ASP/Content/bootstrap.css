@@ -8972,4 +8972,29 @@ a.text-dark:hover, a.text-dark:focus {
     border: 1px solid #ddd !important;
   }
 }
+
+/* MODIFICHE EFFETTUATE DA ME PER CAMBIARE IL COLORE DEL FOCUS DEGLI INPUT DI BOOTSTRAP */
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border: 1px solid #7952b3;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);*/
+    box-shadow: 0px 1px 1px #5e0add;
+    /*5px 5px 5px #5e0add outline: 0 none;*/
+}
+
+/* FINE MODIFICHE */
 /*# sourceMappingURL=bootstrap.css.map */

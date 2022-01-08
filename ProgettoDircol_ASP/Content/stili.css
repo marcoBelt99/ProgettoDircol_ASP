@@ -388,6 +388,23 @@ input[type="radio"] {
     width: auto;
 }
 
+
+
+
+/*stile delle card presenti nei form di registrazione utente e di login utente ed amministratore
+    stileCardForm
+*/
+.stileCardForm {
+    border: 1px solid #7952b3;
+    /* Rendo obbreggiato il bordo della card */
+    box-shadow: 5px 5px 5px #5e0add;
+}
+#CardFormRegistrazione {
+    border: 1px solid #7952b3 !important;
+    /* Rendo obbreggiato il bordo della card */
+    box-shadow: 5px 5px 5px #5e0add !important;
+}
+
 /*************************** IMMAGINI ****************************/
 
 /* .logo {

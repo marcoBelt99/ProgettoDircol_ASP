@@ -122,7 +122,7 @@ namespace ProgettoDircol_ASP
         /// </summary>
         protected void GestioneUtenteNonLoggato()
         {
-            Response.Write("<script>alert('Ciao UTENTE NON LOGGATO');</script>");
+            // Response.Write("<script>alert('Ciao UTENTE NON LOGGATO');</script>");
 
 
             // Link da mostrare ad utente non loggato
@@ -151,7 +151,7 @@ namespace ProgettoDircol_ASP
         /// </summary>
         protected void GestioneUtenteLoggato()
         {
-            Response.Write("<script>alert('CIAO UTENTE LOGGATO:\n" + Session["nome"] + " " + Session["cognome"] + "');</script>");
+            // Response.Write("<script>alert('CIAO UTENTE LOGGATO:\n" + Session["nome"] + " " + Session["cognome"] + "');</script>");
 
             // Link da mostrare ad utente ordinario
             navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
@@ -176,7 +176,7 @@ namespace ProgettoDircol_ASP
         /// </summary>
         protected void GestioneAmministratoreLoggato()
         {
-            Response.Write("<script>alert('CIAO UTENTE AMMINISTRATORE');</script>");
+            // Response.Write("<script>alert('CIAO UTENTE AMMINISTRATORE');</script>");
             // Link da mostrare all'amministratore
             navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
             LinkButton1.Visible = true; // navbar dropdown accesso, link esci
@@ -208,7 +208,7 @@ namespace ProgettoDircol_ASP
             try
             {
                 // Inizializzo l'oggetto Session
-               //  InizializzaSessione();
+                //  InizializzaSessione();
 
                 // Se l'oggetto Session non è null
                 if (Session["ruolo"] != null)
