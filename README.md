@@ -16,24 +16,25 @@ provare a dare questo comando nella Console di gestione dei pacchetti di Visual 
 ## Struttura del progetto
 Il progetto è costituito da alcuni file che rappresentano le operazioni di DML (Data Manipulation Language) delle principali entità (capo, modello, puntovendita, dipendente, vendita):
 
-##### Dump del Database
+#### Dump del Database
 Anzitutto, il [File .sql del database:](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/dircol_SQLSERVER.sql), che contiene il codice per il 'dump' in ambiente SQL Server.
 
-##### Stringa di connessione
+#### Stringa di connessione
 * Nel file [**Web.config**](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Web.config) è presente la **stringa di connessione**, necessaria per il collegamento al Database
 
-##### Pagine Web
+#### Pagine Web
 * Home page: [Default.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Default.aspx)
 * Contatti: [contatti.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/contatti.aspx)
 * Chi siamo: [chiSiamo.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/chiSiamo.aspx)
 * Pagina per gli inserimenti: [inserisci.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/inserisci.aspx)
 * Pagina per gli aggiornamenti: [aggiorna.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/aggiorna.aspx)
 * Pagina per le eliminazioni: [elimina.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/aggiorna.aspx)
-* Pagina per la gestione dei modelli: [gestioneModelli.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/gestioneModelli.aspx): serve agli utenti registrati per poter acquistare un modello di capo d'abbigliamento.
+* Pagina per la gestione dei modelli: [gestioneModelli.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/gestioneModelli.aspx): serve agli utenti registrati per poter visualizzare i modelli attualmente disponibili che classificano almeno un capo d'abbigliamento.
+* Pagina per i dettagli di un singolo modello: [dettaglioModello](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/dettaglioModello.aspx): serve agli utenti registrati per visualizzare le informazioni specifiche di un modello e per visualizzare la lista dei capi classificati da tale modello.
 * Per le pagine di: *registrazione* e *login* di un utente (ordinario), e di *login* di un utente amministratore, andare alla sezione 'Gestione ruoli utenti', qui in basso. 
 * Pagina  [visualizzaTabelle.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/visualizzaTabelle.aspx) in cui è presente un elemento bootstrap "*accordion*" che servirà all'amministratore del sito per visualizzare lo schema della base di dati.
 
-##### Classi implementate
+#### Classi implementate
 Collegati ad essi, all'interno del direttorio: [Dati](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati) si trovano tutte le classi delle relative *entità* di base succitate, tutte contenenti "operazioni di CRUD" (per ora solo inserimenti, successivamenti anche modifiche e cancellazioni):
 * [Capo.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Capo.cs), 
 * [Modello.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Modello.cs), 
@@ -45,7 +46,7 @@ Inoltre, la classe [Operazione.cs](https://github.com/marcoBelt99/ProgettoDircol
 
 Si noti che, ogni pagina \*.aspx  è accompagnata dalla relativa pagina contente il **'Code Behind'**, ossia la '*business logic*' della pagina, avente estensione \*.aspx.cs
 
-###### Gestione dei Ruoli Utente
+##### Gestione dei Ruoli Utente
 Di notevole importanza è il file: [Site.master](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Site.master), il quale contiene il layout di tutto il sito (di tutte le pagine che la ereditano). Nel Code Behind di tale file sto implementando anche la questione dei **Ruoli utente**, per l'appunto:
 * Nel file [registrazioneUtente.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/registrazioneUtente.aspx) è presente, di fatto, la query di inserimento di un nuovo utente (ordinario) nella tabella '*utenti*' del database. In tale file, la selezione di uno stato dalla drop down list,è stata una "scusa" per poter vedere ed implementare un'operazione di lettura dal [file](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/statiMembri.txt) in c#.
 * Nei file [loginUtente.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/loginUtente.aspx) è presente la query di ricerca di un utente presente nel database attraverso il proprio username e password (ciò implica che sto cercando un utente già registrato)
@@ -68,3 +69,4 @@ In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/mas
 | *registrazioneUtente.aspx* | :heavy_check_mark: | :x: | :x: |
 | *visualizzaTabelle.aspx* | :x: | :x: | :heavy_check_mark: |
 | *gestioneModelli.aspx* | :x: | :heavy_check_mark: | :x: |
+| *dettaglioModello.aspx* | :x: | :heavy_check_mark: | :x: |
