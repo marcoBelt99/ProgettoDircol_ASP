@@ -15,14 +15,14 @@ using ProgettoDircol_ASP.Dati;
 namespace ProgettoDircol_ASP
 {
 
-   
+
 
     public partial class inserisci : System.Web.UI.Page
     {
-       
 
 
-       
+
+
 
         /* Richiamo un oggetto di classe Operazione per poter accedere alle
            sue funzioni che ritornano le liste con i dati necessari per fare
@@ -155,21 +155,21 @@ namespace ProgettoDircol_ASP
         }
 
         /// <summary>
-        /// Guardo cosa c'è selezionato nella DropDownList: ddlMatricola_Vendite
+        /// Guardo cosa c'è selezionato nella DropDownList: ddlMatricola_Transazioni
         /// </summary>
         /// <param name="source"></param>
         /// <param name="args"></param>
-        protected void cvMatricola_Vendite_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void cvMatricola_Transazioni_ServerValidate(object source, ServerValidateEventArgs args)
         {
             ValidazioneDropDownListCustom(source, args);
         }
 
         /// <summary>
-        /// Guardo cosa c'è selezionato nella DropDownList: ddlIDCapo_Vendite
+        /// Guardo cosa c'è selezionato nella DropDownList: ddlIDCapo_Transazioni
         /// </summary>
         /// <param name="source"></param>
         /// <param name="args"></param>
-        protected void cvddlIDCapo_Vendite_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void cvddlIDCapo_Transazioni_ServerValidate(object source, ServerValidateEventArgs args)
         {
             ValidazioneDropDownListCustom(source, args);
         }
@@ -313,31 +313,33 @@ namespace ProgettoDircol_ASP
 
 
         /* ###################  INSERIMENTO VENDITA ################################ */
-        protected void btnInserisciVendita_Click(object sender, EventArgs e)
+        protected void btnInserisciTransazione_Click(object sender, EventArgs e)
         {
             // Passo i valori letti al costruttore
-            Vendita vendita = new Vendita();
+            Transazione transazione = new Transazione();
 
-            // vendita.campo = controllo.text
-            vendita.DataVendita = txtDataVendita.Text;
-            vendita.PrezzoVendita = Convert.ToDouble( txtPrezzoVendita.Text);
-            vendita.Matricola =  ddlMatricola_Vendite.SelectedItem.Value;
-            vendita.IDCapo = Convert.ToInt32( ddlIDCapo_Vendite.SelectedItem.Value);
+            // transazione.campo = controllo.text
+            transazione.DataTransazione = txtDataTransazione.Text;
+            transazione.PrezzoTransazione = Convert.ToDouble(txtPrezzoTransazione.Text);
+            transazione.Matricola = ddlMatricola_Transazioni.SelectedItem.Value;
+            transazione.IDCapo = Convert.ToInt32(ddlIDCapo_Transazioni.SelectedItem.Value);
+            transazione.UsernameUtente = ddlUsernameUtente_Transazioni.SelectedItem.Value;
+            // transazione.UsernameUtente = Session["username"].ToString();
 
 
 
             // Inserisco il capo nel database
-            vendita.InserisciVendita(op.GetConnectionString(), vendita);
+            transazione.InserisciTransazione(op.GetConnectionString(), transazione);
 
             Response.Redirect("visualizzaTabelle.aspx");
 
         }
 
-        protected void btnAnnullaVendita_Click(object sender, EventArgs e)
+        protected void btnAnnullaTransazione_Click(object sender, EventArgs e)
         {
 
         }
-        /* ################### FINE INSERIMENTO VENDITA ################################ */
+        /* ################### FINE INSERIMENTO TRANSZIONE ################################ */
 
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -358,7 +360,7 @@ namespace ProgettoDircol_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           /* pnInserimento.Style.Add("padding", "50px");*/ // Do un po' di padding
+            /* pnInserimento.Style.Add("padding", "50px");*/ // Do un po' di padding
 
             if (IsPostBack)
                 return;
@@ -389,15 +391,22 @@ namespace ProgettoDircol_ASP
 
 
             // ID CAPO
-            ddlIDCapo_Vendite.DataSource = op.GetIDCapi();
-            ddlIDCapo_Vendite.DataBind();
-            ddlIDCapo_Vendite.Items.Insert(0, new ListItem(op.stringaDicontrollo));
+            ddlIDCapo_Transazioni.DataSource = op.GetIDCapi();
+            ddlIDCapo_Transazioni.DataBind();
+            ddlIDCapo_Transazioni.Items.Insert(0, new ListItem(op.stringaDicontrollo));
 
 
-            // MATRICOLA
-            ddlMatricola_Vendite.DataSource = op.GetMatricoleDipendenti();
-            ddlMatricola_Vendite.DataBind();
-            ddlMatricola_Vendite.Items.Insert(0, new ListItem(op.stringaDicontrollo));
+            // MATRICOLA dei dipendenti la cui Qualifica='Venditore'
+            ddlMatricola_Transazioni.DataSource = op.GetMatricoleDipendentiVenditori();
+            ddlMatricola_Transazioni.DataBind();
+            ddlMatricola_Transazioni.Items.Insert(0, new ListItem(op.stringaDicontrollo));
+
+
+
+            // USERNAME UTENTI
+            ddlUsernameUtente_Transazioni.DataSource = op.GetUsernameUtenti();
+            ddlUsernameUtente_Transazioni.DataBind();
+            ddlUsernameUtente_Transazioni.Items.Insert(0, new ListItem(op.stringaDicontrollo));
         }
 
 

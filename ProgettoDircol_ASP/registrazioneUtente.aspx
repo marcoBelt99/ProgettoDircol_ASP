@@ -190,7 +190,7 @@
 
 <script type="text/javascript">
     $("input").css("border", "1px solid #7952b3");
-    $("input).css("box-shadow", "5px 5px 5px #5e0add");
+    $("input").css("box-shadow", "5px 5px 5px #5e0add");
 </script>
 
 </asp:Content>

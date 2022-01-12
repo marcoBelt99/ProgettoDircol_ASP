@@ -99,7 +99,7 @@
                 <div class="card-header intestazioneAccordion" id="headingFive">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Visualizza Vendite
+                            Visualizza Transazioni
                         </button>
                     </h2>
                 </div>
@@ -107,8 +107,8 @@
                     <div class="card-body">
                         <%-- contenuto --%>
 
-                        <h2 id="titolo5">VENDITE</h2>
-                        <asp:GridView runat="server" ID="gvVendite" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                        <h2 id="titolo5">TRANSAZIONI</h2>
+                        <asp:GridView runat="server" ID="gvTransazioni" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                             HorizontalAlign="Center" GridLines="None">
                             <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
                         </asp:GridView>

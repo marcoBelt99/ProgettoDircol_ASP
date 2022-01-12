@@ -437,9 +437,9 @@
     <Compile Include="Dati\Modello.cs" />
     <Compile Include="Dati\PuntoVendita.cs" />
     <Compile Include="Dati\Operazione.cs" />
+    <Compile Include="Dati\Transazione.cs" />
     <Compile Include="Dati\Utente.cs" />
     <Compile Include="Dati\UtenteOrdinario.cs" />
-    <Compile Include="Dati\Vendita.cs" />
     <Compile Include="dettaglioModello.aspx.cs">
       <DependentUpon>dettaglioModello.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -523,121 +523,167 @@
 
 
         <%-- ################################# --%>
-        <%-- ########### VENDITE ############# --%>
+        <%-- ########### TRANSAZIONI ############# --%>
         <%-- ################################# --%>
-        <h2>Registrazione di una nuova vendita</h2>
+        <h2>Registrazione di una nuova transazione</h2>
         <div class="d-flex justify-content-center">
             <fieldset runat="server" id="Fieldset4">
                 <div class="form-group">
 
-                    <%-- DATA DI VENDITA --%>
+                    <%-- DATA DELLA TRANSAZIONE --%>
                     <p>
-                        <asp:Label Text="Data di vendita:" runat="server" ID="lblDataVendita" />
-                        <asp:TextBox ID="txtDataVendita" runat="server"
+                        <asp:Label Text="Data della transaizone:" runat="server" ID="lblDataTransazione" />
+                        <asp:TextBox ID="txtDataTransazione" runat="server"
                             TextMode="Date" />
                         <%-- Validazione--%>
-                        <asp:RequiredFieldValidator runat="server" ID="rfvDataVendita"
-                            ControlToValidate="txtDataVendita"
+                        <asp:RequiredFieldValidator runat="server" ID="rfvDataTransazione"
+                            ControlToValidate="txtDataTransazione"
                             ErrorMessage="Campo obbligatorio"
                             Display="Dynamic"
-                            ValidationGroup="venditeForm" />
+                            ValidationGroup="transazioniform" />
                     </p>
 
 
-                    <%-- PREZZO DI VENDITA --%>
+                    <%-- PREZZO TRANSAZIONE --%>
                     <p>
-                        <asp:Label Text="Prezzo di vendita:" runat="server" ID="lblPrezzoVendita" />
-                        <asp:TextBox runat="server" ID="txtPrezzoVendita"
+                        <asp:Label Text="Prezzo della transazione:" runat="server" ID="lblPrezzoTransazione" />
+                        <asp:TextBox runat="server" ID="txtPrezzoTransazione"
                             TextMode="Number">
                         </asp:TextBox>
                         <%-- Validazione --%>
-                        <asp:RequiredFieldValidator runat="server" ID="rfvPrezzoVendita"
-                            ControlToValidate="txtCognome"
-                            ErrorMessage="Il prezzo di vendita è obbligatorio."
+                        <asp:RequiredFieldValidator runat="server" ID="rfvPrezzoTransazione"
+                            ControlToValidate="txtPrezzoTransazione"
+                            ErrorMessage="Il prezzo della transazione è obbligatorio."
                             Display="Dynamic"
-                            ValidationGroup="venditeForm" />
+                            ValidationGroup="transazioniForm" />
                     </p>
 
-                    <%-- MATRICOLA: ddlMatricola_Vendite --%>
+                    <%-- MATRICOLA: ddlMatricola_Transazioni --%>
+                    <%-- NOTA BENE: vedere se lasciare la scelta della matricola di vendita o se assegnare il venditore in
+                        modo random dall'elenco dei dipendenti --%>
                     <p>
-                        <asp:Label Text="Matricola agente di vendita:" runat="server" ID="lblMatricola_Vendite" />
-                        <asp:DropDownList ID="ddlMatricola_Vendite" runat="server"
-                            ValidationGroup="venditeForm">
+                        <asp:Label Text="Matricola agente di vendita transazione:" runat="server" ID="lblMatricola_Transazioni" />
+                        <asp:DropDownList ID="ddlMatricola_Transazioni" runat="server"
+                            ValidationGroup="transazioniForm">
                             <asp:ListItem Value="---" />
                         </asp:DropDownList>
                         <%-- Validazione input --%>
                         <asp:RequiredFieldValidator
-                            ID="rfvMatricola_Vendite" runat="server"
-                            ControlToValidate="ddlMatricola_Vendite"
+                            ID="rfvMatricola_Transazioni" runat="server"
+                            ControlToValidate="ddlMatricola_Transazioni"
                             ErrorMessage="Seleziona una matricola."
                             Display="Dynamic"
-                            ValidationGroup="venditeForm" />
+                            ValidationGroup="transazioniForm" />
                         <asp:CompareValidator
-                            runat="server" ID="compareValidatorMatricola_Vendite"
-                            ControlToValidate="ddlMatricola_Vendite"
+                            runat="server" ID="compareValidatorMatricola_Transazioni"
+                            ControlToValidate="ddlMatricola_Transazioni"
                             ValueToCompare="---"
                             Operator="NotEqual"
                             ErrorMessage="Seleziona una matricola valida."
                             CssClass="alert alert-warning alert-dismissable text-sm-left"
                             Display="Dynamic"
-                            ValidationGroup="venditeForm">
+                            ValidationGroup="transazioniForm">
                         </asp:CompareValidator>
                         <%-- validatore custom --%>
                         <asp:CustomValidator
-                            ID="cvMatricola_Vendite" runat="server"
-                            OnServerValidate="cvMatricola_Vendite_ServerValidate"
-                            ControlToValidate="ddlMatricola_Vendite"
+                            ID="cvMatricola_Transazioni" runat="server"
+                            OnServerValidate="cvMatricola_Transazioni_ServerValidate"
+                            ControlToValidate="ddlMatricola_Transazioni"
                             ErrorMessage="Selezionare una matricola valida."
                             CssClass="alert alert-warning alert-dismissable text-sm-left"
                             Display="Dynamic"
-                            ValidationGroup="venditeForm">
+                            ValidationGroup="transazioniForm">
                         </asp:CustomValidator>
                     </p>
 
-                    <%-- ID CAPO: ddlIDCapo_Vendite --%>
+                    <%-- ID CAPO: ddlIDCapo_Transazioni --%>
                     <p>
-                        <asp:Label Text="ID capo:" runat="server" ID="lblIDCapo_Vendite" />
-                        <asp:DropDownList ID="ddlIDCapo_Vendite" runat="server"
-                            ValidationGroup="venditeForm">
+                        <asp:Label Text="ID capo:" runat="server" ID="lblIDCapo_Transazione" />
+                        <asp:DropDownList ID="ddlIDCapo_Transazioni" runat="server"
+                            ValidationGroup="transazioniForm">
                             <asp:ListItem Value="---" />
                         </asp:DropDownList>
                         <%-- Validazione input --%>
                         <asp:RequiredFieldValidator
-                            ID="rfvddlIDCapo_Vendite" runat="server"
-                            ControlToValidate="ddlIDCapo_Vendite"
-                            ErrorMessage="Seleziona un punto vendita."
+                            ID="rfvddlIDCapo_Transazioni" runat="server"
+                            ControlToValidate="ddlIDCapo_Transazioni"
+                            ErrorMessage="Seleziona un ID capo valido."
                             Display="Dynamic"
-                            ValidationGroup="venditeForm" />
+                            ValidationGroup="transazioniForm" />
                         <asp:CompareValidator
-                            runat="server" ID="compareValidatorddlIDCapo_Vendite"
-                            ControlToValidate="ddlIDCapo_Vendite"
+                            runat="server" ID="compareValidatorddlIDCapo_Transazioni"
+                            ControlToValidate="ddlIDCapo_Transazioni"
                             ValueToCompare="---"
                             Operator="NotEqual"
                             ErrorMessage="Seleziona un punto vendita valido."
                             CssClass="alert alert-warning alert-dismissable text-sm-left"
                             Display="Dynamic"
-                            ValidationGroup="venditeForm">
+                            ValidationGroup="transazioniForm">
                         </asp:CompareValidator>
                         <%-- validatore custom --%>
                         <asp:CustomValidator
-                            ID="cvddlIDCapo_Vendite" runat="server"
-                            OnServerValidate="cvddlIDCapo_Vendite_ServerValidate"
-                            ControlToValidate="ddlIDCapo_Vendite"
+                            ID="cvddlIDCapo_Transazioni" runat="server"
+                            OnServerValidate="cvddlIDCapo_Transazioni_ServerValidate"
+                            ControlToValidate="ddlIDCapo_Transazioni"
                             ErrorMessage="Selezionare una taglia valida."
                             CssClass="alert alert-warning alert-dismissable text-sm-left"
                             Display="Dynamic"
-                            ValidationGroup="venditeForm">
+                            ValidationGroup="transazioniForm">
                         </asp:CustomValidator>
                     </p>
 
-                    <br />
-                    <asp:Button ID="btnInserisciVendita"
-                        ValidationGroup="venditeForm" Text="Inserisci" runat="server"
-                        CssClass="Stile_btnSubmit"
-                        OnClick="btnInserisciVendita_Click" />
 
-                    <asp:Button ID="btnAnnullaVendita" Text="Annulla" runat="server"
-                        OnClick="btnAnnullaVendita_Click"
+                     <%-- USERNAME UTENTE: ddlUsernameUtente_Transazioni --%>
+                    <p>
+                        <asp:Label Text="Username dell'utente che intende acquistare:" runat="server" ID="lblUsernameUtente_Transazioni" />
+                        <asp:DropDownList ID="ddlUsernameUtente_Transazioni" runat="server"
+                            ValidationGroup="transazioniForm">
+                            <asp:ListItem Value="---" />
+                        </asp:DropDownList>
+                        <%-- Validazione input --%>
+                        <asp:RequiredFieldValidator
+                            ID="rfvUsernameUtente_Transazioni" runat="server"
+                            ControlToValidate="ddlUsernameUtente_Transazioni"
+                            ErrorMessage="Seleziona uno username."
+                            Display="Dynamic"
+                            ValidationGroup="transazioniForm" />
+                        <asp:CompareValidator
+                            runat="server" ID="cvUsernameUtente_Transazioni"
+                            ControlToValidate="ddlUsernameUtente_Transazioni"
+                            ValueToCompare="---"
+                            Operator="NotEqual"
+                            ErrorMessage="Seleziona uno username valido."
+                            CssClass="alert alert-warning alert-dismissable text-sm-left"
+                            Display="Dynamic"
+                            ValidationGroup="transazioniForm">
+                        </asp:CompareValidator>
+                        <%-- validatore custom --%>
+                        <%--<asp:CustomValidator
+                            ID="CustomValidator1" runat="server"
+                            OnServerValidate="cvMatricola_Transazioni_ServerValidate"
+                            ControlToValidate="ddlMatricola_Transazioni"
+                            ErrorMessage="Selezionare una matricola valida."
+                            CssClass="alert alert-warning alert-dismissable text-sm-left"
+                            Display="Dynamic"
+                            ValidationGroup="transazioniForm">
+                        </asp:CustomValidator>--%>
+                    </p>
+
+
+
+
+
+
+
+
+                    <br />
+                    <asp:Button ID="btnInserisciTransazione"
+                        ValidationGroup="transazioniForm" Text="Inserisci" runat="server"
+                        CssClass="Stile_btnSubmit"
+                        OnClick="btnInserisciTransazione_Click" />
+
+                    <asp:Button ID="btnAnnullaTransazione" Text="Annulla" runat="server"
+                        OnClick="btnAnnullaTransazione_Click"
                         CssClass="Stile_bntAnnulla" />
                 </div>
             </fieldset>

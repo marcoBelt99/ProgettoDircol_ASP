@@ -50,11 +50,19 @@ namespace ProgettoDircol_ASP.Dati
         /// Lista di stringhe che contiene le matricole di tutti i dipendenti 
         /// </summary>
         private List<string> matricoleDipendenti = new List<string>();
+        /// <summary> 
+        /// Lista di stringhe che contiene le matricole di tutti i dipendenti la cui 
+        /// Qualifica = 'Venditore'
+        /// </summary>
+        private List<string> matricoleDipendentiVenditori = new List<string>();
         /// <summary>
         /// Lista di stringhe che contiene i nomi degli stati letti dal file 'statiMembri.txt'
         /// </summary>
         private List<string> statiMembri = new List<string>();
-
+        /// <summary> 
+        /// Lista di stringhe che contiene gli username di tutti gli utenti 
+        /// </summary>
+        private List<string> usernameUtenti = new List<string>();
         /// <summary>
         /// Ottiene la stringa di connessione al Database.
         /// Usare questa funzione nelle altre classi per semplificare
@@ -295,11 +303,52 @@ namespace ProgettoDircol_ASP.Dati
             return matricoleDipendenti;
         }
 
+        /// <summary>
+        /// Ritorna la lista delle matricole di tutti i dipendenti.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetMatricoleDipendentiVenditori()
+        {
+            // Dichiaro una variabile per la connessione
+            SqlConnection con = new SqlConnection(connectionString);
 
+            // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi'
+            string selectSQL = "select distinct Matricola from dipendenti where Qualifica='Venditore' order by Matricola";
 
+            // Apro la connessione
+            con.Open();
 
+            // Imposto il comando SQL
+            SqlCommand cmd = new SqlCommand(selectSQL, con);
 
+            // Leggo le righe (in modo forward-only) dal database
+            SqlDataReader dr = cmd.ExecuteReader();
 
+            // 
+            if (dr != null)
+            {
+                // Finchè leggi una riga (un record) dal database
+                while (dr.Read())
+                {
+                    // Crea un nuovo elemento di tipo intero da aggiungere alla lista 
+                    string matricola = "";
+
+                    // Leggi e converti i dati dal record corrente
+                    matricola = dr["Matricola"].ToString();
+
+                    // Aggiungi il capo alla lista
+                    matricoleDipendentiVenditori.Add(matricola);
+
+                }
+            }
+
+            // Chiudo la connessione
+            con.Close();
+
+            // Ritorno la lista ordinata
+            matricoleDipendentiVenditori.Sort();
+            return matricoleDipendentiVenditori;
+        }
 
 
         /// <summary>
@@ -373,6 +422,57 @@ namespace ProgettoDircol_ASP.Dati
 
 
 
+        /// <summary>
+        /// Ritorna la lista degli username di tutti gli utenti.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetUsernameUtenti()
+        {
+            // Dichiaro una variabile per la connessione
+            SqlConnection con = new SqlConnection(connectionString);
+
+            // Stringa SQL: Seleziona tutti i dati dalla tabella 'utenti'
+            string selectSQL = "select distinct UsernameUtente from utenti order by UsernameUtente";
+
+            // Apro la connessione
+            con.Open();
+
+            // Imposto il comando SQL
+            SqlCommand cmd = new SqlCommand(selectSQL, con);
+
+            // Leggo le righe (in modo forward-only) dal database
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            // 
+            if (dr != null)
+            {
+                // Finchè leggi una riga (un record) dal database
+                while (dr.Read())
+                {
+                    // Crea un nuovo elemento di tipo stringa da aggiungere alla lista 
+                    string username = "";
+
+                    // Leggi e converti i dati dal record corrente
+                    username = dr["UsernameUtente"].ToString();
+
+                    // Aggiungi il capo alla lista
+                    usernameUtenti.Add(username);
+
+                }
+            }
+            // Chiudo la connessione
+            con.Close();
+
+            // Ritorno la lista ordinata
+            usernameUtenti.Sort();
+            return usernameUtenti;
+        }
+
+
+
+
+
+
 
         /// <summary>
         /// Funzione da richiamare in ogni pagina, prima del Page_Load.
@@ -383,7 +483,7 @@ namespace ProgettoDircol_ASP.Dati
         /// <param name="Ruolo">Valore di Session["ruolo"]</param>
         public void GetAccessoPaginaUtenteComeNonLoggato(string Ruolo)
         {
-            if ( (Ruolo.Equals("amministratore")==false) && (Ruolo.Equals("utente")==false) )
+            if ((Ruolo.Equals("amministratore") == false) && (Ruolo.Equals("utente") == false))
             {
                 // Accesso consentito
                 return;
@@ -407,7 +507,7 @@ namespace ProgettoDircol_ASP.Dati
         /// <param name="Ruolo">Valore di Session["ruolo"]</param>
         public void GetAccessoPaginaComeUtente(string Ruolo)
         {
-            if(Ruolo.Equals("utente"))
+            if (Ruolo.Equals("utente"))
             {
                 // Accesso consentito
                 return;
@@ -416,9 +516,9 @@ namespace ProgettoDircol_ASP.Dati
             {
                 // Accesso negato, vengo rimandato alla pagina di errore
                 HttpContext.Current.Response.Redirect("AccessoNegato.aspx");
-                
+
             }
-            
+
         }
 
 

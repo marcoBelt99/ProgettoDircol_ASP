@@ -119,26 +119,30 @@ namespace ProgettoDircol_ASP
         /// Procedura di popolamento della Grid presente in 'visualizzaTabelle.aspx' con i dati letti dal
         /// database. Da richiamare nel Page_Load()
         /// </summary>
-        private void RiempiGridVendite()
+        private void RiempiGridTransazioni()
         {
-            // Creo una nuova lista di oggetti di tipo Vendita
-            List<Vendita> ListaVendite = new List<Vendita>();
+            // Creo una nuova lista di oggetti di tipo Transazione
+            List<Transazione> ListaTransazioni = new List<Transazione>();
 
             // Creo un nuovo oggetto di tipo Vendita
-            Vendita vendita = new Vendita();
+            Transazione transazione = new Transazione();
 
-            ListaVendite = vendita.GetVendite(op.GetConnectionString());
+            ListaTransazioni = transazione.GetTransazioni(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
-            gvVendite.DataSource = ListaVendite;
+            gvTransazioni.DataSource = ListaTransazioni;
 
             /* Associo la sorgente dati al controllo GridView*/
-            gvVendite.DataBind();
+            gvTransazioni.DataBind();
 
         }
 
 
+        /// <summary>
+        /// Procedura di popolamento della Grid presente in 'visualizzaTabelle.aspx' con i dati letti dal
+        /// database. Da richiamare nel Page_Load()
+        /// </summary>
         private void RiempiGridUtenti()
         {
             // Creo una nuova lista di oggetti di tipo Vendita
@@ -147,7 +151,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo UtenteOrdinario
             UtenteOrdinario utenteOrdinario = new UtenteOrdinario();
 
-            ListaUtenti = utenteOrdinario.GetUtenteOrdinario( op.GetConnectionString() );
+            ListaUtenti = utenteOrdinario.GetUtenteOrdinario(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
@@ -186,7 +190,7 @@ namespace ProgettoDircol_ASP
                 RiempiGridDipendenti();
                 RiempiGridModelli();
                 RiempiGridPuntiVendita();
-                RiempiGridVendite();
+                RiempiGridTransazioni();
                 RiempiGridUtenti();
             }
         }

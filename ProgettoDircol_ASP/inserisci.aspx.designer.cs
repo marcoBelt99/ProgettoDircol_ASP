@@ -789,166 +789,202 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Fieldset4;
 
         /// <summary>
-        /// Controllo lblDataVendita.
+        /// Controllo lblDataTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDataVendita;
+        protected global::System.Web.UI.WebControls.Label lblDataTransazione;
 
         /// <summary>
-        /// Controllo txtDataVendita.
+        /// Controllo txtDataTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDataVendita;
+        protected global::System.Web.UI.WebControls.TextBox txtDataTransazione;
 
         /// <summary>
-        /// Controllo rfvDataVendita.
+        /// Controllo rfvDataTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDataVendita;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDataTransazione;
 
         /// <summary>
-        /// Controllo lblPrezzoVendita.
+        /// Controllo lblPrezzoTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrezzoVendita;
+        protected global::System.Web.UI.WebControls.Label lblPrezzoTransazione;
 
         /// <summary>
-        /// Controllo txtPrezzoVendita.
+        /// Controllo txtPrezzoTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrezzoVendita;
+        protected global::System.Web.UI.WebControls.TextBox txtPrezzoTransazione;
 
         /// <summary>
-        /// Controllo rfvPrezzoVendita.
+        /// Controllo rfvPrezzoTransazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrezzoVendita;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrezzoTransazione;
 
         /// <summary>
-        /// Controllo lblMatricola_Vendite.
+        /// Controllo lblMatricola_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMatricola_Vendite;
+        protected global::System.Web.UI.WebControls.Label lblMatricola_Transazioni;
 
         /// <summary>
-        /// Controllo ddlMatricola_Vendite.
+        /// Controllo ddlMatricola_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMatricola_Vendite;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMatricola_Transazioni;
 
         /// <summary>
-        /// Controllo rfvMatricola_Vendite.
+        /// Controllo rfvMatricola_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMatricola_Vendite;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMatricola_Transazioni;
 
         /// <summary>
-        /// Controllo compareValidatorMatricola_Vendite.
+        /// Controllo compareValidatorMatricola_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compareValidatorMatricola_Vendite;
+        protected global::System.Web.UI.WebControls.CompareValidator compareValidatorMatricola_Transazioni;
 
         /// <summary>
-        /// Controllo cvMatricola_Vendite.
+        /// Controllo cvMatricola_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvMatricola_Vendite;
+        protected global::System.Web.UI.WebControls.CustomValidator cvMatricola_Transazioni;
 
         /// <summary>
-        /// Controllo lblIDCapo_Vendite.
+        /// Controllo lblIDCapo_Transazione.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIDCapo_Vendite;
+        protected global::System.Web.UI.WebControls.Label lblIDCapo_Transazione;
 
         /// <summary>
-        /// Controllo ddlIDCapo_Vendite.
+        /// Controllo ddlIDCapo_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIDCapo_Vendite;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIDCapo_Transazioni;
 
         /// <summary>
-        /// Controllo rfvddlIDCapo_Vendite.
+        /// Controllo rfvddlIDCapo_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlIDCapo_Vendite;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlIDCapo_Transazioni;
 
         /// <summary>
-        /// Controllo compareValidatorddlIDCapo_Vendite.
+        /// Controllo compareValidatorddlIDCapo_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compareValidatorddlIDCapo_Vendite;
+        protected global::System.Web.UI.WebControls.CompareValidator compareValidatorddlIDCapo_Transazioni;
 
         /// <summary>
-        /// Controllo cvddlIDCapo_Vendite.
+        /// Controllo cvddlIDCapo_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvddlIDCapo_Vendite;
+        protected global::System.Web.UI.WebControls.CustomValidator cvddlIDCapo_Transazioni;
 
         /// <summary>
-        /// Controllo btnInserisciVendita.
+        /// Controllo lblUsernameUtente_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInserisciVendita;
+        protected global::System.Web.UI.WebControls.Label lblUsernameUtente_Transazioni;
 
         /// <summary>
-        /// Controllo btnAnnullaVendita.
+        /// Controllo ddlUsernameUtente_Transazioni.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAnnullaVendita;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUsernameUtente_Transazioni;
+
+        /// <summary>
+        /// Controllo rfvUsernameUtente_Transazioni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsernameUtente_Transazioni;
+
+        /// <summary>
+        /// Controllo cvUsernameUtente_Transazioni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvUsernameUtente_Transazioni;
+
+        /// <summary>
+        /// Controllo btnInserisciTransazione.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInserisciTransazione;
+
+        /// <summary>
+        /// Controllo btnAnnullaTransazione.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAnnullaTransazione;
 
         /// <summary>
         /// Controllo LinkButton1.

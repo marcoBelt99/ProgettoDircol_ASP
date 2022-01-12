@@ -9,6 +9,7 @@ USE dircol;
 -- --------------------------------------------------------
 -- Prima aggiungo le tabelle che non hanno chiavi esterne, poi ci metto quelle
 -- che referenziano una tabella (quelle che hanno chiavi esterne)
+-- Ho aggiunto anche le tabelle per gli utenti.
 
 
 
@@ -146,10 +147,11 @@ INSERT INTO capi (Taglia, Colore, PuntoVendita, CodModello) VALUES
 DROP TABLE IF EXISTS dipendenti;
 CREATE TABLE dipendenti (
   [Matricola] bigint NOT NULL,
-  [Cognome] text NOT NULL,
-  [Nome] text NOT NULL,
+  [Cognome] varchar(50) NOT NULL,
+  [Nome] varchar(50) NOT NULL,
   [CodiceFiscale] varchar(16) NOT NULL,
-  [Qualifica] text NOT NULL,
+  -- [Qualifica] text NOT NULL,
+  [Qualifica] varchar(50) NOT NULL,
   [PuntoVendita] int NOT NULL,
   PRIMARY KEY (Matricola),
   -- KEY `PuntoVendita` (`PuntoVendita`),
@@ -161,11 +163,19 @@ TRUNCATE TABLE dipendenti;
 --
 
 INSERT INTO dipendenti (Matricola, Cognome, Nome, CodiceFiscale, Qualifica, PuntoVendita) VALUES
-('148881', 'Beltrame', 'Marco', 'BLTMRC99M30A059W', 'Programmatore', '4'),
-('148887', 'Rossi', 'Mario', 'RSSMRO120NX34I09', 'Content Manager', '4'),
-('452314', 'Morin', 'Sara', 'MRNSRA99ARIA1QP1', 'Stilista', '1'),
-('852159', 'Berton', 'Francesco', 'BRTFRC8812321KN6', 'Stilista', '2'),
-('369541', 'Biondi', 'Diletta', 'BNDLTTA590WQZ7L2', 'Content Manager', '4');
+('148881', 'Beltrame', 'Marco', 'BLTMRC99M30A059W', 'Programmatore', 4),
+('148887', 'Rossi', 'Mario', 'RSSMRO120NX34I09', 'Content Manager', 4),
+('452314', 'Morin', 'Sara', 'MRNSRA99ARIA1QP1', 'Stilista', 1),
+('852159', 'Berton', 'Francesco', 'BRTFRC8812321KN6', 'Stilista', 2),
+('369541', 'Biondi', 'Diletta', 'BNDLTTA590WQZ7L2', 'Content Manager', 4),
+('155552', 'Casellato', 'Massimo', 'CSTMSO86B7EA059Z', 'Venditore', 1),
+('235746', 'Roncato', 'Teresa', 'RNTER124T10PL2SP', 'Venditore', 2),
+('101010', 'Greggio', 'Ezio', 'GRGZIO57B23M057W', 'Venditore', 3),
+('246810', 'Palmieri', 'Adriana', 'PLMDRA93L456EXAW', 'Venditore', 4),
+('147951', 'Spunton', 'Davide', 'SPNTDVD9909AW59W', 'Venditore', 5),
+('123654', 'Miriam', 'Piva', 'MRMPVA98M11A059E', 'Venditore', 6),
+('123457', 'Silvestrin', 'Irene', 'SLVRNE99C1A059B', 'Venditore', 7),
+('123458', 'Romagnollo', 'Fasil', 'RMLRSL98M28A059L', 'Venditore', 1);
 
 
 -- --------------------------------------------------------
@@ -173,30 +183,8 @@ INSERT INTO dipendenti (Matricola, Cognome, Nome, CodiceFiscale, Qualifica, Punt
 
 
 
---
--- Struttura della tabella `vendite`
---
 
-DROP TABLE IF EXISTS vendite;
-CREATE TABLE vendite (
-  [ID] int NOT NULL IDENTITY(1,1),
-  [DataVendita] date NOT NULL,
-  [PrezzoVendita] float NOT NULL,
-  [Matricola] bigint NOT NULL,
-  [IDCapo] int NOT NULL,
-  PRIMARY KEY (ID),
-  -- KEY IDCapo (IDCapo),
-  FOREIGN KEY (Matricola) REFERENCES dipendenti (Matricola),
-  FOREIGN KEY (IDCapo) REFERENCES capi (ID)
-) ;
-TRUNCATE TABLE vendite;
---
--- Dump dei dati per la tabella `vendite`
---
 
-INSERT INTO vendite (DataVendita, PrezzoVendita, Matricola, IDCapo) VALUES
-('2021-11-04', 444, '148881', 9),
-('2021-08-11', 512, '369541', 5);
 
 
 
@@ -262,3 +250,40 @@ DROP TABLE IF EXISTS amministratori;
 
  INSERT INTO amministratori (UsernameAdmin, PasswordAdmin, NomeAdmin, CognomeAdmin) VALUES
  ('admin','admin','Diletta','Biondi');
+
+
+
+
+
+
+--
+-- Struttura della tabella `transazioni`
+--
+
+DROP TABLE IF EXISTS transazioni;
+CREATE TABLE transazioni (
+  [ID] int NOT NULL IDENTITY(1,1),
+  [DataTransazione] date NOT NULL,
+  [PrezzoTransazione] float NOT NULL,
+  [Matricola] bigint NOT NULL,
+  [IDCapo] int NOT NULL,
+  [UsernameUtente] nchar(15) NOT NULL,
+  PRIMARY KEY (ID),
+  -- KEY IDCapo (IDCapo),
+  FOREIGN KEY (Matricola) REFERENCES dipendenti (Matricola),
+  FOREIGN KEY (IDCapo) REFERENCES capi (ID),
+  FOREIGN KEY (UsernameUtente) REFERENCES utenti (UsernameUtente)
+) ;
+TRUNCATE TABLE transazioni;
+--
+-- Dump dei dati per la tabella `transazioni`
+--
+
+INSERT INTO transazioni (DataTransazione, PrezzoTransazione, Matricola, IDCapo, UsernameUtente) VALUES
+('2021-11-04', 444, '148881', 9, 'mark99'),
+('2021-08-11', 512, '369541', 5, 'grbele2000');
+
+
+
+
+

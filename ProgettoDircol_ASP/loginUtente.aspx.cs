@@ -88,6 +88,10 @@ namespace ProgettoDircol_ASP
 
 
             }
+            catch(SqlException ex)
+            {
+                Response.Write("<script> alert('Eccezione SQL: '" + ex.Message + ");</script>");
+            }
             catch (Exception  ex)
             {
                 // Response.Write("<script> alert('');</script>")

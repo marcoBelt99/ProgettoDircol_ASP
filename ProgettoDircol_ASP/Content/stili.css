@@ -112,6 +112,47 @@ navbar {
     height: 5%;
 }
 
+/* Bottone della navbar toggler */
+.navbar-toggle {
+    border: none;
+    background: transparent !important;
+}
+
+    .navbar-toggle:hover {
+        background: transparent !important;
+    }
+
+    .navbar-toggle .icon-bar {
+        width: 22px;
+        transition: all 0.2s;
+    }
+
+    .navbar-toggle .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+    }
+
+    .navbar-toggle .middle-bar {
+        opacity: 0;
+    }
+
+    .navbar-toggle .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+    }
+
+    .navbar-toggle.collapsed .top-bar {
+        transform: rotate(0);
+    }
+
+    .navbar-toggle.collapsed .middle-bar {
+        opacity: 1;
+    }
+
+    .navbar-toggle.collapsed .bottom-bar {
+        transform: rotate(0);
+    }
+
 /*********************** FOOTER ***********************/
 
 footer {
@@ -399,6 +440,7 @@ input[type="radio"] {
     /* Rendo obbreggiato il bordo della card */
     box-shadow: 5px 5px 5px #5e0add;
 }
+
 #CardFormRegistrazione {
     border: 1px solid #7952b3 !important;
     /* Rendo obbreggiato il bordo della card */
