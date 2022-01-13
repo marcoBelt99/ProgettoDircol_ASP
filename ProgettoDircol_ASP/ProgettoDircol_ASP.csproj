@@ -277,6 +277,7 @@
     <Content Include="STUDIO\DataBindingSemplice.aspx" />
     <Content Include="STUDIO\EsempioValidazione.aspx" />
     <Content Include="STUDIO\EventiServerDifferitiaspx.aspx" />
+    <Content Include="STUDIO\FeedbackProva.aspx" />
     <Content Include="STUDIO\GestioneViewState.aspx" />
     <Content Include="STUDIO\LoginHtmlControl.aspx" />
     <Content Include="STUDIO\SalveMondoSingle.aspx" />
@@ -437,6 +438,7 @@
     <Compile Include="Dati\Modello.cs" />
     <Compile Include="Dati\PuntoVendita.cs" />
     <Compile Include="Dati\Operazione.cs" />
+    <Compile Include="Dati\Recensione.cs" />
     <Compile Include="Dati\Transazione.cs" />
     <Compile Include="Dati\Utente.cs" />
     <Compile Include="Dati\UtenteOrdinario.cs" />
@@ -567,6 +569,13 @@
     </Compile>
     <Compile Include="STUDIO\EventiServerDifferitiaspx.aspx.designer.cs">
       <DependentUpon>EventiServerDifferitiaspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="STUDIO\FeedbackProva.aspx.cs">
+      <DependentUpon>FeedbackProva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="STUDIO\FeedbackProva.aspx.designer.cs">
+      <DependentUpon>FeedbackProva.aspx</DependentUpon>
     </Compile>
     <Compile Include="STUDIO\GestioneViewState.aspx.cs">
       <DependentUpon>GestioneViewState.aspx</DependentUpon>

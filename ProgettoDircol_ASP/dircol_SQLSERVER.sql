@@ -284,6 +284,21 @@ INSERT INTO transazioni (DataTransazione, PrezzoTransazione, Matricola, IDCapo, 
 ('2021-08-11', 512, '369541', 5, 'grbele2000');
 
 
+--
+-- Struttura della tabella `recensioni`: CRUD in Ajax
+--
 
+DROP TABLE IF EXISTS recensioni;
+CREATE TABLE recensioni (
+  [IDRecensione] int NOT NULL IDENTITY(1,1),
+  [DescrizioneRecensione] varchar(max),
+  [Punteggio] int not null,
+  [CodModello] int NOT NULL,
+  [UsernameUtente] nchar(15) NOT NULL,
+  PRIMARY KEY (IDRecensione),
+  FOREIGN KEY (CodModello) REFERENCES modelli (CodModello),
+  FOREIGN KEY (UsernameUtente) REFERENCES utenti (UsernameUtente)
+);
+TRUNCATE TABLE recensioni;
 
 
