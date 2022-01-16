@@ -16,7 +16,10 @@ namespace ProgettoDircol_ASP.Dati
     /// OPPURE FA OPERAZIONI DI CREAZIONE, MODIFICA, CANCELLAZIONE DI RECORD.
     /// I DATI VENGONO RACCOLTI DALLE PAGINE CODE BEHIND TRAMITE L'ACCESSO AI VALORI DEI CONTROLLI SERVER.
     /// I DATI VENGONO SPEDITI ALLA PAGINE CODE BEHIND TRAMITE DELLE LISTE
+    /// Ricorda: per mantenere lo stato tra un post back e l'altro, uso il View State.
+    /// Se salvo una lista nel View State, il tipo di classe della lista deve essere serializzabile
     /// </summary>
+    [Serializable]
     public class Capo
     {
         // ATTRIBUTI
@@ -44,6 +47,9 @@ namespace ProgettoDircol_ASP.Dati
             this.PuntoVendita = PuntoVendita;
             this.CodModello = CodModello;
         }
+
+
+        Operazione op = new Operazione();
 
 
         // METODI
@@ -143,6 +149,40 @@ namespace ProgettoDircol_ASP.Dati
                 throw ex;
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Eliminazione record da tabella capi del database
+        /// </summary>
+        public void EliminaCapo(int ID_da_Eliminare)
+        {
+            // Dichiaro una variabile per la connessione
+            SqlConnection con = new SqlConnection(op.GetConnectionString());
+
+            // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi'
+            string selectSQL = "DELETE FROM capi WHERE ID=@id;";
+
+            // Apro la connessione
+            con.Open();
+
+            // Imposto il comando SQL
+            SqlCommand cmd = new SqlCommand(selectSQL, con);
+            cmd.Parameters.Add(new SqlParameter("@id", ID_da_Eliminare));
+
+            // Chiudo la connessione al DB
+            con.Close();
+        }
+
+
 
 
         public override string ToString()

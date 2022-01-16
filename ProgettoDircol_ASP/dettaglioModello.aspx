@@ -117,18 +117,18 @@
 
 
     <%-- VARIABILI GLOBALI --%>
-  
 
-    <%  int capoDaAggiungereAlCarrello = -1; %>
-    <script> 
+
+
+    <%-- <script> 
         // Array di interi che contiene gli ID dei capi classificati della pagina
         var IDs = new Array();
         var IDs_v1 = new Array();
         var IDs_stringa = "";
-    </script>
+    </script>--%>
 
 
-  
+
 
     <asp:Panel ID="pndettaglioModello_1" runat="server" HorizontalAlign="Center">
 
@@ -160,7 +160,7 @@
 
                 <td runat="server" class="bg-white">
 
-                    <div class="list-group">
+                    <div class="list-group" id="listviewCapo" runat="server">
                         <%-- ID --%>
                         <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
                         <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
@@ -220,31 +220,30 @@
                                 OnClick="btnAggiungiAlCarrello_Click">
                                 <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello<b>
                             </asp:LinkButton>--%>
-                             <asp:Button CssClass="btn btn-secondary"
+                            <asp:Button CssClass="btn btn-secondary"
                                 ID="LinkButton1" runat="server"
                                 CommandArgument='<%#Eval("ID")%>'
                                 OnClick="btnAggiungiAlCarrello_Click"
-                                 Text="Aggiungi al carrello">
-                            </asp:Button>
-                             <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>
+                                Text="Aggiungi al carrello"></asp:Button>
+                            <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>
                         </div>
                     </div>
                     <br />
                     <br />
 
-                   
+
 
                     <script>
                         // PREPARO I VETTORI
                         // Mi salvo questo valore (pari all'ID i-esimo)
-                        var x = document.getElementsByClassName("OK").value = "<%#:Item.ID%>";
+                        // var x = document.getElementsByClassName("OK").value = "<%--<%#:Item.ID%>--%>";
                         // Lo aggiungo all'array, così mi conservo il valore
-                        IDs.push(x);
+                        // IDs.push(x);
                         // Provo ad aggiungere questo elemento anche in questo modo
-                        IDs_v1.push(<%#:Item.ID %>);
+                        // IDs_v1.push(<%--<%#:Item.ID %>--%>);
                         // Provo ad aggiungerlo ad una stinga che sto costruendo.
                         // Nel prossimo script, qua sotto avrò finito di costruirla
-                        IDs_stringa = IDs_stringa + <%#:Item.ID.ToString() %> 
+                        // IDs_stringa = IDs_stringa + <%--<%#:Item.ID.ToString() %> --%>
                     </script>
                 </td>
             </ItemTemplate>
@@ -272,12 +271,12 @@
         <%-- Fine ListView --%>
     </asp:Panel>
 
-   
+
 
     <script>
 
-            // Stampo a console il vettore
-            console.log(IDs);
+        // Stampo a console il vettore
+        console.log(IDs);
         // stampo a console il vettore v1
         console.log(IDs_v1);
         // stampo a console la stringa costruita sopra

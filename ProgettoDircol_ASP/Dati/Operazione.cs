@@ -63,6 +63,12 @@ namespace ProgettoDircol_ASP.Dati
         /// Lista di stringhe che contiene gli username di tutti gli utenti 
         /// </summary>
         private List<string> usernameUtenti = new List<string>();
+
+        /// <summary>
+        /// Lista di tutti i capi classificati da un preciso codice modello
+        /// </summary>
+        private List<Capo> capiclassificati = new List<Capo>();
+
         /// <summary>
         /// Ottiene la stringa di connessione al Database.
         /// Usare questa funzione nelle altre classi per semplificare
@@ -467,6 +473,64 @@ namespace ProgettoDircol_ASP.Dati
             usernameUtenti.Sort();
             return usernameUtenti;
         }
+
+
+
+
+
+
+
+        /// <summary>
+        /// Aggiunge alla lista dei capi che sono classificati da un determinato modello
+        /// il risultato di una query SQL
+        /// </summary>
+        /// <param name="CodModello">Codice del modello che stai analizzando, che si è scelto</param>
+        /// <returns></returns>
+        public List<Capo> GetCapiClassificatiDaUnModello(int CodModello)
+        {
+            // Dichiaro una variabile per la connessione
+            SqlConnection con = new SqlConnection(this.GetConnectionString());
+
+            // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi' dove CodModello=@CodModello
+            string selectSQL = "SELECT * FROM capi WHERE CodModello=@codiceModello;";
+
+            // Apro la connessione
+            con.Open();
+
+            // Imposto il comando SQL
+            SqlCommand cmd = new SqlCommand(selectSQL, con);
+
+            // Aggiungo il parametro della query
+            cmd.Parameters.Add(new SqlParameter("@codiceModello", CodModello));
+
+            // Leggo le righe (in modo forward-only) dal database
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            // Se il data reader non è null
+            if (dr != null)
+            {
+                // Finchè leggi una riga (un record) dal database
+                while (dr.Read())
+                {
+                    // Crea un nuovo oggetto di tipo Capo
+                    Capo capo = new Capo();
+
+                    // Leggi e converti i dati dal record corrente
+                    capo.ID = Convert.ToInt32(dr["ID"]);
+                    capo.Taglia = dr["Taglia"].ToString();
+                    capo.Colore = dr["Colore"].ToString();
+                    capo.PuntoVendita = Convert.ToInt32(dr["PuntoVendita"]);
+                    capo.CodModello = Convert.ToInt32(dr["CodModello"]);
+
+                    // Aggiungi il capo alla lista dei capi classificati
+                    capiclassificati.Add(capo);
+                }
+            }
+            // Chiudo la connessione al database
+            con.Close();
+
+            return capiclassificati;
+        } // fine funzione
 
 
 

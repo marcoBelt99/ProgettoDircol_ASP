@@ -167,8 +167,8 @@
                     </asp:LoginView>
                     --%>
 
+                    <!-- Dropdown menù: Gestione utenti e Log-in mio personale / Accesso -->
                     <ul class="navbar-nav">
-                        <!-- Dropdown menù: Gestione utenti e Log-in mio personale / Accesso -->
                         <li class="nav-item dropdown drop">
                             <a class="nav-link dropdown-toggle text-nowrap"
                                 href="#"

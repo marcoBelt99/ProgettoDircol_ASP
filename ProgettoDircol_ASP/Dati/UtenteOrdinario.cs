@@ -89,7 +89,7 @@ namespace ProgettoDircol_ASP.Dati
         /// </summary>
         /// <param name="connectionString">stringa di connessione al database</param>
         /// <returns></returns>
-        public List<UtenteOrdinario> GetUtenteOrdinario(string connectionString)
+        public List<UtenteOrdinario> GetUtentiOrdinari(string connectionString)
         {
             // Dichiaro la lista che poi dovrò ritornare
             List<UtenteOrdinario> listaUtenti = new List<UtenteOrdinario>();
@@ -142,6 +142,28 @@ namespace ProgettoDircol_ASP.Dati
         } // fine metodo
 
 
+        /// <summary>
+        /// Trova un Utente avente come username il parametro passato 'usernameChiave'.
+        /// Mi serve per assicurarmi di star considerando l'utente della sessione corrente, loggato adesso
+        /// </summary>
+        /// <param name="usernameChiave"></param>
+        /// <returns></returns>
+        public UtenteOrdinario TrovaUtente(string usernameChiave)
+        {
+            // Scorri la lista degli utenti ordinari
+            foreach (var u in this.GetUtentiOrdinari(op.GetConnectionString()))
+            {
+                // Se ho trovato l'utente che ha come username usernamrChiave
+                if (u.Username.Equals(usernameChiave))
+                {
+                    // L'ho trovato e lo ritorno
+                    return u;
+                }
+            }
+            // Altrimenti, non trovato, ritorna null
+            return null;
+        }
+
 
         public void AggiungiAlCarrello(Capo c)
         {
@@ -165,7 +187,6 @@ namespace ProgettoDircol_ASP.Dati
         public double Spesa_Di_Listino()
         {
             double spesa_di_listino = 0.0;
-
 
             // Ho bisogno del prezzo di listino. Il prezzo si trova nella lista dei modelli
             // Recupero la lista dei modelli

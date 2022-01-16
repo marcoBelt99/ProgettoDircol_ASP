@@ -90,7 +90,7 @@ namespace ProgettoDircol_ASP
         }
 
 
-
+        // NON LA RICHIAMO
         // Metodo GetModelli a cui fa riferimento la proprietà ItemType del controllo ListView nella pagina
         // gestioneModelli.aspx
         public IQueryable<Modello> GetModelliDisponibili([QueryString("id")] int? codModello)
@@ -119,7 +119,8 @@ namespace ProgettoDircol_ASP
             // 3) ESECUZIONE DELLA QUERY / Ritorno questa query in un oggetto di tipo IQuerable<Modello>
             return ModelliDisponibili;
         }
-
+        
+        // Non lo richiamo da nessuna parte
         public List<Modello> GetModelliDisponibili_1([QueryString("id")] int? codModello)
 
         {
@@ -157,6 +158,12 @@ namespace ProgettoDircol_ASP
             return ModelliDisponibili;
         }
 
+
+        /// <summary>
+        /// Funzione che uso nel WebForm
+        /// </summary>
+        /// <param name="codModello"></param>
+        /// <returns></returns>
         public List<Modello> GetModelliDisponibili_2([QueryString("id")] int? codModello)
         {
             // Dichiaro la lista che poi dovrò ritornare

@@ -151,7 +151,7 @@ namespace ProgettoDircol_ASP
             // Creo un nuovo oggetto di tipo UtenteOrdinario
             UtenteOrdinario utenteOrdinario = new UtenteOrdinario();
 
-            ListaUtenti = utenteOrdinario.GetUtenteOrdinario(op.GetConnectionString());
+            ListaUtenti = utenteOrdinario.GetUtentiOrdinari(op.GetConnectionString());
 
             /* 'DataSource' serve per ottenere la sorgente dalla quale
              *  si stanno recuperando i dati */
