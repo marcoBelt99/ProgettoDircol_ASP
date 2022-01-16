@@ -168,6 +168,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="aggiorna.aspx" />
+    <Content Include="Carrello.txt" />
     <Content Include="chiSiamo.aspx" />
     <Content Include="contatti.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -498,7 +499,6 @@
     <Compile Include="loginUtente.aspx.designer.cs">
       <DependentUpon>loginUtente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ConnessioneDAL.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,7 +555,6 @@
     <Compile Include="STUDIO\DataBindingSemplice.aspx.designer.cs">
       <DependentUpon>DataBindingSemplice.aspx</DependentUpon>
     </Compile>
-    <Compile Include="STUDIO\EsempioQuery.cs" />
     <Compile Include="STUDIO\EsempioValidazione.aspx.cs">
       <DependentUpon>EsempioValidazione.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

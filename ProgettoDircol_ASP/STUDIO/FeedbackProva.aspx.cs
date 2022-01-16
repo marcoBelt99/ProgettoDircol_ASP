@@ -19,28 +19,25 @@ namespace ProgettoDircol_ASP.STUDIO
     public partial class FeedbackProva : System.Web.UI.Page
     {
         Operazione op = new Operazione();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                if (!this.IsPostBack)
+                using (SqlConnection con = new SqlConnection(op.GetConnectionString()))
                 {
-
-                    using (SqlConnection con = new SqlConnection(op.GetConnectionString()))
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM recensioni"))
                     {
-                        using (SqlCommand cmd = new SqlCommand("SELECT * FROM recensioni"))
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
                         {
-                            using (SqlDataAdapter sda = new SqlDataAdapter())
-                            {
-                                DataTable dt = new DataTable();
-                                cmd.CommandType = CommandType.Text;
-                                cmd.Connection = con;
-                                sda.SelectCommand = cmd;
-                                // Riempi la tabella
-                                sda.Fill(dt);
-                                gvRecensioni.DataSource = dt;
-                                gvRecensioni.DataBind();
-                            }
+                            DataTable dt = new DataTable();
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            // Riempi la tabella
+                            sda.Fill(dt);
+                            gvRecensioni.DataSource = dt;
+                            gvRecensioni.DataBind();
                         }
                     }
                 }
@@ -50,16 +47,21 @@ namespace ProgettoDircol_ASP.STUDIO
 
         [WebMethod]
         [ScriptMethod]
-        public static void AggiungiRecensione(string Username, string Password)
+        public static void AggiungiRecensione(Recensione recensione)
         {
-            string constr = ConfigurationManager.ConnectionStrings["db_tes"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(constr))
+            Operazione op = new Operazione();
+
+            using (SqlConnection con = new SqlConnection(op.GetConnectionString()))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Users(Username,Password) VALUES(@Username, @Password)"))
+                string strSQL = "INSERT INTO recensioni(DescrizioneRecensione, Punteggio, CodModello, UsernameUtente)" +
+                    " VALUES(@DescrizioneRecensione, @Punteggio, @CodModello, @UsernameUtente)";
+                using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@Username", Username);
-                    cmd.Parameters.AddWithValue("@Password", Password);
+                    cmd.Parameters.AddWithValue("@DescrizioneRecensione", recensione.DescrizioneRecensione);
+                    cmd.Parameters.AddWithValue("@Punteggio", recensione.PunteggioRecensione);
+                    cmd.Parameters.AddWithValue("@CodModello", recensione.CodModello);
+                    cmd.Parameters.AddWithValue("@UsernameUtente", recensione.UsernameUtente);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();

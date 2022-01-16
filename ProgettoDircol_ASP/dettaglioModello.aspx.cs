@@ -18,6 +18,8 @@ namespace ProgettoDircol_ASP
         // Variabile globale
         int CodiceDelModelloInDettaglio = 0;
 
+        int IDCapo_DaAggiungereAlCarrello = 0; // Contiene il giusto ID preso come argomento dal CommandType del bottone Aggiungi Capo nel WebForm
+
 
         /// <summary>
         /// Metodo GetModello relativo al FormControl nel file dettagliModello
@@ -57,7 +59,7 @@ namespace ProgettoDircol_ASP
         }
 
 
-
+        // Non la richiamo da nessuna parte, la tengo solo perchè è interessante....
         public List<Capo> GetCapiClassificati([QueryString("codModello")] int? codModello) // 
         {
             Capo capo = new Capo();
@@ -95,6 +97,38 @@ namespace ProgettoDircol_ASP
         }
 
 
+
+        protected void btnAggiungiAlCarrello_Click(object sender, EventArgs e)
+        {
+            // Cast esplicito per ottenere il metodo CommandArgument --> vale solo per i Button, non vale es) per i LinkButton
+            Button btn = (Button)sender;
+
+            // string SPERO_ID_stringa = btn.CommandArgument.ToString();
+
+            // ID del capo passato come argomento
+            int argomentoID = int.Parse(btn.CommandArgument.ToString());
+
+            
+            // Chiave di ricerca del capo da aggiungere al carrello
+            IDCapo_DaAggiungereAlCarrello = argomentoID;
+
+            // Ricerca di oggetto di tipo Capo
+            foreach (var c in this.GetCapiClassificati_1())
+            {
+                if(c.ID == IDCapo_DaAggiungereAlCarrello)
+                {
+                    // Aggiungi il capo al carrello dell'utente di username Session["username"]
+                    // Provare così per il momento ;)
+                }
+            }
+
+
+        }
+
+
+
+
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             /* La fase 'Start' è completata e le proprietà di Page sono
@@ -106,6 +140,8 @@ namespace ProgettoDircol_ASP
             {
                 Response.Redirect("Errore.aspx");
             }
+
+
         }
 
 
@@ -115,6 +151,9 @@ namespace ProgettoDircol_ASP
             //lvCapi.Style.Add("background-color", "white");
             lvCapi.Style.Add("padding-left", "50px");
             lvCapi.Style.Add("margin-left", "50px");
+
         }
+
+
     }
 }

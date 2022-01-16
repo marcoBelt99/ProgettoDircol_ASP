@@ -20,6 +20,7 @@
     </style>
 
 
+
     <%-- Utilizzo del controllo FormView per visualizzare un singolo recordo da un'origine dati --%>
     <%-- RenderOuterTable = "false" --%>
     <div style="padding: 50px;"></div>
@@ -106,19 +107,37 @@
 
 
 
+
+
+
+
+
+
+
+
+
+    <%-- VARIABILI GLOBALI --%>
+  
+
+    <%  int capoDaAggiungereAlCarrello = -1; %>
+    <script> 
+        // Array di interi che contiene gli ID dei capi classificati della pagina
+        var IDs = new Array();
+        var IDs_v1 = new Array();
+        var IDs_stringa = "";
+    </script>
+
+
+  
+
     <asp:Panel ID="pndettaglioModello_1" runat="server" HorizontalAlign="Center">
 
-
         <%-- Insieme di tutti i capi che sono classificati da questo modello --%>
-
         <h3>Insieme di tutti i capi che sono classificati da questo modello</h3>
-
-
         <asp:ListView ID="lvCapi" runat="server"
             DataKeyNames="ID" GroupItemCount="4"
             ItemType="ProgettoDircol_ASP.Dati.Capo"
-            SelectMethod="GetCapiClassificati_1"
-            >
+            SelectMethod="GetCapiClassificati_1">
             <EmptyDataTemplate>
                 <table class="bg-white">
                     <tr class="bg-white">
@@ -143,10 +162,13 @@
 
                     <div class="list-group">
                         <%-- ID --%>
+                        <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
+                        <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
                         <%--<a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
                                 role="button" data-toggle="collapse" href="#divCollassabile<%#:Item.ID%>"
                                 style="background-color: #7952b3"
                                 aria-expanded="false" aria-controls="divCollassabile<%#:Item.ID%>">--%>
+
 
                         <a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
                             role="button" href="#"
@@ -189,13 +211,41 @@
                             <p class="mb-1"><%#:Item.PuntoVendita %>  </p>
                         </a>
                         <div class="d-flex w-100 justify-content-between">
-                            <a class="btn btn-secondary" href="/aggiungiAlCarrello.aspx?ID=<%#:Item.ID %>" role="button">
+                            <%-- ############################################################# --%>
+                            <%-- PASSO COME ARGOMENTO Item.ID AL GESTORE DELL'EVENTO CLICK --%>
+                            <%-- ############################################################# --%>
+                            <%--<asp:LinkButton CssClass="btn btn-secondary"
+                                ID="btnAggiungiAlCarrello" runat="server"
+                                CommandArgument='<%#Eval("ID")%>'
+                                OnClick="btnAggiungiAlCarrello_Click">
                                 <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello<b>
-                            </a>
+                            </asp:LinkButton>--%>
+                             <asp:Button CssClass="btn btn-secondary"
+                                ID="LinkButton1" runat="server"
+                                CommandArgument='<%#Eval("ID")%>'
+                                OnClick="btnAggiungiAlCarrello_Click"
+                                 Text="Aggiungi al carrello">
+                            </asp:Button>
+                             <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>
                         </div>
                     </div>
                     <br />
                     <br />
+
+                   
+
+                    <script>
+                        // PREPARO I VETTORI
+                        // Mi salvo questo valore (pari all'ID i-esimo)
+                        var x = document.getElementsByClassName("OK").value = "<%#:Item.ID%>";
+                        // Lo aggiungo all'array, così mi conservo il valore
+                        IDs.push(x);
+                        // Provo ad aggiungere questo elemento anche in questo modo
+                        IDs_v1.push(<%#:Item.ID %>);
+                        // Provo ad aggiungerlo ad una stinga che sto costruendo.
+                        // Nel prossimo script, qua sotto avrò finito di costruirla
+                        IDs_stringa = IDs_stringa + <%#:Item.ID.ToString() %> 
+                    </script>
                 </td>
             </ItemTemplate>
 
@@ -221,5 +271,72 @@
         </asp:ListView>
         <%-- Fine ListView --%>
     </asp:Panel>
+
+   
+
+    <script>
+
+            // Stampo a console il vettore
+            console.log(IDs);
+        // stampo a console il vettore v1
+        console.log(IDs_v1);
+        // stampo a console la stringa costruita sopra
+        console.log(IDs_stringa); // questa è una stringa che ho costruito in precedenza (guarda sopra nel codice)
+
+        // Ora passo la stringa costruita prima come valore a questo campo nascosto di id='nascosto'
+        // document.getElementById("nascosto").value = IDs_stringa;
+        // Do al campo di id="hiddenData" il valore della stringa costruita sopra
+        //document.getElementsByClassName("OK").value = IDs_stringa;
+         <%-- Immetto un campo nascosto e gli assegno come valore quello del vettore  --%>
+        // Ora passo la stringa costruita prima come valore a questo campo non nascosto di id='non_nascosto'
+        // document.getElementById("non_nascosto").value = IDs_stringa;
+        //document.getElementById('non_nascosto').value = IDs_stringa;
+        //$('#non_nascosto').val(IDs_stringa);
+        //$('#non_nascosto').value = IDs_stringa;
+        // 
+        //IDs.map(String);
+
+        <%-- Ciclo for in Javascript che mi permette di stampare tanti campi nascosti quanti sono i capi nella pagina
+         Questo mi servirà per passare il corretto IDCapo al CodeBehind --%>
+
+
+        // Creo alcuni text box
+        //for (var i = IDs.length; i--;) {
+        //    var input = document.createElement('input'); 
+        //    input.setAttribute('ID', "txtInput" + (i + 1));
+        //    input.setAttribute('type', 'text');
+        //    input.setAttribute('value', IDs[i]);
+        //    input.setAttribute('runat', 'server');
+        //    input.readOnly = true;
+        //}
+
+
+        // document.getElementById('nascosto').value=IDs;
+        // $("#nascosto").val(IDs);
+        // $("#nascosto").val(IDs_stringa);
+        // campoNascosto.value = IDs.toString();
+
+        /* $(document).ready(function () {
+             $.ajax({
+                 url:'dettaglioModello.aspx',
+                 type: 'POST',
+                 data: JSON.stringify(IDs),
+                 dataType: "json",
+                // contentType: 'application/json; charset=utf-8',
+                 success: function (html) {
+                     console.log(data);
+                     alert("Inviato!");
+                 },
+                 error: function (request, status, error) {
+                     alert(request + status + error);
+                 }
+             })
+         })
+         */
+
+    </script>
+    <%-- Immetto un campo nascosto e gli assegno come valore quello del vettore  --%>
+    <%--<asp:TextBox Text="" ID="txtDati" runat="server"></asp:TextBox>
+    <input type="text" id="hope" value="<%#S%>" runat="server" />--%>
     <div style="padding: 50px;"></div>
 </asp:Content>

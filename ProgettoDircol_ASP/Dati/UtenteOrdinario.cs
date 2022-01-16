@@ -29,9 +29,13 @@ namespace ProgettoDircol_ASP.Dati
         public string CAP { get; set; }
         public string StatoAccount { get; set; }
 
-        // Attributo lista di feedback di questo utente
-        // Lo uso per contenere tutti i feedback di questo specifico utente
-        // Posso anche pensare una soluzione con le Hash Table
+        /// <summary>
+        /// Attributo lista di Capi
+        /// Lo uso per contenere tutti i carrello degli utenti
+        /// </summary>
+        public LinkedList<Capo> carrello;
+        Operazione op = new Operazione();
+
 
         // COSTRUTTORE
         // Costruttore senza parametri
@@ -52,6 +56,10 @@ namespace ProgettoDircol_ASP.Dati
             this.Stato = "";
             this.CAP = "";
             this.StatoAccount = "pending";
+
+            /// Carrello acquisti (gli utenti acquistano i carrello)
+            this.carrello = new LinkedList<Capo>();
+
         }
 
         // Costruttore con parametri
@@ -67,6 +75,9 @@ namespace ProgettoDircol_ASP.Dati
             this.Stato = Stato;
             this.CAP = CAP;
             this.StatoAccount = "pending";
+
+            /// Carrello acquisti (gli utenti i capi da inserire o rimuovere dal carrello)
+            this.carrello = new LinkedList<Capo>();
         }
 
 
@@ -114,9 +125,9 @@ namespace ProgettoDircol_ASP.Dati
                     utenteOrdinario.Cognome = dr["CognomeUtente"].ToString();
                     utenteOrdinario.DataNascita = Convert.ToDateTime(dr["DataNascitaUtente"]).ToString("yyyy/MM/dd");
                     utenteOrdinario.Email = dr["EmailUtente"].ToString();
-                    utenteOrdinario.Telefono =dr["TelefonoUtente"].ToString();
+                    utenteOrdinario.Telefono = dr["TelefonoUtente"].ToString();
                     utenteOrdinario.Citta = dr["CittaUtente"].ToString();
-                    utenteOrdinario.Indirizzo= dr["IndirizzoUtente"].ToString();
+                    utenteOrdinario.Indirizzo = dr["IndirizzoUtente"].ToString();
                     utenteOrdinario.Stato = dr["StatoUtente"].ToString();
                     utenteOrdinario.CAP = dr["CAPUtente"].ToString();
                     utenteOrdinario.StatoAccount = dr["StatoAccount"].ToString();
@@ -129,5 +140,52 @@ namespace ProgettoDircol_ASP.Dati
             // Ritorno la lista di utenti
             return listaUtenti;
         } // fine metodo
+
+
+
+        public void AggiungiAlCarrello(Capo c)
+        {
+            // Inserisco in testa al carrello il capo scelto dall'utente
+            carrello.AddFirst(c);
+        }
+
+        public void RimuoviDalCarrello(Capo capo, int id)
+        {
+            // Rimuovi dal carrello quel determinato capo avente
+            // quel determinato id
+            carrello.Remove(capo);
+        }
+
+
+        /// <summary>
+        /// Ritorna la somma totale dei capi aggiunti al carrello, al netto delle eventuali altre
+        /// spese che concorreranno a formare il prezzo di Transazione
+        /// </summary>
+        /// <returns></returns>
+        public double Spesa_Di_Listino()
+        {
+            double spesa_di_listino = 0.0;
+
+
+            // Ho bisogno del prezzo di listino. Il prezzo si trova nella lista dei modelli
+            // Recupero la lista dei modelli
+            Modello m = new Modello();
+            List<Modello> ListaModelli = m.GetModelli(op.GetConnectionString());
+
+            // Per tutti i capi nel carrello
+            foreach (var capo in this.carrello)
+            {
+                // Per tutti i modelli esistenti
+                foreach (var modello in ListaModelli)
+                {
+                    // Se ho trovato il capo inserito
+                    if (capo.CodModello == modello.CodModello)
+                        spesa_di_listino += modello.PrezzoListino;
+                    else
+                        continue;
+                }
+            }
+            return spesa_di_listino;
+        }
     }
 }
