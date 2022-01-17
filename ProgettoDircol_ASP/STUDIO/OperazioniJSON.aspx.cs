@@ -26,7 +26,7 @@ namespace ProgettoDircol_ASP.STUDIO
 {
     public partial class OperazioniJSON : System.Web.UI.Page
     {
-
+        // ################ VARIABILI GLOBALI ######################
         Operazione op = new Operazione();
 
         // Mi costruisco il mio oggetto di tipo utente ordinario
@@ -158,9 +158,28 @@ namespace ProgettoDircol_ASP.STUDIO
             // Se trovi un controllo lista all'interno dell'ItemTemplate, devi fargli il DataSource ed il DataBind().
             if ((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem))
             {
-                //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (List<int>)e.Item.DataItem; 
-                ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)e.Item.DataItem; 
-                ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataBind();
+                 //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (List<int>)e.Item.DataItem; 
+                 //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)e.Item.DataItem; 
+                 // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)(List<int>)e.Item.DataItem["ListaIDCapi"]; 
+                 // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataBind();
+            }
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Ottengo la DDL che mi serve
+                var DDL = e.Item.FindControl("ddlCarrello_Iesimo") as DropDownList;
+                //var Oggetto = e.Item.DataItem;
+                //DDL.DataSource = (List<int>)Oggetto.ListaIDCapi;
+                // DDL.DataBind();
+                // Devo assegnarle la lista giusta
+                
+                // DataRowView DRV = 
+                // List<int> LISTA = e.Item.DataItem as List<int>;
+                // var drv = e.Item.DataItem as DataRowView;
+                // var lista = drv.Row["ListaIDCapi"] as List<int>;
+                // List<int> lista = (List<int>)rowView["ListaIDCapi"];
+
+                //ddlCarrello_Iesimo.DataSource = lista;
+                //ddlCarrello_Iesimo.DataBind();
             }
         }
     }

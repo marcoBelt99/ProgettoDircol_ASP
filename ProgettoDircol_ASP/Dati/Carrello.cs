@@ -13,7 +13,7 @@ namespace ProgettoDircol_ASP.Dati
     {
         // Attributi
         public string Username { get; set; }
-        public List<int> ListaIDCapi;
+        public List<int> ListaIDCapi { get; set; }
 
         // Costruttore con parametri
         public Carrello(string Username, List<int> ListaIDCapi)

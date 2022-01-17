@@ -19,29 +19,25 @@
         <br />
         <asp:Repeater ID="rptCarrello" runat="server" OnItemDataBound="rptCarrello_ItemDataBound">
             <HeaderTemplate>
-                <table width="100%">
-                    <thead>
+                <table class="table table-dark">
+                    <thead class="thead-dark">
                         <th>Username</th>
                         <th>Lista ID capi</th>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody-dark">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td valign="top" align="left" width="100%">
-                        <font size="2" color="white">
-                            <%# Eval("Username")%>
-                            </font>
-                    </td>
-                </tr>
-                <tr>
                     <td>
-                        <asp:DropDownList ID="ddlCarrello_Iesimo" runat="server" 
-                            ItemType="ProgettoDircol_ASP/Dati/Carrello"
-                            SelectMethod="GetListaID"
-                            DataSource='<%# Eval("ListaIDCapi") %>'>
-                        </asp:DropDownList>
+                        <%# Eval("Username")%>
                     </td>
+                    <td>
+                        <%-- POSSO SCEGLIERE DI VEDERE SIA CON LIST BOX SIA CON DDL --%>
+                        <%-- <asp:DropDownList ID="ddlCarrello_Iesimo" runat="server"
+                            DataSource='<%# Eval("ListaIDCapi") %>' CssClass="form-control">
+                        </asp:DropDownList>--%>
+                        <asp:ListBox ID="lbCarrello_Iesimo" runat="server"
+                            DataSource='<%# Eval("ListaIDCapi") %>' CssClass="form-control"></asp:ListBox>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -60,5 +56,11 @@
     </asp:Panel>
 
 </asp:Content>
+
+
+
+<%-- ItemType="ProgettoDircol_ASP/Dati/Carrello"
+                            SelectMethod="GetListaID"
+                            DataSource='<%# Eval("ListaIDCapi") %>' --%>
 
 
