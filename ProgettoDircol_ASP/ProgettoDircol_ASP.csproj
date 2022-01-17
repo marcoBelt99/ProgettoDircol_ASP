@@ -168,6 +168,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="aggiorna.aspx" />
+    <Content Include="CapiAggiuntiAlCarrello.txt" />
     <Content Include="Carrello.txt" />
     <Content Include="chiSiamo.aspx" />
     <Content Include="contatti.aspx" />
@@ -283,6 +284,7 @@
     <Content Include="STUDIO\LoginHtmlControl.aspx" />
     <Content Include="STUDIO\SalveMondoSingle.aspx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="visualizzaCarrello.aspx" />
     <Content Include="visualizzaTabelle.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -603,6 +605,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="visualizzaCarrello.aspx.cs">
+      <DependentUpon>visualizzaCarrello.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="visualizzaCarrello.aspx.designer.cs">
+      <DependentUpon>visualizzaCarrello.aspx</DependentUpon>
     </Compile>
     <Compile Include="visualizzaTabelle.aspx.cs">
       <DependentUpon>visualizzaTabelle.aspx</DependentUpon>

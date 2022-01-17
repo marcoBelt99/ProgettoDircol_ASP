@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Data;
 
+// Per leggere/scrivere su file:
+using System.IO;
 
 
 // Per accedere alle classi che mi sono creato
@@ -18,7 +20,7 @@ namespace ProgettoDircol_ASP
 {
     public partial class dettaglioModello : System.Web.UI.Page
     {
-        // Variabili globali
+        // VARIABILI GLOBALI
         Operazione op = new Operazione();
 
         int CodiceDelModelloInDettaglio = 0;
@@ -27,12 +29,17 @@ namespace ProgettoDircol_ASP
 
         public List<Capo> capiclassificati = new List<Capo>();
 
+        // Mappa capi aggiunti al carrello (salvati sul file di testo:
+        // 'CapiAggiuntiAlCarrello.txt' (Da inizializzare al page load):
+        // ... 
 
-        // PROVO A MANTENERE LO STATO DELLA LISTA DEI CAPI CLASSIFICATI
+
+
+        // MANTENGO LO STATO DELLA LISTA DEI CAPI CLASSIFICATI
         // RICORDA: Il tipo della lista (in questo caso Capo) deve essere serializzabile [Serializable]
         const string listaCapiClassificati = "listaCapiClassificati";
-        // DICHIARO LA MIA LISTA "PERMANENTE"
-        public List<Capo> CapiClassificati
+
+        public List<Capo> CapiClassificati // DICHIARO LA MIA LISTA "PERMANENTE"
         {
             get
             {
@@ -47,6 +54,9 @@ namespace ProgettoDircol_ASP
                 return (List<Capo>)ViewState[listaCapiClassificati];
             }
         }
+
+        // MANTENGO LO STATO DELLA 'SPESA TOTALE DI LISTINO'
+        // ViewState["spesa_di_listino"] = 
 
 
         // Creo un oggetto di tipo UtenteOrdinario che mi servirà per assicurarmi di star considerando
@@ -153,51 +163,7 @@ namespace ProgettoDircol_ASP
 
 
 
-        public void TogliCapoClassificato(int id)
-        {
-            
-            // Dichiaro una variabile per la connessione
-            SqlConnection con = new SqlConnection(op.GetConnectionString());
 
-            // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi' dove CodModello=@CodModello
-            string selectSQL = "SELECT * FROM capi WHERE CodModello=@codiceModello AND ID!=@id;";
-
-            // Apro la connessione
-            con.Open();
-
-            // Imposto il comando SQL
-            SqlCommand cmd = new SqlCommand(selectSQL, con);
-
-            // Aggiungo il parametro della query
-            cmd.Parameters.Add(new SqlParameter("@codiceModello", ViewState["cod_modello_in_dettaglio"]));
-            cmd.Parameters.Add(new SqlParameter("@id", id.ToString()));
-
-            // Leggo le righe (in modo forward-only) dal database
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            // Se il data reader non è null
-            if (dr != null)
-            {
-                // Finchè leggi una riga (un record) dal database
-                while (dr.Read())
-                {
-                    // Crea un nuovo oggetto di tipo Capo
-                    Capo capo = new Capo();
-
-                    // Leggi e converti i dati dal record corrente
-                    capo.ID = Convert.ToInt32(dr["ID"]);
-                    capo.Taglia = dr["Taglia"].ToString();
-                    capo.Colore = dr["Colore"].ToString();
-                    capo.PuntoVendita = Convert.ToInt32(dr["PuntoVendita"]);
-                    capo.CodModello = Convert.ToInt32(dr["CodModello"]);
-
-                    // Aggiungi il capo alla lista dei capi classificati
-                    CapiClassificati.Add(capo);
-                }
-            }
-            // Chiudo la connessione al database
-            con.Close();
-        }
 
 
 
@@ -222,29 +188,58 @@ namespace ProgettoDircol_ASP
             // Chiave di ricerca del capo da aggiungere al carrello
             IDCapo_DaAggiungereAlCarrello = argomentoID;
 
-            // Mi assicuro di star considerando l'utente della sessione corrente:
-            // Assegno ad utente_ordinario il risultato del metodo TrovaUtente
+            // Mi assicuro di star considerando l'utente della sessione corrente: Assegno ad utente_ordinario il risultato del metodo TrovaUtente
             utente_ordinario = utente_ordinario.TrovaUtente(Session["username"].ToString());
 
-            // Se ho ottenuto un oggetto di tipo UtenteOrdinario dalla ricerca, allora esegui operazioni di aggiunta
-            // al carrello
+            // Se ho ottenuto un oggetto di tipo UtenteOrdinario dalla ricerca, allora esegui operazioni di aggiunta al carrello
             if (utente_ordinario != null)
             {
-
                 // Ricerca di oggetto di tipo Capo da aggiungere al carrello dell'utente in base alla chiave (l'ID passato come argomento
                 foreach (var c in CapiClassificati)
                 {
                     // Se ID della lista capi classificati dal modello considerato == ID passato come argomento
                     if (c.ID == IDCapo_DaAggiungereAlCarrello)
                     {
-                        // Aggiungi il capo al carrello dell'utente della sessione corrente( di username Session["username"] )
-                        utente_ordinario.AggiungiAlCarrello(c);
+                        // Ho trovato il capo che voglio aggiugere al carrello
 
-                        // Poi,o rendo indisponibile la listview del capo che ho appena aggiunto...
-                        // Oppure posso togliere il capo dalla lista dei capi classificati
-                        // this.GetCapiClassificati_1().Remove(c)
-                        TogliCapoClassificato(c.ID);
-                        // Quindi, faccio un aggiornamento della pagina
+                        // Aggiungi l'id del capo alla lista di ID del carrello dell'utente della sessione corrente( di username Session["username"] )
+                        utente_ordinario.AggiungiAlCarrello(c.ID);
+
+
+                        // MI SALVO L'OGGETTO SU FILE: 'CapiAggiuntiAlCarrello.txt'
+                        // Voglio togliere dalla pagina il capo appena inserito nel carrello
+                        // perchè poi lo dovrò eliminare fisicamente dal DB
+                        // altrimenti nella pagina visualizzerò sempre gli stessi capi 
+                        // Dichiaro il nome del file (comprensivo del percorso, in questo caso si trova nella stessa directory del progetto)
+                        //  string file = "~/CapiAggiuntiAlCarrello.txt";
+                        string file = HttpContext.Current.Server.MapPath("~/CapiAggiuntiAlCarrello.txt");
+
+                        //StreamWriter sw = new StreamWriter()
+                        File.AppendAllText(file, c.ToString() + Environment.NewLine);
+
+                        // ORA CHE HO l'ho SALVATO NEL FILE, POSSO ELIMINARLO DAL DATABASE 
+                        c.EliminaCapo(c.ID);
+
+                        //E DALLA RELATIVA LISTA
+                        CapiClassificati.Remove(c);
+
+
+
+                        // GESTISCO LA SPESA DI LISTINO:
+                        Modello m = new Modello();
+                        double spesa_di_listino;
+                        object sl = ViewState["spesa_di_listino"]; // recupera l’ultimo valore
+                        if (sl == null) // dopo il primo postback la variabile non è ancorastata persistita
+                            spesa_di_listino = 0.0; // La inizializzo
+                        else
+                        {
+                            var ModelloDiInteresse = m.GetModelli(op.GetConnectionString()).Find(mod => mod.CodModello == CodiceDelModelloInDettaglio);
+                            spesa_di_listino = double.Parse(sl.ToString()) + ModelloDiInteresse.PrezzoListino;
+                        }
+                        ViewState["contatore"] = spesa_di_listino; // imposta il valore aggiornato
+
+
+                        // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
                         // Response.Redirect("~/dettagliModello.aspx?codModello=" + CodiceDelModelloInDettaglio.ToString(), false);
                         Response.Redirect(String.Format("~/dettaglioModello.aspx?codModello={0}", ViewState["cod_modello_in_dettaglio"]));
                         // non serve continuare, quindi esco dal ciclo

@@ -30,10 +30,10 @@ namespace ProgettoDircol_ASP.Dati
         public string StatoAccount { get; set; }
 
         /// <summary>
-        /// Attributo lista di Capi
+        /// Attributo lista di id di Capi
         /// Lo uso per contenere tutti i carrello degli utenti
         /// </summary>
-        public LinkedList<Capo> carrello;
+        public LinkedList<int> ListaIDCapi;
         Operazione op = new Operazione();
 
 
@@ -58,7 +58,7 @@ namespace ProgettoDircol_ASP.Dati
             this.StatoAccount = "pending";
 
             /// Carrello acquisti (gli utenti acquistano i carrello)
-            this.carrello = new LinkedList<Capo>();
+            this.ListaIDCapi = new LinkedList<int>();
 
         }
 
@@ -76,8 +76,8 @@ namespace ProgettoDircol_ASP.Dati
             this.CAP = CAP;
             this.StatoAccount = "pending";
 
-            /// Carrello acquisti (gli utenti i capi da inserire o rimuovere dal carrello)
-            this.carrello = new LinkedList<Capo>();
+            /// Lista ID di capi: serve per aggiungerla al carrello
+            this.ListaIDCapi = new LinkedList<int>();
         }
 
 
@@ -165,17 +165,20 @@ namespace ProgettoDircol_ASP.Dati
         }
 
 
-        public void AggiungiAlCarrello(Capo c)
+
+
+
+        public void AggiungiAlCarrello(int ID)
         {
             // Inserisco in testa al carrello il capo scelto dall'utente
-            carrello.AddFirst(c);
+            ListaIDCapi.AddFirst(ID);
         }
 
-        public void RimuoviDalCarrello(Capo capo, int id)
+        public void RimuoviDalCarrello(int ID)
         {
-            // Rimuovi dal carrello quel determinato capo avente
-            // quel determinato id
-            carrello.Remove(capo);
+            // Rimuovi dal carrello quel determinato capo quel determinato id:
+            // Rimuove la prima occorrenza avente come id ID
+            ListaIDCapi.Remove(ID);
         }
 
 
@@ -184,6 +187,7 @@ namespace ProgettoDircol_ASP.Dati
         /// spese che concorreranno a formare il prezzo di Transazione
         /// </summary>
         /// <returns></returns>
+       /*
         public double Spesa_Di_Listino()
         {
             double spesa_di_listino = 0.0;
@@ -193,9 +197,14 @@ namespace ProgettoDircol_ASP.Dati
             Modello m = new Modello();
             List<Modello> ListaModelli = m.GetModelli(op.GetConnectionString());
 
+            // Recupero la lista dei capi
+            Capo c = new Capo();
+            
+
             // Per tutti i capi nel carrello
-            foreach (var capo in this.carrello)
+            foreach (var capo in c.GetCapi(op.GetConnectionString()))
             {
+                if()
                 // Per tutti i modelli esistenti
                 foreach (var modello in ListaModelli)
                 {
@@ -208,5 +217,6 @@ namespace ProgettoDircol_ASP.Dati
             }
             return spesa_di_listino;
         }
+       */
     }
 }

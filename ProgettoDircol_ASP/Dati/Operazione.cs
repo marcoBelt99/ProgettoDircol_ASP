@@ -19,6 +19,7 @@ namespace ProgettoDircol_ASP.Dati
     ///   salvarli in alcune liste che poi passerò ad 'inserisci.aspx.cs'
     ///   per poter poi fare il Data Binding ai Controlli.
     /// </summary>
+    [Serializable]
     public class Operazione
     {
 

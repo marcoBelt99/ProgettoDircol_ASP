@@ -166,20 +166,23 @@ namespace ProgettoDircol_ASP.Dati
         public void EliminaCapo(int ID_da_Eliminare)
         {
             // Dichiaro una variabile per la connessione
-            SqlConnection con = new SqlConnection(op.GetConnectionString());
+            using (SqlConnection con = new SqlConnection(op.GetConnectionString()))
+            {
+                // Apro la connessione
+                con.Open();
 
-            // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi'
-            string selectSQL = "DELETE FROM capi WHERE ID=@id;";
+                // Stringa SQL: Seleziona tutti i dati dalla tabella 'capi'
+                string selectSQL = "DELETE FROM capi WHERE ID=@id;";
+                // Imposto il comando SQL
+                SqlCommand cmd = new SqlCommand(selectSQL, con);
+                // Aggiungi al comando il parametro immesso nella query 
+                cmd.Parameters.Add(new SqlParameter("@id", ID_da_Eliminare));
 
-            // Apro la connessione
-            con.Open();
-
-            // Imposto il comando SQL
-            SqlCommand cmd = new SqlCommand(selectSQL, con);
-            cmd.Parameters.Add(new SqlParameter("@id", ID_da_Eliminare));
-
-            // Chiudo la connessione al DB
-            con.Close();
+                // Esegui la query
+                cmd.ExecuteNonQuery();
+                // Chiudo la connessione al DB
+                con.Close();
+            }
         }
 
 
