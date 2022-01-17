@@ -38,6 +38,8 @@ namespace ProgettoDircol_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Mi salvo i dati del file CapiAggiuntiAlCarrello in una HashTable
+
 
         }
     }

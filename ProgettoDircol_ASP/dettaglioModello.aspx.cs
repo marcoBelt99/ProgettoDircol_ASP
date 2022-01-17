@@ -236,7 +236,7 @@ namespace ProgettoDircol_ASP
                             var ModelloDiInteresse = m.GetModelli(op.GetConnectionString()).Find(mod => mod.CodModello == CodiceDelModelloInDettaglio);
                             spesa_di_listino = double.Parse(sl.ToString()) + ModelloDiInteresse.PrezzoListino;
                         }
-                        ViewState["contatore"] = spesa_di_listino; // imposta il valore aggiornato
+                        ViewState["spesa_di_listino"] = spesa_di_listino; // imposta il valore aggiornato
 
 
                         // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
