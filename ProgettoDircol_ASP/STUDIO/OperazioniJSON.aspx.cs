@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Per i colori
+using System.Drawing;
+
+
 // Per le operazioni su file
 using System.IO;
 
@@ -38,35 +42,9 @@ namespace ProgettoDircol_ASP.STUDIO
         // Dichiaro la lista degli ID che servirà come DataSource per le varie DDL
         List<int> ListaID_Capi;
 
-        /*
-        // MANTENGO LO STATO DELLA LISTA DEI CAPI CLASSIFICATI
-        // RICORDA: Il tipo della lista (in questo caso Carrello) deve essere serializzabile [Serializable]
-        const string listaCarrelli = "listaCarrelli";
-
-        public List<Carrello> ListaCarrelli // DICHIARO LA MIA LISTA "PERMANENTE"
-        {
-            get
-            {
-                // check if not exist to make new (normally before the post back)
-                // and at the same time check that you did not use the same viewstate for other object
-                if (!(ViewState[listaCarrelli] is List<Carrello>))
-                {
-                    // need to fix the memory and added to viewstate
-                    ViewState[listaCarrelli] = new List<Carrello>();
-                }
-
-                return (List<Carrello>)ViewState[listaCarrelli];
-            }
-        }
-        */
 
 
 
-
-
-
-        //// Mi costruisco una lista di carrelli
-        //public List<Carrello> ListaCarrelli;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -128,6 +106,7 @@ namespace ProgettoDircol_ASP.STUDIO
             // Eseguo il DataBind() del repeater --> gli attributi diventano le colonne
             this.rptCarrello.DataBind();
 
+
             // Sistemo lo stile del Panel
             pnOperazioniJSON.Style.Add("padding", "50px");
         }
@@ -158,10 +137,10 @@ namespace ProgettoDircol_ASP.STUDIO
             // Se trovi un controllo lista all'interno dell'ItemTemplate, devi fargli il DataSource ed il DataBind().
             if ((e.Item.ItemType == ListItemType.Item) || (e.Item.ItemType == ListItemType.AlternatingItem))
             {
-                 //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (List<int>)e.Item.DataItem; 
-                 //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)e.Item.DataItem; 
-                 // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)(List<int>)e.Item.DataItem["ListaIDCapi"]; 
-                 // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataBind();
+                //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (List<int>)e.Item.DataItem; 
+                //((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)e.Item.DataItem; 
+                // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataSource = (DataRowView)(List<int>)e.Item.DataItem["ListaIDCapi"]; 
+                // ((DropDownList)e.Item.FindControl("ddlCarrello_Iesimo")).DataBind();
             }
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
@@ -171,7 +150,7 @@ namespace ProgettoDircol_ASP.STUDIO
                 //DDL.DataSource = (List<int>)Oggetto.ListaIDCapi;
                 // DDL.DataBind();
                 // Devo assegnarle la lista giusta
-                
+
                 // DataRowView DRV = 
                 // List<int> LISTA = e.Item.DataItem as List<int>;
                 // var drv = e.Item.DataItem as DataRowView;
@@ -181,6 +160,141 @@ namespace ProgettoDircol_ASP.STUDIO
                 //ddlCarrello_Iesimo.DataSource = lista;
                 //ddlCarrello_Iesimo.DataBind();
             }
+        }
+
+        protected void btnQuery_1_Click(object sender, EventArgs e)
+        {
+            string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+            // Leggi e deserializza il JSON
+            string json = File.ReadAllText(nomefile);
+            var lista_carrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
+
+            // Esegui la query e salva il risultato
+            var lista_utenti = from c in lista_carrelli select c.Username;
+
+            // Stampa il risultato su qualche controllo
+            // OSSERVA: Non posso scrivere il contenuto di una lista di stringhe
+            // in un text box, devo crearne una unica facendo il Join di tutte
+            // le stringhe della lista di stringhe
+
+            txtQuery_1.Text = String.Join(Environment.NewLine, lista_utenti);
+
+
+        }
+
+        protected void btnQuery_2_Click(object sender, EventArgs e)
+        {
+            string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+            // Leggi e deserializza il JSON
+            string json = File.ReadAllText(nomefile);
+            var lista_carrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
+
+            // Esegui la query e salva il risultato
+            // var res = lista_carrelli.Where(c => c.Username.Equals(txtQuery_2.Text));
+
+            //var res = from c in lista_carrelli
+            //          where c.Username == txtQuery_2.Text // Notare l'uso di == nel confronto delle due stringhe
+            //          select c.Username;
+
+
+            // Con Any mi viene restituito un risultato booleano
+            var res = lista_carrelli.Any(c => c.Username == txtQuery_2.Text);
+
+            if (res == true)
+            {
+                ltRisultatoQuery_2.Text = "Utente Presente!!";
+            }
+            else
+            {
+                ltRisultatoQuery_2.Text = "Utente NON Presente!!";
+            }
+        }
+
+        protected void btnQuery_3_Click(object sender, EventArgs e)
+        {
+
+            string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+            // Leggi e deserializza il JSON
+            string json = File.ReadAllText(nomefile);
+            var lista_carrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
+
+            // Creazione Query, esecuzione e salvataggio in variabile
+            //var resInt = from c in lista_carrelli
+            //             where c.Username == txtQuery_3.Text
+            //             select c.ListaIDCapi;
+            // Converto in stringa ogni elemento della lista di interi e l'elaborazione la metto in una lista
+            //var resString = resInt.Select(x => x.ToString()).ToList();
+
+
+            // Ricerca in lista
+            Carrello carrelloDesiderato = new Carrello();
+            foreach (var c in lista_carrelli)
+            {
+                // Se sto considerando l'utente scelto
+                if (c.Username == txtQuery_3.Text)
+                {
+                    // Prelevami il suo carrello (La sua lista di ID)
+                    carrelloDesiderato = c;
+                    break;
+                }
+            }
+
+
+            // Converto la lista di interi in lista di stringhe
+            List<string> listaStringhe = new List<string>();
+            foreach (var i in carrelloDesiderato.ListaIDCapi)
+            {
+                listaStringhe.Add(i.ToString());
+            }
+
+
+
+            // Scrivo il risultato. Notare ancora che con la Join vado a trasformare una lista di stringhe in un'unica stringa
+            txtRisultatoQuery_3.Text = String.Join("\t", listaStringhe);
+
+            // Do del colore al textbox
+            txtRisultatoQuery_3.BackColor = Color.DarkMagenta;
+            txtRisultatoQuery_3.ForeColor = Color.White;
+        }
+
+        protected void btnInserisci_Click(object sender, EventArgs e)
+        {
+            Carrello c = new Carrello();
+
+            // Popolo lo username del nuovo carrello
+            c.Username = txtUsername_Inserimento.Text;
+
+            // Controllare che ci sia già nel database...
+
+
+            string str = txtListaIDCapi_Inserimento.Text;
+            string[] Stringhe = str.Split(',');
+
+
+            // Popolo la lista di capi del nuovo carrello
+            foreach (var s in Stringhe)
+            {
+                if (s.Length != 1) // s.Length < 0 || s.Length > 1
+                {
+                    ltInserimento.Text = "<style color='yellow';>Devi scrivere numeri separati da virgola senza spazi!!</style>";
+                    break;
+                }
+                c.ListaIDCapi.Add(int.Parse(s));
+            }
+
+
+            ltInserimento.Text = "<style color='red';>Errore nell'inserimento del Carrello</style>";
+            ltInserimento.Text = "<style color='green';>Carrello inserito correttamente</style>";
+
+            // Aggiungo il carrello appena creato nella lista globale dei carrelli
+            ListaCarrelli.Add(c);
+
+            // Aggiorno il file JSON: Serializzo la lista di carrelli come stringa
+            // json, la scrivo sul file
+            string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+            var json = JsonConvert.SerializeObject(ListaCarrelli);
+            File.WriteAllText(nomefile, json);
+
         }
     }
 }
