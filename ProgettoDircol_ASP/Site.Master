@@ -178,6 +178,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownAccesso">
 
+
+                                 <%-- Visualizza Carrello --%>
+                                <a class="dropdown-item" runat="server" href="~/visualizzaCarrello" id="linkCarrelloAcquisti">
+                                    <i class="bi bi-cart4"></i>&nbsp;Carrello&nbsp;<span class="badge badge-light">0</span>
+                                    <span class="sr-only">unread messages</span>
+                                </a>
+
                                 <!-- Accedi -->
                                 <a class="dropdown-item" runat="server" href="~/loginUtente" id="linkLoginUtente">
                                     <i class="bi bi-box-arrow-in-right"></i>&nbsp;Accedi
@@ -193,14 +200,14 @@
 
                                 <asp:LinkButton ID="LinkButton1" runat="server"
                                     OnClick="LinkButton1_Click"
-                                    CssClass="dropdown-item"
-                                    ><i class="bi bi-box-arrow-in-left">
+                                    CssClass="dropdown-item"><i class="bi bi-box-arrow-in-left">
                                         </i>&nbsp;Esci</asp:LinkButton>
 
                                 <!-- Registrati -->
                                 <a class="dropdown-item" runat="server" href="~/registrazioneUtente" id="linkRegistrazioneUtente">
                                     <i class="bi  bi-pen-fill"></i>&nbsp;Registrati
                                 </a>
+
 
                             </div>
                         </li>

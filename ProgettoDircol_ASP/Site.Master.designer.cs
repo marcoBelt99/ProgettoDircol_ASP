@@ -87,6 +87,15 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarDropdownAccesso;
 
         /// <summary>
+        /// Controllo linkCarrelloAcquisti.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkCarrelloAcquisti;
+
+        /// <summary>
         /// Controllo linkLoginUtente.
         /// </summary>
         /// <remarks>

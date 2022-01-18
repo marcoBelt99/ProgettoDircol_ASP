@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="visualizzaCarrello.aspx.cs" Inherits="ProgettoDircol_ASP.visualizzaCarrello" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <p>Rimuovi dal carrello</p>
+    <asp:Button ID="btnRimuovi" runat="server" OnClick="btnRimuovi_Click" Text="rimuovi" CssClass="form-control"/>
 
     <%-- PROVO AD IMPOSTARLO COSI', DEVO MODIFICARE IL TUTTO --%>
 

@@ -48,6 +48,17 @@ namespace ProgettoDircol_ASP.Dati
             this.CodModello = CodModello;
         }
 
+        // COSTRUTTORE CHE SETTA TUTTI I PARAMETRI (necessario quando opero con il carrello)
+        public Capo(int ID, string Taglia, string Colore,
+                    int PuntoVendita, int CodModello)
+        {
+            this.ID = ID;
+            this.Taglia = Taglia;
+            this.Colore = Colore;
+            this.PuntoVendita = PuntoVendita;
+            this.CodModello = CodModello;
+        }
+
 
         Operazione op = new Operazione();
 

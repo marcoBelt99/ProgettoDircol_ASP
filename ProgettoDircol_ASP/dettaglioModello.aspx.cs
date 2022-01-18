@@ -15,6 +15,7 @@ using System.IO;
 
 // Per accedere alle classi che mi sono creato
 using ProgettoDircol_ASP.Dati;
+using Newtonsoft.Json;
 
 namespace ProgettoDircol_ASP
 {
@@ -31,8 +32,13 @@ namespace ProgettoDircol_ASP
 
         // Mappa capi aggiunti al carrello (salvati sul file di testo:
         // 'CapiAggiuntiAlCarrello.txt' (Da inizializzare al page load):
-        // ... 
+        // ...
 
+        // Dichiaro una variabile globale di tipo lista di carrelli, che popolo dopo
+        public List<Carrello> ListaCarrelli = new List<Carrello>();
+
+        // Prelevo il nome del file
+        string NomeFileJson = HttpContext.Current.Server.MapPath("~/Carrelli.json");
 
 
         // MANTENGO LO STATO DELLA LISTA DEI CAPI CLASSIFICATI
@@ -185,7 +191,7 @@ namespace ProgettoDircol_ASP
             // ID del capo passato come argomento
             int argomentoID = int.Parse(btn.CommandArgument.ToString());
 
-            // Chiave di ricerca del capo da aggiungere al carrello
+            /// Chiave di ricerca del capo da aggiungere al carrello
             IDCapo_DaAggiungereAlCarrello = argomentoID;
 
             // Mi assicuro di star considerando l'utente della sessione corrente: Assegno ad utente_ordinario il risultato del metodo TrovaUtente
@@ -194,7 +200,7 @@ namespace ProgettoDircol_ASP
             // Se ho ottenuto un oggetto di tipo UtenteOrdinario dalla ricerca, allora esegui operazioni di aggiunta al carrello
             if (utente_ordinario != null)
             {
-                // Ricerca di oggetto di tipo Capo da aggiungere al carrello dell'utente in base alla chiave (l'ID passato come argomento
+                // Ricerca di oggetto di tipo Capo da aggiungere al carrello dell'utente in base alla chiave (ID PASSATO COME ARGOMENTO)
                 foreach (var c in CapiClassificati)
                 {
                     // Se ID della lista capi classificati dal modello considerato == ID passato come argomento
@@ -211,13 +217,12 @@ namespace ProgettoDircol_ASP
                         // perchè poi lo dovrò eliminare fisicamente dal DB
                         // altrimenti nella pagina visualizzerò sempre gli stessi capi 
                         // Dichiaro il nome del file (comprensivo del percorso, in questo caso si trova nella stessa directory del progetto)
-                        //  string file = "~/CapiAggiuntiAlCarrello.txt";
                         string file = HttpContext.Current.Server.MapPath("~/CapiAggiuntiAlCarrello.txt");
 
-                        //StreamWriter sw = new StreamWriter()
+                        // Scrivi il capo in append al file
                         File.AppendAllText(file, c.ToString() + Environment.NewLine);
 
-                        // ORA CHE HO l'ho SALVATO NEL FILE, POSSO ELIMINARLO DAL DATABASE 
+                        // ORA CHE HO SALVATO IL CAPO NEL FILE, POSSO ELIMINARLO DAL DATABASE 
                         c.EliminaCapo(c.ID);
 
                         //E DALLA RELATIVA LISTA
@@ -225,31 +230,52 @@ namespace ProgettoDircol_ASP
 
 
 
-                        // GESTISCO LA SPESA DI LISTINO:
-                        Modello m = new Modello();
-                        double spesa_di_listino;
-                        object sl = ViewState["spesa_di_listino"]; // recupera l’ultimo valore
-                        if (sl == null) // dopo il primo postback la variabile non è ancorastata persistita
-                            spesa_di_listino = 0.0; // La inizializzo
+                        /// AGGIUNTA IN FILE JSON: Aggiungo l'id alla lista degli id dell'utente corrente
+                        // Il carrello desiderato è quel carrello che ha per username lo username dell'utente corrente
+                        Carrello carrello_desiderato = ListaCarrelli.Find(x => x.Username == utente_ordinario.Username);
+                        // Se la ricerca ha effettivamente ritornato qualcosa
+                        if (carrello_desiderato != null)
+                        {
+                            // Aggiungi l'ID alla lista degl ID del carrello corrente dell'utente della sessione corrente
+                            carrello_desiderato.ListaIDCapi.Add(c.ID);
+                        }
                         else
                         {
-                            var ModelloDiInteresse = m.GetModelli(op.GetConnectionString()).Find(mod => mod.CodModello == CodiceDelModelloInDettaglio);
-                            spesa_di_listino = double.Parse(sl.ToString()) + ModelloDiInteresse.PrezzoListino;
+                            // Altrimenti, vuol dire che il carrello per questo utente ancora non esiste (null).
+                            // Crea un nuovo carrello per questo utente
+                            carrello_desiderato = new Carrello();
+                            carrello_desiderato.Username = utente_ordinario.Username;
+                            carrello_desiderato.ListaIDCapi.Add(c.ID);
+                            // Aggiungilo alla lista globale
+                            ListaCarrelli.Add(carrello_desiderato);
                         }
-                        ViewState["spesa_di_listino"] = spesa_di_listino; // imposta il valore aggiornato
+                    } // fine if uguaglianza id capo
+
+                    /* Aggiorno il file JSON: Ci riscrivo la lista globale appena aggiornata 
+                     * Scrivo la lista dei carrelli: serializzo la lista di carrelli come stringa json e la scrivo sul file */
+                    var json = JsonConvert.SerializeObject(ListaCarrelli);
+                    File.WriteAllText(NomeFileJson, json);
+
+                    // GESTISCO LA SPESA DI LISTINO:
+                    Modello m = new Modello();
+                    double spesa_di_listino;
+                    object sl = ViewState["spesa_di_listino"]; // recupera l’ultimo valore
+                    if (sl == null) // dopo il primo postback la variabile non è ancorastata persistita
+                        spesa_di_listino = 0.0; // La inizializzo
+                    else
+                    {
+                        var ModelloDiInteresse = m.GetModelli(op.GetConnectionString()).Find(mod => mod.CodModello == CodiceDelModelloInDettaglio);
+                        spesa_di_listino = double.Parse(sl.ToString()) + ModelloDiInteresse.PrezzoListino;
+                    }
+                    ViewState["spesa_di_listino"] = spesa_di_listino; // imposta il valore aggiornato
 
 
-                        // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
-                        // Response.Redirect("~/dettagliModello.aspx?codModello=" + CodiceDelModelloInDettaglio.ToString(), false);
-                        Response.Redirect(String.Format("~/dettaglioModello.aspx?codModello={0}", ViewState["cod_modello_in_dettaglio"]));
-                        // non serve continuare, quindi esco dal ciclo
-                        break;
-                        // Provare così per il momento ;)
-                    } // fine if uguaglianza degli id capo
+                    // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
+                    Response.Redirect(String.Format("~/dettaglioModello.aspx?codModello={0}", ViewState["cod_modello_in_dettaglio"]));
+                    // non serve continuare, quindi esco dal ciclo
+                    break;
                 } // fine for
             } // fine if utente != null
-
-
         } // fine gestore evento
 
 
@@ -277,6 +303,15 @@ namespace ProgettoDircol_ASP
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            ///CARICO LA LISTA GLOBALE DEI CARRELLI ANDANDO A LEGGERE DAL FILE .JSON
+            // Leggo da file: FileOggetto.json
+            string json = File.ReadAllText(NomeFileJson);
+            // Deserializzo il contenuto del file letto in una Lista di oggetti di tipo Carrello
+            // e la salvo in una variabile
+            ListaCarrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
+
+
             //fvDettagliModello.Style.Add("background-color", "white");
             //lvCapi.Style.Add("background-color", "white");
             lvCapi.Style.Add("padding-left", "50px");

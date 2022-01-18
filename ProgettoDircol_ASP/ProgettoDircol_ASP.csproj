@@ -197,7 +197,6 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="aggiorna.aspx" />
     <Content Include="CapiAggiuntiAlCarrello.txt" />
-    <Content Include="Carrello.txt" />
     <Content Include="chiSiamo.aspx" />
     <Content Include="contatti.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -256,6 +255,7 @@
     <Content Include="Images\LoginUtente.png" />
     <Content Include="Images\scarpe.jpg" />
     <Content Include="Images\vestiti.webp" />
+    <Content Include="Carrelli.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Images\armadio1.jpg" />
     <Content Include="Images\armadio2.jpg" />

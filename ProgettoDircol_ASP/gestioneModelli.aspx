@@ -10,8 +10,6 @@
         </center>
 
 
-
-
         <%-- LIST VIEW--%>
         <asp:ListView ID="lvModelli" runat="server"
             DataKeyNames="CodModello" GroupItemCount="4"

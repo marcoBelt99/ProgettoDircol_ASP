@@ -141,6 +141,7 @@ namespace ProgettoDircol_ASP
             linkAggiornaDML.Visible = false;
             linkEliminaDML.Visible = false;
             linkInterrogazioni.Visible = false; // navbar link interrogazioni
+            linkCarrelloAcquisti.Visible = false; // navbar dropdown access, link carrello
 
             InizializzaSessione();
 
@@ -158,6 +159,7 @@ namespace ProgettoDircol_ASP
             LinkButton1.Visible = true; // navbar dropdown accesso, link esci
             btnAdminLogin.Visible = true;
             linkGestioneModelli.Visible = true; // navbar link gestione modelli
+            linkCarrelloAcquisti.Visible = true;
 
             // Link da nascondere ad utente ordinario
             linkLoginUtente.Visible = false; // navbar dropdown accesso, link accedi
@@ -193,6 +195,7 @@ namespace ProgettoDircol_ASP
             linkLoginUtente.Visible = false; // navbar dropdown accesso, link accedi
             linkRegistrazioneUtente.Visible = false; // navbar dropdown accesso, link registrati
             linkVisualizzaTabelle.Visible = true; // navbar link visualizza tabelle
+            linkCarrelloAcquisti.Visible = false;
         }
 
 
