@@ -86,7 +86,7 @@
         </ol>
 
 
-        <div>
+        <div id="query1">
             <h4>Elenco degli utenti che hanno un carrello</h4>
             <h5>Tutti quelli che hanno almeno 1 capo nella lista degli id</h5>
             <asp:TextBox ID="txtQuery_1" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -96,7 +96,7 @@
             OnClick="btnQuery_1_Click" />
 
 
-        <div>
+        <div id="query2">
             <h4>Ricerca di un determinato utente</h4>
             <h5>Cerco in base al suo Username</h5>
             <p>Inserire lo username da ricercare</p>
@@ -113,9 +113,7 @@
         <br />
 
 
-
-
-        <div>
+        <div id="query3">
             <h4>ELENCO DEI CAPI (DEGLI ID) DI UN DETERMINATO UTENTE)</h4>
             <h5>Cerco in base al suo Username</h5>
             <p>Inserire lo username da ricercare</p>
@@ -125,7 +123,9 @@
         <asp:Button ID="btnQuery_3" runat="server" Text="Lista capi"
             OnClick="btnQuery_3_Click" />
         <br />
-        <asp:TextBox ID="txtRisultatoQuery_3" runat="server" TextMode="MultiLine" BorderStyle="Dashed"></asp:TextBox>
+        <asp:TextBox ID="txtRisultatoQuery_3" runat="server"
+            TextMode="MultiLine" BorderStyle="Dashed"
+            ReadOnly="true"></asp:TextBox>
 
         <br />
         <hr />
@@ -145,7 +145,10 @@
         <%-- ###################################################################### --%>
         <%-- ###################################################################### --%>
 
-        <div>
+
+        <%-- INSERIMENTO --%>
+
+        <div id="inserimento">
             <h3 style="color: aquamarine">QUERY DI INSERIMENTO IN APPEND AL JSON</h3>
             <p>Username da inserire:</p>
             <asp:TextBox ID="txtUsername_Inserimento" runat="server" CssClass="form-control"></asp:TextBox>
@@ -160,6 +163,83 @@
 
         <br />
 
+
+
+
+        <%-- AGGIORNAMENTO --%>
+        <div id="aggiornamento">
+            <h3 style="color: aquamarine">QUERY DI AGGIORNAMENTO JSON</h3>
+            <p>Seleziona lo Username</p>
+            <asp:DropDownList ID="ddlUsernameAggiornamento" runat="server" CssClass="form-control">
+            </asp:DropDownList>
+            <br />
+
+            <p>Seleziona l'ID del capo che vuoi aggiornare</p>
+            <%--<asp:DropDownList ID="ddlListaIDCapiUtente_Aggiornamento" runat="server" CssClass="form-control">
+            </asp:DropDownList>--%>
+            <asp:TextBox ID="txtIDDaAggiornare_Aggiornamento" runat="server" TextMode="Number" CssClass="form-control">
+            </asp:TextBox>
+            <br />
+
+            <p>Nuovo ID da immettere nella lista</p>
+            <asp:TextBox ID="txtNuovoID_Aggiornamento" runat="server" TextMode="Number" CssClass="form-control">
+            </asp:TextBox>
+            <br />
+
+            <p style="color: peru">Lista ID prima dell'aggiornamento</p>
+            <asp:TextBox ID="txtListaIDCapi_Aggiornamento_Prima" runat="server"
+                TextMode="MultiLine" CssClass="form-control" ReadOnly="true">
+            </asp:TextBox>
+            <p style="color: crimson">Lista ID dopo l'aggiornamento</p>
+            <asp:TextBox ID="txtListaIDCapi_Aggiornamento_Dopo" runat="server"
+                TextMode="MultiLine" CssClass="form-control" ReadOnly="true">
+            </asp:TextBox>
+            <br />
+            <%--<p>ID del capo che vuoi aggiornare</p>
+            <asp:TextBox ID="txtAggiornamento" runat="server" 
+                CssClass="form-control"
+                TextMode="Number">
+            </asp:TextBox>--%>
+        </div>
+        <asp:Button ID="btnAggiorna" runat="server" Text="Aggiorna"
+            OnClick="btnAggiorna_Click" />
+        <br />
+        <asp:Literal ID="ltAggiornamento" runat="server"></asp:Literal>
+
+        <br />
+        <hr />
+        <br />
+
+
+        <%-- ELIMINAZIONE --%>
+        <div id="eliminazione">
+            <h3 style="color: aquamarine">QUERY DI ELIMINAZIONE JSON</h3>
+            <p>Seleziona lo Username</p>
+            <asp:DropDownList ID="ddlUsernameEliminazione" runat="server" CssClass="form-control">
+            </asp:DropDownList>
+            <br />
+
+            <p>Seleziona l'ID del capo che vuoi eliminare</p>
+            <asp:TextBox ID="txtID_Da_Eliminare" runat="server" TextMode="Number" CssClass="form-control">
+            </asp:TextBox>
+            <br />
+
+            <br />
+
+            <p style="color: peru">Lista ID prima dell'eliminazione</p>
+            <asp:TextBox ID="txtEliminazione_Prima" runat="server"
+                TextMode="MultiLine" CssClass="form-control" ReadOnly="true">
+            </asp:TextBox>
+            <p style="color: crimson">Lista ID dopo l'eliminazione</p>
+            <asp:TextBox ID="txtEliminazione_Dopo" runat="server"
+                TextMode="MultiLine" CssClass="form-control" ReadOnly="true">
+            </asp:TextBox>
+            <br />
+        </div>
+        <asp:Button ID="Elimina" runat="server" Text="Elimina"
+            OnClick="btnElimina_Click" />
+        <br />
+       
 
 
 

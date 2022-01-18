@@ -39,9 +39,6 @@ namespace ProgettoDircol_ASP.STUDIO
         // Dichiaro una variabile globale di tipo lista di carrelli, che popolo dopo
         List<Carrello> ListaCarrelli;
 
-        // Dichiaro la lista degli ID che servirà come DataSource per le varie DDL
-        List<int> ListaID_Capi;
-
 
 
 
@@ -107,10 +104,45 @@ namespace ProgettoDircol_ASP.STUDIO
             this.rptCarrello.DataBind();
 
 
+            if (!Page.IsPostBack)
+            {
+                GestioneAggiornamento();
+                GestioneEliminazione();
+            }
+
+
             // Sistemo lo stile del Panel
             pnOperazioniJSON.Style.Add("padding", "50px");
         }
 
+
+        public void GestioneAggiornamento()
+        {
+            // Recupero elenco username dalla lista globale con query
+            var lista_utenti = from c in ListaCarrelli select c.Username;
+
+            // Popolo la ddl degli username
+            ddlUsernameAggiornamento.DataSource = lista_utenti;
+            ddlUsernameAggiornamento.DataBind();
+            ddlUsernameAggiornamento.Items.Insert(0, new ListItem(op.stringaDicontrollo));
+
+            if (ViewState["username_aggiornamento"] != null)
+                ddlUsernameAggiornamento.SelectedValue = ViewState["username_aggiornamento"].ToString();
+        }
+
+        public void GestioneEliminazione()
+        {
+            // Recupero elenco username dalla lista globale con query
+            var lista_utenti = from c in ListaCarrelli select c.Username;
+
+            // Popolo la ddl degli username
+            ddlUsernameEliminazione.DataSource = lista_utenti;
+            ddlUsernameEliminazione.DataBind();
+            ddlUsernameEliminazione.Items.Insert(0, new ListItem(op.stringaDicontrollo));
+
+            if (ViewState["username_eliminazione"] != null)
+                ddlUsernameEliminazione.SelectedValue = ViewState["username_eliminazione"].ToString();
+        }
 
 
         /// <summary>
@@ -266,7 +298,6 @@ namespace ProgettoDircol_ASP.STUDIO
 
             // Controllare che ci sia già nel database...
 
-
             string str = txtListaIDCapi_Inserimento.Text;
             string[] Stringhe = str.Split(',');
 
@@ -274,27 +305,149 @@ namespace ProgettoDircol_ASP.STUDIO
             // Popolo la lista di capi del nuovo carrello
             foreach (var s in Stringhe)
             {
-                if (s.Length != 1) // s.Length < 0 || s.Length > 1
-                {
-                    ltInserimento.Text = "<style color='yellow';>Devi scrivere numeri separati da virgola senza spazi!!</style>";
-                    break;
-                }
+                //ltInserimento.Text = "<style color='yellow';>Devi scrivere numeri separati da virgola senza spazi!!</style>";
                 c.ListaIDCapi.Add(int.Parse(s));
+                /// STAMPO RISULTATO
+                ltInserimento.Text = "<style color='green';>Carrello inserito correttamente</style>";
             }
 
+            //ltInserimento.Text = "<style color='red';>Errore nell'inserimento del Carrello</style>";
 
-            ltInserimento.Text = "<style color='red';>Errore nell'inserimento del Carrello</style>";
-            ltInserimento.Text = "<style color='green';>Carrello inserito correttamente</style>";
 
-            // Aggiungo il carrello appena creato nella lista globale dei carrelli
+            /// AGGIUNGO IL CARRELLO APPENA CREATO NELLA LISTA GLOBALE DEI CARRELLI
             ListaCarrelli.Add(c);
 
-            // Aggiorno il file JSON: Serializzo la lista di carrelli come stringa
-            // json, la scrivo sul file
+            /// AGGIORNO IL FILE JSON
+            //Serializzo la lista di carrelli come stringa json, poi la scrivo sul file
             string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
             var json = JsonConvert.SerializeObject(ListaCarrelli);
             File.WriteAllText(nomefile, json);
 
         }
+
+        protected void btnAggiorna_Click(object sender, EventArgs e)
+        {
+
+            /// LEGGI INPUT
+
+            //  ddlUsernameAggiornamento.SelectedValue = ViewState["username_aggiornamento"].ToString();
+            // ViewState["username_aggiornamento"] = ddlUsernameAggiornamento.SelectedValue;
+            string usernameSelezionato = ddlUsernameAggiornamento.SelectedValue;
+
+            // string temp = usernameSelezionato;
+            // ViewState["username_aggiornamento"] = temp;
+
+            int ID_Da_Aggiornare = int.Parse(txtIDDaAggiornare_Aggiornamento.Text);
+            int Nuovo_ID = int.Parse(txtNuovoID_Aggiornamento.Text);
+
+
+            /// TROVA CARRELLO
+            foreach (var c in ListaCarrelli)
+            {
+                // Se Username selezionato è pari a username del carrello corrente
+                //if (c.Username.Equals(usernameSelezionato))
+                if (c.Username.Equals(usernameSelezionato))
+                {
+                    /// RISULTATO PRIMA DELL'AGGIORNAMENTO
+                    List<string> listaStringhe = new List<string>();
+                    foreach (var i in c.ListaIDCapi) // converto i singoli elementi in stringhe
+                    {
+                        listaStringhe.Add(i.ToString());
+                    }
+                    txtListaIDCapi_Aggiornamento_Prima.Text = String.Join("\t", listaStringhe);
+
+
+                    /// ESEGUI AGGIORNAMENTO DELLA LISTA DEGLI ID DEL CARRELLO CORRENTE
+                    // Rimuovi l'ID selezionato dalla lista degli ID del carrello corrente
+                    c.ListaIDCapi.RemoveAll(p => p == ID_Da_Aggiornare);
+                    // Aggiungi il nuovo ID alla lista degli ID del carrello corrente
+                    c.ListaIDCapi.Add(Nuovo_ID);
+
+
+                    /// AGGIORNO LA LISTA GLOBALE
+                    // Rimuovi il carrello dell'utente con Username == usernameSelezionato
+                    ListaCarrelli.RemoveAll(x => x.Username == usernameSelezionato);
+                    // Inserisci il carrello dell'utente con Username == usernameSelezionato che ho appena aggiornato
+                    ListaCarrelli.Add(c);
+
+                    /// AGGIORNO IL FILE JSON: Ci riscrivo la lista globale appena aggiornata
+                    string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+                    var json = JsonConvert.SerializeObject(ListaCarrelli); // Serializzo la lista in una stringa json
+                    File.WriteAllText(nomefile, json); // Scrivo sul file
+
+
+                    /// RISULTATO DOPO AGGIORNAMENTO
+                    // Visualizzo su text box Lista ID dopo aggiornamento
+                    listaStringhe = new List<string>();
+                    foreach (var i in c.ListaIDCapi)
+                    {
+                        listaStringhe.Add(i.ToString());
+                    }
+                    txtListaIDCapi_Aggiornamento_Dopo.Text = String.Join("\t", listaStringhe);
+
+                    // Esci
+                    break;
+                }
+                // Passa al prossimo carrello
+                continue;
+            }
+        } // fine evento aggiorna
+
+        protected void btnElimina_Click(object sender, EventArgs e)
+        {
+            /// LEGGI INPUT
+            string usernameSelezionato = ddlUsernameEliminazione.SelectedValue;
+            int ID_Da_Eliminare = int.Parse(txtID_Da_Eliminare.Text);
+
+            /// TROVA CARRELLO
+            foreach (var c in ListaCarrelli)
+            {
+                // Se Username selezionato è pari a username del carrello corrente
+                if (c.Username.Equals(usernameSelezionato))
+                {
+                    /// RISULTATO PRIMA DELL'ELIMINAZIONE
+                    List<string> listaStringhe = new List<string>();
+                    foreach (var i in c.ListaIDCapi) // converto i singoli elementi in stringhe
+                    {
+                        listaStringhe.Add(i.ToString());
+                    }
+                    txtEliminazione_Prima.Text = String.Join("\t", listaStringhe);
+
+
+                    /// ESEGUI ELIMINAZIONE DELLA LISTA DEGLI ID DEL CARRELLO CORRENTE
+                    // Rimuovi l'ID selezionato dalla lista degli ID del carrello corrente
+                    c.ListaIDCapi.RemoveAll(p => p == ID_Da_Eliminare);
+
+                    /// AGGIORNO LA LISTA GLOBALE
+                    // Rimuovi il carrello dell'utente con Username == usernameSelezionato
+                    ListaCarrelli.RemoveAll(x => x.Username == usernameSelezionato);
+                    // Inserisci il carrello dell'utente con Username == usernameSelezionato che ho appena aggiornato
+                    ListaCarrelli.Add(c);
+
+                    /// AGGIORNO IL FILE JSON: Ci riscrivo la lista globale appena aggiornata
+                    string nomefile = HttpContext.Current.Server.MapPath("~/STUDIO/FileListaOggetti.json");
+                    var json = JsonConvert.SerializeObject(ListaCarrelli); // Serializzo la lista in una stringa json
+                    File.WriteAllText(nomefile, json); // Scrivo sul file
+
+
+                    /// RISULTATO DOPO AGGIORNAMENTO
+                    listaStringhe = new List<string>();
+                    foreach (var i in c.ListaIDCapi)
+                    {
+                        listaStringhe.Add(i.ToString());
+                    }
+                    txtEliminazione_Dopo.Text = String.Join("\t", listaStringhe);
+
+                    // Esci
+                    break;
+                }
+                // Passa al prossimo carrello
+                continue;
+            }
+        }
+
     }
 }
+
+
+// RICORDA: La lista dei carrelli deve essere tale da essere aggiornata ad ogni post back!!
