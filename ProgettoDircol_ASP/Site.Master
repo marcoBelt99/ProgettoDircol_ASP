@@ -181,7 +181,8 @@
 
                                  <%-- Visualizza Carrello --%>
                                 <a class="dropdown-item" runat="server" href="~/visualizzaCarrello" id="linkCarrelloAcquisti">
-                                    <i class="bi bi-cart4"></i>&nbsp;Carrello&nbsp;<span class="badge badge-light">0</span>
+                                    <i class="bi bi-cart4"></i>&nbsp;Carrello&nbsp;<span class="badge badge-light" 
+                                        id="spanQuantitaCarrello" runat="server">  </span>
                                     <span class="sr-only">unread messages</span>
                                 </a>
 

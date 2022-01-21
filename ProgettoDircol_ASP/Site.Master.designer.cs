@@ -96,6 +96,15 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkCarrelloAcquisti;
 
         /// <summary>
+        /// Controllo spanQuantitaCarrello.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanQuantitaCarrello;
+
+        /// <summary>
         /// Controllo linkLoginUtente.
         /// </summary>
         /// <remarks>

@@ -41,11 +41,19 @@ namespace ProgettoDircol_ASP
 
 
                     // Stringa istruzione SQL. Trim() rimuove gli spazi bianchi
+                    //string strSQL = "SELECT * FROM utenti " +
+                    //   "WHERE UsernameUtente ='"+txtUsernameUtente.Text.Trim()+"' AND PasswordUtente='"+txtPasswordUtente.Text.Trim()+"';";
+
+
                     string strSQL = "SELECT * FROM utenti " +
-                        "WHERE UsernameUtente ='"+txtUsernameUtente.Text.Trim()+"' AND PasswordUtente='"+txtPasswordUtente.Text.Trim()+"';";
+                        "WHERE UsernameUtente = @Username AND PasswordUtente= @Password;";
 
                     // Preparazione comando
                     SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    // Aggiungi i parametri
+                    cmd.Parameters.AddWithValue("@Username", txtUsernameUtente.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Password", txtPasswordUtente.Text.Trim());
 
                     // Uso un SqlDataReader che consente di leggere un flusso forward-only
                     // di righe da un database SQL Server
@@ -83,16 +91,16 @@ namespace ProgettoDircol_ASP
                     }
 
                     // Chiudo la connessione
-                    // con.Close();
+                    con.Close();
                 }
 
 
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 Response.Write("<script> alert('Eccezione SQL: '" + ex.Message + ");</script>");
             }
-            catch (Exception  ex)
+            catch (Exception ex)
             {
                 // Response.Write("<script> alert('');</script>")
                 throw ex;

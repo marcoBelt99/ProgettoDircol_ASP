@@ -218,5 +218,10 @@ namespace ProgettoDircol_ASP.Dati
             return spesa_di_listino;
         }
        */
+
+        public string mostraCarrello()
+        {
+            return this.ListaIDCapi.ToString();
+        }
     }
 }

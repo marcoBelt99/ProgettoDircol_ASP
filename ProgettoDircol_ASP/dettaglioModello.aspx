@@ -27,7 +27,8 @@
     <asp:FormView ID="fvDettagliModello" runat="server"
         ItemType="ProgettoDircol_ASP.Dati.Modello"
         SelectMethod="GetModello"
-        RenderOuterTable="false">
+        RenderOuterTable="false"
+       >
         <ItemTemplate>
             <asp:Panel runat="server" ID="pndettaglioModello" HorizontalAlign="Center">
 
@@ -159,73 +160,74 @@
 
 
                 <td runat="server" class="bg-white">
-
-                    <div class="list-group" id="listviewCapo" runat="server">
-                        <%-- ID --%>
-                        <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
-                        <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
-                        <%--<a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
+                    <div class="justify-content-center">
+                        <div class="list-group" id="listviewCapo" runat="server">
+                            <%-- ID --%>
+                            <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
+                            <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
+                            <%--<a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
                                 role="button" data-toggle="collapse" href="#divCollassabile<%#:Item.ID%>"
                                 style="background-color: #7952b3"
                                 aria-expanded="false" aria-controls="divCollassabile<%#:Item.ID%>">--%>
 
 
-                        <a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
-                            role="button" href="#"
-                            style="background-color: #7952b3">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">ID:&nbsp;<%#:Item.ID %></h5>
-                            </div>
-                            <%--<p class="mb-1"><%#:Item.ID %> </p>--%>
-                        </a>
+                            <a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
+                                role="button"
+                                style="background-color: #7952b3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">ID:&nbsp;<%#:Item.ID %></h5>
+                                </div>
+                                <%--<p class="mb-1"><%#:Item.ID %> </p>--%>
+                            </a>
 
-                        <%-- TAGLIA --%>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Taglia</h5>
-                            </div>
-                        <p class="mb-1"><%#:Item.Taglia %>  </p>
+                            <%-- TAGLIA --%>
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Taglia</h5>
+                                </div>
+                            <p class="mb-1"><%#:Item.Taglia %>  </p>
 
-                        <%-- COLORE --%>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Colore</h5>
-                            </div>
-                            <%-- <p class="mb-1"><%#:Item.Colore %>  </p>--%>
-                            <center>
-                                <p class="mb-1 justify-content-center" style="text-align: center;">
-                                    <center>
-                                        <input type="color" value="<%#:Item.Colore %>" style="text-align: center;" disabled
-                                            class="mb-1" />
-                                    </center>
-                                </p>
-                            </center>
-                            <div style="padding-bottom: 25px"></div>
-                        </a>
+                            <%-- COLORE --%>
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Colore</h5>
+                                </div>
+                                <%-- <p class="mb-1"><%#:Item.Colore %>  </p>--%>
+                                <center>
+                                    <p class="mb-1 justify-content-center" style="text-align: center;">
+                                        <center>
+                                            <input type="color" value="<%#:Item.Colore %>" style="text-align: center;" disabled
+                                                class="mb-1" />
+                                        </center>
+                                    </p>
+                                </center>
+                                <div style="padding-bottom: 25px"></div>
+                            </a>
 
-                        <%-- PUNTO VENDITA --%>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                            <%-- PUNTO VENDITA --%>
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Punto Vendita</h5>
+                                </div>
+                                <p class="mb-1"><%#:Item.PuntoVendita %>  </p>
+                            </a>
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Punto Vendita</h5>
-                            </div>
-                            <p class="mb-1"><%#:Item.PuntoVendita %>  </p>
-                        </a>
-                        <div class="d-flex w-100 justify-content-between">
-                            <%-- ############################################################# --%>
-                            <%-- PASSO COME ARGOMENTO Item.ID AL GESTORE DELL'EVENTO CLICK --%>
-                            <%-- ############################################################# --%>
-                            <%--<asp:LinkButton CssClass="btn btn-secondary"
+                                <%-- ############################################################# --%>
+                                <%-- PASSO COME ARGOMENTO Item.ID AL GESTORE DELL'EVENTO CLICK --%>
+                                <%-- ############################################################# --%>
+                                <%--<asp:LinkButton CssClass="btn btn-secondary"
                                 ID="btnAggiungiAlCarrello" runat="server"
                                 CommandArgument='<%#Eval("ID")%>'
                                 OnClick="btnAggiungiAlCarrello_Click">
                                 <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello<b>
                             </asp:LinkButton>--%>
-                            <asp:Button CssClass="btn btn-secondary"
-                                ID="LinkButton1" runat="server"
-                                CommandArgument='<%#Eval("ID")%>'
-                                OnClick="btnAggiungiAlCarrello_Click"
-                                Text="Aggiungi al carrello"></asp:Button>
-                            <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>
+                                <asp:Button CssClass="btn btn-secondary"
+                                    ID="LinkButton1" runat="server"
+                                    CommandArgument='<%#Eval("ID")%>'
+                                    OnClick="btnAggiungiAlCarrello_Click"
+                                    Text="Aggiungi al carrello"></asp:Button>
+                                <%-- <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>--%>
+                            </div>
                         </div>
                     </div>
                     <br />
@@ -332,8 +334,13 @@
              })
          })
          */
-
     </script>
+
+
+    <%-- A scopo di debugging: --%>
+    <asp:Button runat="server" ID="btnMostraAlertIDCapi" CssClass="btn btn-block" OnClick="btnMostraAlertIDCapi_Click" />
+
+
     <%-- Immetto un campo nascosto e gli assegno come valore quello del vettore  --%>
     <%--<asp:TextBox Text="" ID="txtDati" runat="server"></asp:TextBox>
     <input type="text" id="hope" value="<%#S%>" runat="server" />--%>

@@ -2,13 +2,22 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <header>
+        <%-- JQuery --%>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js" ></script>
+        <%-- JQuery Mobile --%>
+        <%--<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />--%>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </header>
+
     <%-- Costruisco un Panel: un <div>, cioè un contenitore per altri controlli --%>
     <asp:Panel ID="pnTabelle" runat="server" HorizontalAlign="Center">
 
 
 
         <%-- ACCORDION --%>
-        <div class="accordion" id="accordionExample">
+        <%--<div class="accordion" id="accordionExample">--%>
+        <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
             <%-- Prima Card --%>
             <div class="card">
                 <div class="card-header intestazioneAccordion" id="headingOne">
@@ -19,9 +28,10 @@
                     </h2>
                 </div>
                 <%-- class="show" --%>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <%-- contenuto che ci voglio mettere dentro --> istruzioni per la tabella (grid view) --%>
+                <%--<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">--%>
+                <div class="card-body">
+                    <%-- contenuto che ci voglio mettere dentro --> istruzioni per la tabella (grid view) --%>
+                    <div data-role="collapsible">
                         <h2 id="titolo1">CAPI</h2>
                         <%-- Costruisco la tabella di visualizzazione della query --%>
                         <asp:GridView runat="server" ID="gvCapi" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
@@ -29,9 +39,9 @@
                             <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
                         </asp:GridView>
                     </div>
-                </div>
             </div>
-            <%-- Seconda Card --%>
+            </div>
+        <%-- Seconda Card --%>
             <div class="card">
                 <div class="card-header intestazioneAccordion" id="headingTwo">
                     <h2 class="mb-0">
@@ -116,7 +126,7 @@
                 </div>
             </div>
 
-              <%-- Sesta Card --%>
+            <%-- Sesta Card --%>
             <div class="card">
                 <div class="card-header intestazioneAccordion" id="headingSix">
                     <h2 class="mb-0">

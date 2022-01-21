@@ -21,18 +21,14 @@ namespace ProgettoDircol_ASP
 {
     public partial class dettaglioModello : System.Web.UI.Page
     {
-        // VARIABILI GLOBALI
+        // ###################### VARIABILI GLOBALI #################################
         Operazione op = new Operazione();
 
-        int CodiceDelModelloInDettaglio = 0;
+        int CodiceDelModelloInDettaglio = 0; // Mi serve per ottenere il giusto codice del modello di riferimento
 
         int IDCapo_DaAggiungereAlCarrello = 0; // Contiene il giusto ID preso come argomento dal CommandType del bottone Aggiungi Capo nel WebForm
 
-        public List<Capo> capiclassificati = new List<Capo>();
-
-        // Mappa capi aggiunti al carrello (salvati sul file di testo:
-        // 'CapiAggiuntiAlCarrello.txt' (Da inizializzare al page load):
-        // ...
+        // public List<Capo> capiclassificati = new List<Capo>();
 
         // Dichiaro una variabile globale di tipo lista di carrelli, che popolo dopo
         public List<Carrello> ListaCarrelli = new List<Carrello>();
@@ -41,10 +37,11 @@ namespace ProgettoDircol_ASP
         string NomeFileJson = HttpContext.Current.Server.MapPath("~/Carrelli.json");
 
 
-        // MANTENGO LO STATO DELLA LISTA DEI CAPI CLASSIFICATI
+        /// MANTENGO LO STATO DELLA LISTA DEI CAPI CLASSIFICATI: così poi "spariscono dalla pagina"
+        /// In pratica, grazie all'uso del ViewState[], la lista 'CapiClassificati' riesce a sopravvivere ai continui postback
+        /// della pagina, preservando il suo valore
         // RICORDA: Il tipo della lista (in questo caso Capo) deve essere serializzabile [Serializable]
-        const string listaCapiClassificati = "listaCapiClassificati";
-
+        const string listaCapiClassificati = "listaCapiClassificati"; // chiave del view state della lista
         public List<Capo> CapiClassificati // DICHIARO LA MIA LISTA "PERMANENTE"
         {
             get
@@ -65,9 +62,13 @@ namespace ProgettoDircol_ASP
         // ViewState["spesa_di_listino"] = 
 
 
-        // Creo un oggetto di tipo UtenteOrdinario che mi servirà per assicurarmi di star considerando
-        // L'utente della sessione corrente
+        /// Creo un oggetto di tipo UtenteOrdinario che mi servirà per assicurarmi di star considerando
+        /// l'utente della sessione corrente. In pratica lo uso per fare i confronti: if(utente == Session["utente"])
         UtenteOrdinario utente_ordinario = new UtenteOrdinario();
+
+        // #############################################################
+        // ################   METODI   #################################
+        // #############################################################
 
         /// <summary>
         /// Metodo GetModello relativo al FormControl nel file dettagliModello
@@ -115,8 +116,13 @@ namespace ProgettoDircol_ASP
             return mod.GetModelli(op.GetConnectionString()).Find(p => p.CodModello == codModello);
         }
 
-
-        // Non la richiamo da nessuna parte, la tengo solo perchè è interessante....
+        /// <summary>
+        /// NON FUNZIONANTE !!!!!
+        /// Non la richiamo da nessuna parte, la tengo solo perchè è interessante....
+        /// NON FUNZIONANTE !!!!!
+        /// </summary>
+        /// <param name="codModello"></param>
+        /// <returns></returns>
         public List<Capo> GetCapiClassificati([QueryString("codModello")] int? codModello) // 
         {
             Capo capo = new Capo();
@@ -170,11 +176,6 @@ namespace ProgettoDircol_ASP
 
 
 
-
-
-
-
-
         /// <summary>
         /// GUARDARE BENE QUESTO GESTORE DI EVENTI:
         /// Gli sto passando un parametro dal Web Form !!!! 
@@ -212,63 +213,79 @@ namespace ProgettoDircol_ASP
                         utente_ordinario.AggiungiAlCarrello(c.ID);
 
 
-                        // MI SALVO L'OGGETTO SU FILE: 'CapiAggiuntiAlCarrello.txt'
+                        /// MI SALVO L'OGGETTO SU FILE: 'CapiAggiuntiAlCarrello.txt'
                         // Voglio togliere dalla pagina il capo appena inserito nel carrello
                         // perchè poi lo dovrò eliminare fisicamente dal DB
                         // altrimenti nella pagina visualizzerò sempre gli stessi capi 
                         // Dichiaro il nome del file (comprensivo del percorso, in questo caso si trova nella stessa directory del progetto)
                         string file = HttpContext.Current.Server.MapPath("~/CapiAggiuntiAlCarrello.txt");
 
-                        // Scrivi il capo in append al file
-                        File.AppendAllText(file, c.ToString() + Environment.NewLine);
+                        /// Scrivi il capo in append al file
+                        File.AppendAllText(file, c.ToString());
+                        //File.AppendAllText(file, c.ToString() + Environment.NewLine);
 
-                        // ORA CHE HO SALVATO IL CAPO NEL FILE, POSSO ELIMINARLO DAL DATABASE 
+                        /// ORA CHE HO SALVATO IL CAPO NEL FILE, POSSO ELIMINARLO DAL DATABASE 
                         c.EliminaCapo(c.ID);
 
-                        //E DALLA RELATIVA LISTA
+                        /// E DALLA RELATIVA LISTA
                         CapiClassificati.Remove(c);
 
 
 
                         /// AGGIUNTA IN FILE JSON: Aggiungo l'id alla lista degli id dell'utente corrente
-                        // Il carrello desiderato è quel carrello che ha per username lo username dell'utente corrente
-                        Carrello carrello_desiderato = ListaCarrelli.Find(x => x.Username == utente_ordinario.Username);
-                        // Se la ricerca ha effettivamente ritornato qualcosa
-                        if (carrello_desiderato != null)
+
+                        // Se la lista globale dei carrelli ancora non ha un elemento, crealo!
+                        if (ListaCarrelli == null)
                         {
-                            // Aggiungi l'ID alla lista degl ID del carrello corrente dell'utente della sessione corrente
-                            carrello_desiderato.ListaIDCapi.Add(c.ID);
+                            Carrello car = new Carrello();
+                            car.Username = Session["username"].ToString();
+                            car.ListaIDCapi.Add(c.ID);
+                            // Dopo averlo creato, lo aggiungo alla lista globale
+                            ListaCarrelli = new List<Carrello>();
+                            ListaCarrelli.Add(car);
+                            // Mi salvo questo nuovo elemento della lista globale sul file JSON
+                            /* Aggiorno il file JSON: *** Ci SCRIVO IN APPEND***  la lista globale appena aggiornata 
+                             * Serializzo la lista di carrelli come stringa json e la scrivo sul file */
+                            var file_json = JsonConvert.SerializeObject(ListaCarrelli);
+                            File.AppendAllText(NomeFileJson, file_json);
+
+                            // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
+                            Response.Redirect(String.Format("~/dettaglioModello.aspx?codModello={0}", ViewState["cod_modello_in_dettaglio"]));
+                            // Esco
+                            break;
                         }
                         else
                         {
-                            // Altrimenti, vuol dire che il carrello per questo utente ancora non esiste (null).
-                            // Crea un nuovo carrello per questo utente
-                            carrello_desiderato = new Carrello();
-                            carrello_desiderato.Username = utente_ordinario.Username;
-                            carrello_desiderato.ListaIDCapi.Add(c.ID);
-                            // Aggiungilo alla lista globale
-                            ListaCarrelli.Add(carrello_desiderato);
-                        }
+                            // Se la Lista globale conteneva già qualcosa, allora ricerca il carrello desiderato
+                            // Il carrello desiderato è quel carrello che ha per username lo username dell'utente corrente
+                            Carrello carrello_desiderato = ListaCarrelli.Find(x => x.Username == utente_ordinario.Username);
+                            // Se la ricerca ha effettivamente ritornato qualcosa
+                            if (carrello_desiderato != null)
+                            {
+                                // Aggiungi l'ID alla lista degl ID del carrello corrente dell'utente della sessione corrente
+                                carrello_desiderato.ListaIDCapi.Add(c.ID);
+                            }
+                            else
+                            {
+                                // Altrimenti, vuol dire che il carrello per questo utente ancora non esiste (null).
+                                // Crea un nuovo carrello per questo utente
+                                carrello_desiderato = new Carrello();
+                                carrello_desiderato.Username = utente_ordinario.Username;
+                                carrello_desiderato.ListaIDCapi.Add(c.ID);
+                                // Aggiungilo alla lista globale
+                                ListaCarrelli.Add(carrello_desiderato);
+                            }
+                        } // fine else (ListaCarrelli != null)
+
+                        /* Aggiorno il file JSON: *** Ci RISCRIVO *** la lista globale appena aggiornata 
+                         * Serializzo la lista di carrelli come stringa json e la scrivo sul file */
+                        var json = JsonConvert.SerializeObject(ListaCarrelli);
+                        File.WriteAllText(NomeFileJson, json);
+
                     } // fine if uguaglianza id capo
-
-                    /* Aggiorno il file JSON: Ci riscrivo la lista globale appena aggiornata 
-                     * Scrivo la lista dei carrelli: serializzo la lista di carrelli come stringa json e la scrivo sul file */
-                    var json = JsonConvert.SerializeObject(ListaCarrelli);
-                    File.WriteAllText(NomeFileJson, json);
-
-                    // GESTISCO LA SPESA DI LISTINO:
-                    Modello m = new Modello();
-                    double spesa_di_listino;
-                    object sl = ViewState["spesa_di_listino"]; // recupera l’ultimo valore
-                    if (sl == null) // dopo il primo postback la variabile non è ancorastata persistita
-                        spesa_di_listino = 0.0; // La inizializzo
                     else
-                    {
-                        var ModelloDiInteresse = m.GetModelli(op.GetConnectionString()).Find(mod => mod.CodModello == CodiceDelModelloInDettaglio);
-                        spesa_di_listino = double.Parse(sl.ToString()) + ModelloDiInteresse.PrezzoListino;
-                    }
-                    ViewState["spesa_di_listino"] = spesa_di_listino; // imposta il valore aggiornato
-
+                        // Continua con la ricerca
+                        continue;
 
                     // Quindi, faccio un aggiornamento della pagina per vedere le cose tutte aggiornate
                     Response.Redirect(String.Format("~/dettaglioModello.aspx?codModello={0}", ViewState["cod_modello_in_dettaglio"]));
@@ -322,6 +339,9 @@ namespace ProgettoDircol_ASP
             //capiclassificatiTest = GetCapiClassificati_1();
         }
 
-
+        protected void btnMostraAlertIDCapi_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script>alert('" + utente_ordinario.mostraCarrello() + "')</script>");
+        }
     }
 }

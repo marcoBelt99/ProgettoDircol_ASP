@@ -1,61 +1,89 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="visualizzaCarrello.aspx.cs" Inherits="ProgettoDircol_ASP.visualizzaCarrello" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <%-- Script necessari per far funzionare il bottone hamburger menù --%>
+    <header>
+        <%-- JQuery --%>
+        <%--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>--%>
+        <script src="https://code.jquery-1.11.3.min.js"></script>
+        <%-- Popper --%>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <%-- Bootstrap --%>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+        <%-- JQuery Mobile --%>
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </header>
 
-    <p>Rimuovi dal carrello</p>
-    <asp:Button ID="btnRimuovi" runat="server" OnClick="btnRimuovi_Click" Text="rimuovi" CssClass="form-control"/>
+    <%--<p>Rimuovi dal carrello</p>--%>
+    <%-- <asp:Button ID="btnRimuovi" runat="server" OnClick="btnRimuovi_Click" Text="rimuovi" CssClass="btn btn-danger" />--%>
 
-    <%-- PROVO AD IMPOSTARLO COSI', DEVO MODIFICARE IL TUTTO --%>
+    <div style="padding: 50px;"></div>
+    <asp:Panel ID="pnCarrello" runat="server"
+        HorizontalAlign="Center">
 
-    <%--<div id="ShoppingCartTitle" runat="server" class="ContentHead">
-        <h1>Shopping Cart</h1>
-    </div>
-    <asp:GridView ID="CartList" runat="server" AutoGenerateColumns="False" ShowFooter="True" GridLines="Vertical" CellPadding="4"
-        ItemType="WingtipToys.Models.CartItem" SelectMethod="GetShoppingCartItems"
-        CssClass="table table-striped table-bordered">
-        <Columns>
-            <asp:BoundField DataField="ProductID" HeaderText="ID" SortExpression="ProductID" />
-            <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />
-            <asp:BoundField DataField="Product.UnitPrice" HeaderText="Price (each)" DataFormatString="{0:c}" />
-            <asp:TemplateField HeaderText="Quantity">
-                <ItemTemplate>
-                    <asp:TextBox ID="PurchaseQuantity" Width="40" runat="server" Text="<%#: Item.Quantity %>"></asp:TextBox>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Item Total">
-                <ItemTemplate>
-                    <%#: String.Format("{0:c}", ((Convert.ToDouble(Item.Quantity)) *  Convert.ToDouble(Item.Product.UnitPrice)))%>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Remove Item">
-                <ItemTemplate>
-                    <asp:CheckBox ID="Remove" runat="server"></asp:CheckBox>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    <div>
-        <p></p>
-        <strong>
-            <asp:Label ID="LabelTotalText" runat="server" Text="Order Total: "></asp:Label>
-            <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
-        </strong>
-    </div>
-    <br />--%>
-    <%-- Quando l'utente fa clic sul pulsante Aggiorna , viene chiamato il gestore dell'evento UpdateBtn_Click. 
-        Questo gestore eventi chiamerà il codice che verrà aggiunto nel passaggio successivo. 
-    --%>
-    <%--<table>
-        <tr>
-            <td>
-                <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" />
-            </td>
-            <td>
-                <!--Checkout Placeholder -->
-            </td>
-        </tr>
-    </table>--%>
 
+        <asp:GridView
+            ID="gvCarrello"
+            runat="server"
+            AutoGenerateColumns="false"
+            OnRowCommand="gvCarrello_RowCommand"
+            DataKeyNames="ID"
+            CssClass="table mx-auto w-auto stileTabelle"
+            BackColor="White"
+            HorizontalAlign="Center">
+            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+            <Columns>
+                <asp:BoundField DataField="Taglia" HeaderText="Taglia" />
+                <asp:BoundField DataField="Colore" HeaderText="Colore" />
+                <asp:BoundField DataField="PuntoVendita" HeaderText="Punto Vendita" />
+                <asp:BoundField DataField="CodModello" HeaderText="Codice modello" />
+                <asp:ButtonField
+                    Text="Dettagli"
+                    ImageUrl="~/Images/Icone/caret-right-fill.svg"
+                    ButtonType="Link"
+                    CommandName="DettagliCapo"
+                    ControlStyle-CssClass="btn btn-info"
+                    HeaderText="Mostra dettagli" />
+                <%-- ######################## --%>
+                <asp:ButtonField
+                    Text="Rimuovi"
+                    ButtonType="Button"
+                    CommandName="EliminaCapo"
+                    ControlStyle-CssClass="btn btn-danger"
+                    HeaderText="Rimuovi un capo" />
+            </Columns>
+        </asp:GridView>
 
 
 
-    </asp:Content>
+
+
+
+        <div class="content" id="divDettaglio" runat="server">
+            <div class="col">
+                <%--<asp:Image ID="ImgModello" runat="server"></asp:Image>--%>
+                <img id="ImgModello" runat="server" />
+            </div>
+        </div>
+        <div class="col">
+            <asp:Label ID="lblNome" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="lblDescrizione" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="lblPrezzoListino" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="lblGenere" runat="server"></asp:Label>
+            <asp:Label ID="lblCollezione" runat="server"></asp:Label>
+        </div>
+
+
+
+    </asp:Panel>
+
+
+
+
+
+
+</asp:Content>

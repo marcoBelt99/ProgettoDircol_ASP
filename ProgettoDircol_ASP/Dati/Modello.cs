@@ -65,44 +65,50 @@ namespace ProgettoDircol_ASP.Dati
             List<Modello> listaModelli = new List<Modello>();
 
             // Dichiaro una variabile per la connessione
-            SqlConnection con = new SqlConnection(connectionString);
-
-            // Stringa SQL: Seleziona tutti i dati dalla tabella 'modelli'
-            string selectSQL = "select * from modelli";
-
-            // Apro la connessione
-            con.Open();
-
-            // Imposto il comando SQL
-            SqlCommand cmd = new SqlCommand(selectSQL, con);
-
-            // Leggo le righe (in modo forward-only) dal database
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            // 
-            if (dr != null)
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                // Finchè leggi una riga (un record) dal database
-                while (dr.Read())
+                // Stringa SQL: Seleziona tutti i dati dalla tabella 'modelli'
+                string selectSQL = "select * from modelli";
+
+                // Apro la connessione
+                con.Open();
+
+                // Imposto il comando SQL
+                SqlCommand cmd = new SqlCommand(selectSQL, con);
+
+                // Leggo le righe (in modo forward-only) dal database
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                // 
+                if (dr != null)
                 {
-                    // Crea un nuovo oggetto di tipo Modello
-                    Modello modello = new Modello();
+                    // Finchè leggi una riga (un record) dal database
+                    while (dr.Read())
+                    {
+                        // Crea un nuovo oggetto di tipo Modello
+                        Modello modello = new Modello();
 
-                    // Leggi e converti i dati dal record corrente
-                    modello.CodModello = Convert.ToInt32(dr["CodModello"]);
-                    modello.Immagine = dr["Immagine"].ToString();
-                    modello.Nome = dr["Nome"].ToString();
-                    modello.Descrizione = dr["Descrizione"].ToString();
-                    modello.PrezzoListino = Convert.ToDouble(dr["PrezzoListino"]);
-                    modello.Genere = Convert.ToChar(dr["Genere"]);
-                    modello.Collezione = dr["Collezione"].ToString();
+                        // Leggi e converti i dati dal record corrente
+                        modello.CodModello = Convert.ToInt32(dr["CodModello"]);
+                        modello.Immagine = dr["Immagine"].ToString();
+                        modello.Nome = dr["Nome"].ToString();
+                        modello.Descrizione = dr["Descrizione"].ToString();
+                        modello.PrezzoListino = Convert.ToDouble(dr["PrezzoListino"]);
+                        modello.Genere = Convert.ToChar(dr["Genere"]);
+                        modello.Collezione = dr["Collezione"].ToString();
 
 
-                    // Aggiungi il modello alla lista
-                    listaModelli.Add(modello);
+                        // Aggiungi il modello alla lista
+                        listaModelli.Add(modello);
 
+                    }
                 }
+                con.Close();
             }
+            
+            
+
+           
 
             // Ritorno la lista di modelli
             return listaModelli;

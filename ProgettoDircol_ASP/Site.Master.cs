@@ -7,6 +7,12 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+using ProgettoDircol_ASP.Dati; // Per accedere alle classi
+using System.IO; // Per operazioni su file 
+using Newtonsoft.Json; // Per operazioni su file JSON
+
+
 using Microsoft.AspNet.Identity;
 
 namespace ProgettoDircol_ASP
@@ -84,6 +90,39 @@ namespace ProgettoDircol_ASP
         }
 
 
+
+        public int GetQuantitaCapiCarrello(string UsernameUtenteSessione)
+        {
+            List<Carrello> ListaCarrelli = new List<Carrello>();
+            string NomeFileJson = HttpContext.Current.Server.MapPath("~/Carrelli.json");
+            string json = File.ReadAllText(NomeFileJson);
+            // Deserializzo il contenuto del file letto in una Lista di oggetti di tipo Carrello
+            // e la salvo in una variabile
+            ListaCarrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
+
+            // Se esiste almeno un carrello nella lista
+            if (ListaCarrelli != null)
+            {
+                // Ricerco il carrello nella lista dei carrelli
+                var carrello = ListaCarrelli.Find(c => c.Username == UsernameUtenteSessione.ToString());
+                // Se non l'ho trovato, vuol dire che per questo utente ancora non esiste un carrello
+                if ((carrello != null) && (carrello.ListaIDCapi != null) && (carrello.ListaIDCapi.Count > 0))
+                    return carrello.ListaIDCapi.Count;
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+
+
+        }
+
+
+
         /// <summary>
         /// Inizializzo i valori della Session
         /// </summary>
@@ -94,6 +133,8 @@ namespace ProgettoDircol_ASP
             Session["cognome"] = "";
             Session["ruolo"] = "";
             Session["stato"] = "";
+            Session["quantita"] = 0;
+            // Session["quantita"] = GetQuantitaCapiCarrello();
         }
 
 
@@ -154,12 +195,15 @@ namespace ProgettoDircol_ASP
         {
             // Response.Write("<script>alert('CIAO UTENTE LOGGATO:\n" + Session["nome"] + " " + Session["cognome"] + "');</script>");
 
+            Session["quantita"] = GetQuantitaCapiCarrello(Session["username"].ToString());
+
             // Link da mostrare ad utente ordinario
             navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
             LinkButton1.Visible = true; // navbar dropdown accesso, link esci
             btnAdminLogin.Visible = true;
             linkGestioneModelli.Visible = true; // navbar link gestione modelli
             linkCarrelloAcquisti.Visible = true;
+            spanQuantitaCarrello.InnerHtml = Session["quantita"].ToString();
 
             // Link da nascondere ad utente ordinario
             linkLoginUtente.Visible = false; // navbar dropdown accesso, link accedi

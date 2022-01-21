@@ -194,15 +194,20 @@ namespace ProgettoDircol_ASP.Dati
                 // Chiudo la connessione al DB
                 con.Close();
             }
+            
         }
 
 
 
-
+        /// <summary>
+        /// SERVIRA' PER POTER ANDARE A SCRIVERE IL CAPO NEL FILE CapiAggiuntiAlCarrello
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return this.ID + "\t" + this.Taglia + "\t"
-                + this.Colore + "\t" + this.PuntoVendita + "\t" + this.CodModello;
+                + this.Colore + "\t" + this.PuntoVendita + "\t" + this.CodModello+'\n';
         }
 
 

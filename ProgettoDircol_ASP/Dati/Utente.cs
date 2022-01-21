@@ -88,6 +88,6 @@ namespace ProgettoDircol_ASP.Dati
             this.Cognome = Cognome;
         }
 
-
+       
     }
 }

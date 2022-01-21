@@ -38,11 +38,17 @@ namespace ProgettoDircol_ASP
 
 
                     // Stringa istruzione SQL. Trim() rimuove gli spazi bianchi
+                    // string strSQL = "SELECT * FROM amministratori " +
+                    //   "WHERE UsernameAdmin ='" + txtUsernameAdmin.Text.Trim() + "' AND PasswordAdmin ='" + txtPasswordAdmin.Text.Trim() + "';";
+
                     string strSQL = "SELECT * FROM amministratori " +
-                        "WHERE UsernameAdmin ='" + txtUsernameAdmin.Text.Trim() + "' AND PasswordAdmin ='" + txtPasswordAdmin.Text.Trim() + "';";
+                        "WHERE UsernameAdmin =@Username AND PasswordAdmin =@Password;";
 
                     // Preparazione comando
                     SqlCommand cmd = new SqlCommand(strSQL, con);
+
+                    cmd.Parameters.AddWithValue("@Username", txtUsernameAdmin.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Password", txtPasswordAdmin.Text.Trim());
 
                     // Uso un SqlDataReader che consente di leggere un flusso forward-only
                     // di righe da un database SQL Server

@@ -250,6 +250,7 @@
     <Content Include="Images\fotoModelli\PantaloniBlu.jpg" />
     <Content Include="Images\fotoModelli\ScarpeNikeDonna.jpg" />
     <Content Include="Images\fotoModelli\SharpaRossa.jpg" />
+    <Content Include="Images\Icone\caret-right-fill.svg" />
     <Content Include="Images\keyAdmin.png" />
     <Content Include="Images\LoginAdmin.png" />
     <Content Include="Images\LoginUtente.png" />
@@ -311,6 +312,7 @@
     <Content Include="STUDIO\GestioneViewState.aspx" />
     <Content Include="STUDIO\LoginHtmlControl.aspx" />
     <Content Include="STUDIO\OperazioniJSON.aspx" />
+    <Content Include="STUDIO\prova.txt" />
     <Content Include="STUDIO\SalveMondoSingle.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="visualizzaCarrello.aspx" />
