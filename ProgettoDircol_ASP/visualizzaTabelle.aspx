@@ -4,10 +4,75 @@
 
     <header>
         <%-- JQuery --%>
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js" ></script>
-        <%-- JQuery Mobile --%>
-        <%--<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />--%>
-        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+        <%-- JQUERY UI --%>
+        <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.min.css">
+        <script src="jquery-ui/jquery-ui.min.js"></script>
+
+
+        <%-- IMPORT IL FONT CHE VOGLIO IO --%>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+        </style>
+
+        <%-- SCRIPT PER L'ACCORDION --%>
+        <script>
+            $(function () {
+                $("#accordion").accordion({
+                    collapsible: true
+                });
+            });
+
+
+            // FUNZIONE PER SETTARE LE ICONE CHE VOGLIO IO PER L'ACCORDION
+            $(function () {
+                var icons = {
+                    header: "ui-icon-circle-arrow-e",
+                    activeHeader: "ui-icon-circle-arrow-s"
+                };
+                $("#accordion").accordion({
+                    icons: icons
+                });
+                $("#toggle").button().on("click", function () {
+                    if ($("#accordion").accordion("option", "icons")) {
+                        $("#accordion").accordion("option", "icons", null);
+                    } else {
+                        $("#accordion").accordion("option", "icons", icons);
+                    }
+                });
+            });
+
+
+
+            // FUNZIONE PER POTER SPOSTARE LE INTESTAZIONI A PIACIMENTO
+            $(function () {
+                $("#accordion")
+                    .accordion({
+                        header: "> div > h3"
+                    })
+                    .sortable({
+                        axis: "y",
+                        handle: "h3",
+                        stop: function (event, ui) {
+                            // IE doesn't register the blur when sorting
+                            // so trigger focusout handlers to remove .ui-state-focus
+                            ui.item.children("h3").triggerHandler("focusout");
+
+                            // Refresh accordion to handle new order
+                            $(this).accordion("refresh");
+                        }
+                    });
+            });
+
+
+            $("#divCAPI").accordion({ collapsible: true, active: false });
+            $("#accordion").accordion({
+                heightStyle: "content"
+            });
+        </script>
+
     </header>
 
     <%-- Costruisco un Panel: un <div>, cioè un contenitore per altri controlli --%>
@@ -17,32 +82,34 @@
 
         <%-- ACCORDION --%>
         <%--<div class="accordion" id="accordionExample">--%>
-        <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
+
+        <div id="accordion">
             <%-- Prima Card --%>
-            <div class="card">
+            <%--<div class="card">
                 <div class="card-header intestazioneAccordion" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Visualizza Capi
                         </button>
                     </h2>
+                </div>--%>
+            <%--<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">--%>
+            <%-- <div class="card-body">--%>
+            <%-- contenuto che ci voglio mettere dentro --> istruzioni per la tabella (grid view) --%>
+            <%--<div data-role="collapsible">--%>
+            <h2 id="titolo1">CAPI</h2>
+            <%-- Costruisco la tabella di visualizzazione della query --%>
+            <div id="divCAPI">
+                <asp:GridView runat="server" ID="gvCapi" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
+            </div>
+            <%--</div>
                 </div>
-                <%-- class="show" --%>
-                <%--<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">--%>
-                <div class="card-body">
-                    <%-- contenuto che ci voglio mettere dentro --> istruzioni per la tabella (grid view) --%>
-                    <div data-role="collapsible">
-                        <h2 id="titolo1">CAPI</h2>
-                        <%-- Costruisco la tabella di visualizzazione della query --%>
-                        <asp:GridView runat="server" ID="gvCapi" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-            </div>
-            </div>
-        <%-- Seconda Card --%>
-            <div class="card">
+            </div>--%>
+            <%-- Seconda Card --%>
+            <%--<div class="card">
                 <div class="card-header intestazioneAccordion" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -51,19 +118,21 @@
                     </h2>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <%-- contenuto --%>
+                    <div class="card-body">--%>
+            <%-- contenuto --%>
 
-                        <h2 id="titolo2">DIPENDENTI</h2>
-                        <asp:GridView runat="server" ID="gvDipendenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+            <h2 id="titolo2">DIPENDENTI</h2>
+            <div>
+                <asp:GridView runat="server" ID="gvDipendenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
             </div>
+            <%-- </div>
+        </div>
+            </div>--%>
             <%-- Terza Card --%>
-            <div class="card">
+            <%--<div class="card">
                 <div class="card-header intestazioneAccordion" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -73,81 +142,89 @@
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
-
-                        <h2 id="titolo3">MODELLI</h2>
-                        <asp:GridView runat="server" ID="gvModelli" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+            <div>--%>
+            <h2 id="titolo3">MODELLI</h2>
+            <div>
+                <asp:GridView runat="server" ID="gvModelli" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
             </div>
+            <%-- </div>
+        </div>
+            </div>--%>
 
 
             <%-- Quarta Card --%>
-            <div class="card">
-                <div class="card-header intestazioneAccordion" id="headingFour">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Visualizza Punti Vendita
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <h2 id="titolo4">PUNTI VENDITA</h2>
-                        <asp:GridView runat="server" ID="gvPuntiVendita" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+            <%--<div class="card">
+            <div class="card-header intestazioneAccordion" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Visualizza Punti Vendita
+                    </button>
+                </h2>
             </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">--%>
+            <h2 id="titolo4">PUNTI VENDITA</h2>
+            <div>
+                <asp:GridView runat="server" ID="gvPuntiVendita" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
+            </div>
+            <%--</div>
+        </div>
+        </div>--%>
 
             <%-- Quinta Card --%>
-            <div class="card">
-                <div class="card-header intestazioneAccordion" id="headingFive">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Visualizza Transazioni
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <%-- contenuto --%>
-
-                        <h2 id="titolo5">TRANSAZIONI</h2>
-                        <asp:GridView runat="server" ID="gvTransazioni" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+            <%--<div class="card">
+            <div class="card-header intestazioneAccordion" id="headingFive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Visualizza Transazioni
+                    </button>
+                </h2>
             </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">--%>
+            <%-- contenuto --%>
+
+            <h2 id="titolo5">TRANSAZIONI</h2>
+            <div>
+                <asp:GridView runat="server" ID="gvTransazioni" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
+            </div>
+            <%-- </div>
+            </div>
+        </div>--%>
 
             <%-- Sesta Card --%>
-            <div class="card">
-                <div class="card-header intestazioneAccordion" id="headingSix">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            Visualizza Utenti
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <%-- contenuto --%>
+            <%--<div class="card">
+            <div class="card-header intestazioneAccordion" id="headingSix">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Visualizza Utenti
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                <div class="card-body">--%>
+            <%-- contenuto --%>
 
-                        <h2 id="titolo6">UTENTI</h2>
-                        <asp:GridView runat="server" ID="gvUtenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
-                            HorizontalAlign="Center" GridLines="None">
-                            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+            <h2 id="titolo6">UTENTI</h2>
+            <div>
+                <asp:GridView runat="server" ID="gvUtenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
+                    HorizontalAlign="Center" GridLines="None">
+                    <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                </asp:GridView>
             </div>
         </div>
+        <%--</div>
+        </div>
+        </div>--%>
         <!-- Fine div accordion-->
         <%-- FINE ACCORDION --%>
     </asp:Panel>
@@ -161,7 +238,7 @@
             $(".table").addClass("table mx-auto w-auto stileTabelle");
             // $("[id$=gvCapi]").addClass("table mx-auto w-auto stileTabelle");
 
-            $("#accordionExample").accordion({ collapsible: true, active: false });
+            //$("#divCAPI").accordion({ collapsible: true, active: false });
 
     </script>
 

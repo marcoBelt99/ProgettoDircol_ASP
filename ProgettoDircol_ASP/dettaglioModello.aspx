@@ -17,18 +17,22 @@
         td {
             background-color: white;
         }
+
+        .sfondoBtnAggiungi {
+            background-color: gold;
+            color: antiquewhite;
+        }
     </style>
 
+    <div style="padding: 50px;"></div>
 
 
     <%-- Utilizzo del controllo FormView per visualizzare un singolo recordo da un'origine dati --%>
     <%-- RenderOuterTable = "false" --%>
-    <div style="padding: 50px;"></div>
     <asp:FormView ID="fvDettagliModello" runat="server"
         ItemType="ProgettoDircol_ASP.Dati.Modello"
         SelectMethod="GetModello"
-        RenderOuterTable="false"
-       >
+        RenderOuterTable="false">
         <ItemTemplate>
             <asp:Panel runat="server" ID="pndettaglioModello" HorizontalAlign="Center">
 
@@ -140,11 +144,15 @@
             ItemType="ProgettoDircol_ASP.Dati.Capo"
             SelectMethod="GetCapiClassificati_1">
             <EmptyDataTemplate>
-                <table class="bg-white">
-                    <tr class="bg-white">
-                        <td class="bg-white">Nessun dato è stato ritornato.</td>
-                    </tr>
-                </table>
+                <div class="justify-content-center">
+                    <div class="alert alert-info alert-alert-dismissible" role="alert">
+                        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                        <center>
+                            <h6>Al momento non ci sono più capi disponibili per questo modello.</h6>
+                            <h6>La merce ritornerà in stock il prima possibile!</h6>
+                        </center>
+                    </div>
+                </div>
             </EmptyDataTemplate>
             <EmptyItemTemplate>
                 <td />
@@ -219,14 +227,12 @@
                                 ID="btnAggiungiAlCarrello" runat="server"
                                 CommandArgument='<%#Eval("ID")%>'
                                 OnClick="btnAggiungiAlCarrello_Click">
-                                <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello<b>
                             </asp:LinkButton>--%>
-                                <asp:Button CssClass="btn btn-secondary"
+                                <asp:Button CssClass="btn IconaAggiungi sfondoBtnAggiungi"
                                     ID="LinkButton1" runat="server"
                                     CommandArgument='<%#Eval("ID")%>'
                                     OnClick="btnAggiungiAlCarrello_Click"
                                     Text="Aggiungi al carrello"></asp:Button>
-                                <%-- <i class="bi bi-cart-fill"></i>&nbsp;<b>Aggiungi al carrello</b>--%>
                             </div>
                         </div>
                     </div>
@@ -277,12 +283,17 @@
 
     <script>
 
+        // ICONE PER IL BOTTONE AGGIUNGI AL CARRELLO
+        $(".IconaAggiungi").html("<i class='bi bi-bag-plus-fill'></i> &nbsp; Aggiungi al carrello");
+        $("input[type='submit']").html("<i class='bi bi-bag-plus-fill'></i> &nbsp; Aggiungi al carrello");
+
+
         // Stampo a console il vettore
-        console.log(IDs);
+        /// console.log(IDs);
         // stampo a console il vettore v1
-        console.log(IDs_v1);
+        /// console.log(IDs_v1);
         // stampo a console la stringa costruita sopra
-        console.log(IDs_stringa); // questa è una stringa che ho costruito in precedenza (guarda sopra nel codice)
+        /// console.log(IDs_stringa); // questa è una stringa che ho costruito in precedenza (guarda sopra nel codice)
 
         // Ora passo la stringa costruita prima come valore a questo campo nascosto di id='nascosto'
         // document.getElementById("nascosto").value = IDs_stringa;
@@ -338,7 +349,7 @@
 
 
     <%-- A scopo di debugging: --%>
-    <asp:Button runat="server" ID="btnMostraAlertIDCapi" CssClass="btn btn-block" OnClick="btnMostraAlertIDCapi_Click" />
+    <%--<asp:Button runat="server" ID="btnMostraAlertIDCapi" CssClass="btn btn-block" OnClick="btnMostraAlertIDCapi_Click" />--%>
 
 
     <%-- Immetto un campo nascosto e gli assegno come valore quello del vettore  --%>

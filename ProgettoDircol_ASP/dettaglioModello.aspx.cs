@@ -334,6 +334,8 @@ namespace ProgettoDircol_ASP
             lvCapi.Style.Add("padding-left", "50px");
             lvCapi.Style.Add("margin-left", "50px");
 
+            
+
             // Inizializzo la lista dei capi classificati
             //capiclassificati = op.GetCapiClassificatiDaUnModello(CodiceDelModelloInDettaglio);
             //capiclassificatiTest = GetCapiClassificati_1();
