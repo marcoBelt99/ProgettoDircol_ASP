@@ -198,7 +198,7 @@ namespace ProgettoDircol_ASP
             Session["quantita"] = GetQuantitaCapiCarrello(Session["username"].ToString());
 
             // Link da mostrare ad utente ordinario
-            navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + ""; // navbar dropdown accesso
+            navbarDropdownAccesso.InnerHtml = "<i class='bi bi-person - lines - fill'></i>&nbsp;" + Session["username"] + "&nbsp;&nbsp;&nbsp;"; // navbar dropdown accesso
             LinkButton1.Visible = true; // navbar dropdown accesso, link esci
             btnAdminLogin.Visible = true;
             linkGestioneModelli.Visible = true; // navbar link gestione modelli
@@ -291,6 +291,13 @@ namespace ProgettoDircol_ASP
             }
 
 
+            // Assegno dello stile al link in alto a destra della navbar
+            //navbarDropdownAccesso.Style.Add("margin-left", "-50px");
+            linkLoginUtente.Style.Add("padding", "0px");
+            linkRegistrazioneUtente.Style.Add("padding", "0px");
+            linkRegistrazioneUtente.Style.Add("padding", "0px");
+            linkCarrelloAcquisti.Style.Add("padding", "0px");
+            LinkButton1.Style.Add("padding", "0px");
         } // fine page load
 
 

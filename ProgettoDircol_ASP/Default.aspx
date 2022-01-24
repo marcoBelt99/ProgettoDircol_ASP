@@ -64,57 +64,78 @@
     </style>
     <!-- CAROUSEL -->
 
-    <div id="slider_vestiti" class="carousel slide carouselStile" data-ride="carousel">
+    <div id="slider_vestiti" class="carousel slide carouselStile" data-ride="carousel" data-interval="1500">
         <ol class="carousel-indicators">
             <li data-target="#slider_vestiti" data-slide-to="0" class="active"></li>
             <li data-target="#slider_vestiti" data-slide-to="1"></li>
             <li data-target="#slider_vestiti" data-slide-to="2"></li>
             <li data-target="#slider_vestiti" data-slide-to="3"></li>
             <li data-target="#slider_vestiti" data-slide-to="4"></li>
+            <li data-target="#slider_vestiti" data-slide-to="5"></li>
+            <li data-target="#slider_vestiti" data-slide-to="6"></li>
+            <li data-target="#slider_vestiti" data-slide-to="7"></li>
+            <li data-target="#slider_vestiti" data-slide-to="8"></li>
+            <li data-target="#slider_vestiti" data-slide-to="9"></li>
+            <li data-target="#slider_vestiti" data-slide-to="10"></li>
         </ol>
         <div class="carousel-inner">
             <!-- Immagine 1 -->
             <div class="carousel-item active">
-                <img class="d-block img-fluid" src="Images/armadio1.jpg" alt="Slide1" width="100%">
-
+                <img class="d-block img-fluid" src="Images/camp25.jpg" alt="Slide1" width="100%" heigt="200px">
                 <div class="carousel-caption d-none d-md d-md-block">
-                    <h3>Caption per la slide 1</h3>
-                    <p>Descrizione slide 1</p>
+                    <h3>Dircol</h3>
+                    <p>Il tuo abbigliamento, subito</p>
                 </div>
             </div>
             <!-- Immagine 2 -->
             <div class="carousel-item">
-                <img class="d-block img-fluid" src="Images/hm.jpg" alt="Slide1" width="100%">
+                <img class="d-block img-fluid" src="Images/camp26.jpg" alt="Slide1" width="100%" heigt="200px">
 
                 <div class="carousel-caption d-none d-md d-md-block">
-                    <h3>Caption per la slide 2</h3>
-                    <p>Descrizione slide 2</p>
+                    <h3>Dircol</h3>
+                    <p>Rivitalizza il tuo guardaroba!</p>
                 </div>
             </div>
             <!-- Immagine 3 -->
-            <div class="carousel-item ">
-                <img class="d-block w-100" src="Images/scarpe.jpg" alt="Second slide">
+            <div class="carousel-item">
+                <img class="d-block img-fluid" src="Images/camp10.jpg" alt="Slide1" width="100%" heigt="200px">
+
                 <div class="carousel-caption d-none d-md d-md-block">
-                    <h3>Caption per la slide 3</h3>
-                    <p>Descrizione slide 3</p>
+                    <h3>Dircol</h3>
+                    <p>Il player numero 1 nel mercato dell'abbigliamento italiano.</p>
                 </div>
             </div>
             <!-- Immagine 4 -->
             <div class="carousel-item ">
-                <img class="d-block w-100" src="Images/armadio2.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md d-md-block">
-                    <h3>Caption per la slide 4</h3>
-                    <p>Descrizione slide 4</p>
-                </div>
+                <img class="d-block w-100" src="Images/camp14.jpg" alt="Third slide" width="100%" heigt="200px">
             </div>
             <!-- Immagine 5 -->
             <div class="carousel-item">
-                <img class="d-block w-100" src="Images/wardrobe.jpg " alt="Slide5" width="100%">
-
-                <div class="carousel-caption d-none d-md d-md-block">
-                    <h3>Caption per la slide 5</h3>
-                    <p>Descrizione slide 5</p>
-                </div>
+                <img class="d-block w-100" src="Images/camp15.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 6 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp16.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 7 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp19.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 8 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp20.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 9 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp21.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 10 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp36.jpg" alt="Slide5" width="100%" heigt="200px">
+            </div>
+            <!-- Immagine 11 -->
+            <div class="carousel-item">
+                <img class="d-block w-100" src="Images/camp7.jpg" alt="Slide5" width="100%" heigt="200px">
             </div>
         </div>
         <a class="carousel-control-prev" href="#slider_vestiti" role="button" data-slide="prev">
@@ -139,11 +160,16 @@
                 <h1 class="display-1" data-text="Dircol">Dircol</h1>
             </div>
 
-            <p class="lead">Cambia il tuo modo di vestirti! Rivitalizza il tuo guardaroba!</p>
+            <p class="lead">Cambia il tuo modo di vestirti! </p>
             <footer class="blockquote-footer text-white">
                 <cite title="Source Title">Marco Beltrame</cite>
             </footer>
-            <button class="btn btn-outline-warning text-white">Scopri di più</button>
+            <a id="linkChiSiamo" 
+                runat="server"
+                class="btn btn-outline-warning text-white"
+                role="button"
+                href="chiSiamo.aspx"
+                >Scopri di più</a>
         </div>
     </div>
 

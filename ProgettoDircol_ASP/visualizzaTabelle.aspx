@@ -21,7 +21,10 @@
         <script>
             $(function () {
                 $("#accordion").accordion({
-                    collapsible: true
+                    collapsible: true,
+                    // Voglio che l'altezza di ogni elemento dell'accordion sia pari a quella del suo contenuto
+                    heightStyle: "content",
+
                 });
             });
 
@@ -46,19 +49,20 @@
 
 
 
-            // FUNZIONE PER POTER SPOSTARE LE INTESTAZIONI A PIACIMENTO
+            // FUNZIONE PER POTER SPOSTARE LE INTESTAZIONI (h2) A PIACIMENTO
+
             $(function () {
                 $("#accordion")
                     .accordion({
-                        header: "> div > h3"
+                        header: "> div > h2"
                     })
                     .sortable({
                         axis: "y",
-                        handle: "h3",
+                        handle: "h2",
                         stop: function (event, ui) {
                             // IE doesn't register the blur when sorting
                             // so trigger focusout handlers to remove .ui-state-focus
-                            ui.item.children("h3").triggerHandler("focusout");
+                            ui.item.children("h2").triggerHandler("focusout");
 
                             // Refresh accordion to handle new order
                             $(this).accordion("refresh");
@@ -67,10 +71,10 @@
             });
 
 
-            $("#divCAPI").accordion({ collapsible: true, active: false });
-            $("#accordion").accordion({
-                heightStyle: "content"
-            });
+
+            //$("#accordion").accordion({
+            //    heightStyle: "content"
+            //});
         </script>
 
     </header>
@@ -97,9 +101,10 @@
             <%-- <div class="card-body">--%>
             <%-- contenuto che ci voglio mettere dentro --> istruzioni per la tabella (grid view) --%>
             <%--<div data-role="collapsible">--%>
-            <h2 id="titolo1">CAPI</h2>
+
             <%-- Costruisco la tabella di visualizzazione della query --%>
-            <div id="divCAPI">
+            <h2 id="titolo1">CAPI</h2>
+            <div id="divCAPI" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvCapi" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -121,8 +126,9 @@
                     <div class="card-body">--%>
             <%-- contenuto --%>
 
+
             <h2 id="titolo2">DIPENDENTI</h2>
-            <div>
+            <div id="divDIPENDENTI" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvDipendenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -144,7 +150,7 @@
                     <div class="card-body">
             <div>--%>
             <h2 id="titolo3">MODELLI</h2>
-            <div>
+            <div id="divMODELLI" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvModelli" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -167,7 +173,7 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">--%>
             <h2 id="titolo4">PUNTI VENDITA</h2>
-            <div>
+            <div id="divPUNTIVENDITA" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvPuntiVendita" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -191,7 +197,7 @@
             <%-- contenuto --%>
 
             <h2 id="titolo5">TRANSAZIONI</h2>
-            <div>
+            <div id="divTRANSAZIONI" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvTransazioni" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -215,7 +221,7 @@
             <%-- contenuto --%>
 
             <h2 id="titolo6">UTENTI</h2>
-            <div>
+            <div id="divUTENTI" class="Setta_Altezza_E_Scroll">
                 <asp:GridView runat="server" ID="gvUtenti" CellPadding="1" CssClass="table mx-auto w-auto stileTabelle"
                     HorizontalAlign="Center" GridLines="None">
                     <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
@@ -233,12 +239,21 @@
 
     <%-- Javascript e JQuery nel documento corrente --%>
     <script>
+
+        // ASSEGNO L'ALTEZZA CHE VOGLIO IO E RENDO SCROLLABILI I DIV CHE CONTENGONO LE VARIE GRIDVIEW
+        $(".Setta_Altezza_E_Scroll").css("height", "400");
+        $(".Setta_Altezza_E_Scroll").css("overflow", "scroll");
+
+
         $(document).ready(function () {
+            // $("#divCAPI").accordion({ active: false });
+
             // Aggiungo a tutte le tabelle con id "#table-centerN" le classi contenute in addClass(...)
             $(".table").addClass("table mx-auto w-auto stileTabelle");
-            // $("[id$=gvCapi]").addClass("table mx-auto w-auto stileTabelle");
+            $(".table").css("max-height", "150px");
+            $(".table").Scrollable();
+        })
 
-            //$("#divCAPI").accordion({ collapsible: true, active: false });
 
     </script>
 

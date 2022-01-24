@@ -33,6 +33,15 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.WebControls.GridView gvCarrello;
 
         /// <summary>
+        /// Controllo lblTotaleCarrello.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotaleCarrello;
+
+        /// <summary>
         /// Controllo divDettaglio.
         /// </summary>
         /// <remarks>
@@ -94,5 +103,14 @@ namespace ProgettoDircol_ASP
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCollezione;
+
+        /// <summary>
+        /// Controllo btnPaga.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPaga;
     }
 }

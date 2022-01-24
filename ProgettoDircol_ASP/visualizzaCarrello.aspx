@@ -66,89 +66,142 @@
     <asp:Panel ID="pnCarrello" runat="server"
         HorizontalAlign="Center">
 
+        <h3>I miei ordini</h3>
+        <br />
 
-        <asp:GridView
-            ID="gvCarrello"
-            runat="server"
-            AutoGenerateColumns="false"
-            OnRowCommand="gvCarrello_RowCommand"
-            DataKeyNames="ID"
-            CssClass="table mx-auto w-auto stileTabelle"
-            BackColor="White"
-            HorizontalAlign="Center">
-            <%--<EmptyDataRowStyle CssClass="EmptyDataClass" />--%>
-            <EmptyDataRowStyle BackColor="White"
-                BorderStyle="None"
-                BorderColor="White"
-                ForeColor="white"
-                BorderWidth="0"
-                CssClass="EmptyDataClass" />
-            <EmptyDataTemplate>
-                <div class="justify-content-center">
-                    <div class="alert alert-warning alert-alert-dismissible" role="alert">
-                        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-                        <center>
-                            <h6>Il carrello è vuoto.</h6>
-                            <h6>Corri subito ad acquistare un capo d'abbigliamento!</h6>
-                        </center>
+        <%-- ######## --%>
+        <%-- RIGA --%>
+        <%-- ####### --%>
+        <div class="row">
+            <%-- ########### --%>
+            <%-- COLONNA 1 --%>
+            <%-- ########### --%>
+            <div class="col-md-6">
+
+                <div class="col-md-12">
+                    <%-- ############ --%>
+                    <%-- GRID VIEW --%>
+                    <%-- ############ --%>
+                    <asp:GridView
+                        ID="gvCarrello"
+                        runat="server"
+                        AutoGenerateColumns="false"
+                        OnRowCommand="gvCarrello_RowCommand"
+                        DataKeyNames="ID"
+                        CssClass="table mx-auto w-auto stileTabelle"
+                        BackColor="White"
+                        HorizontalAlign="Center">
+                        <%--<EmptyDataRowStyle CssClass="EmptyDataClass" />--%>
+                        <EmptyDataRowStyle BackColor="White"
+                            BorderStyle="None"
+                            BorderColor="White"
+                            ForeColor="white"
+                            BorderWidth="0"
+                            CssClass="EmptyDataClass" />
+                        <EmptyDataTemplate>
+                            <div class="justify-content-center">
+                                <div class="alert alert-warning alert-alert-dismissible" role="alert">
+                                    <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                                    <center>
+                                        <h6>Il carrello è vuoto.</h6>
+                                        <h6>Corri subito ad acquistare un capo d'abbigliamento!</h6>
+                                    </center>
+                                </div>
+                            </div>
+                        </EmptyDataTemplate>
+                        <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="Taglia" HeaderText="Taglia" />
+                            <asp:BoundField DataField="Colore" HeaderText="Colore" />
+                            <asp:BoundField DataField="PuntoVendita" HeaderText="Punto Vendita" />
+                            <asp:BoundField DataField="CodModello" HeaderText="Codice modello" />
+                            <asp:ButtonField
+                                Text="Dettagli"
+                                ImageUrl="~/Images/Icone/caret-right-fill.svg"
+                                ButtonType="Link"
+                                CommandName="DettagliCapo"
+                                ControlStyle-CssClass="btn btn-info IconaDettagli"
+                                HeaderText="Mostra dettagli" />
+                            <%-- ######################## --%>
+                            <asp:ButtonField
+                                Text="Rimuovi"
+                                ButtonType="Link"
+                                CommandName="EliminaCapo"
+                                ControlStyle-CssClass="btn btn-danger IconaRimuovi"
+                                HeaderText="Rimuovi un capo" />
+                        </Columns>
+                    </asp:GridView>
+
+                </div>
+            </div>
+            <%-- ########### --%>
+            <%-- COLONNA 2 --%>
+            <%-- ########### --%>
+            <div class="col-md-6">
+                <div class="col-md-12">
+
+                    <%-- CARD TOTALE PREZZO DI LISTINO --%>
+                    <center>
+                        <div class="card " style="max-width: 18rem;">
+                            <div class="card-header text-white " style="background-color: #7952b3;">Spesa di listino</div>
+                            <div class="card-body" style="background-color: #ceadff;">
+                                <asp:Label class="card-title" ID="lblTotaleCarrello" runat="server"></asp:Label>
+                                <%--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
+                            </div>
+                            <div class="card-footer " style="padding: 0px; margin: 0px; text-align: center; background-color: #7952b3;">
+                                <div class="alert alert-warning" role="alert" style="padding: 0; display: inline-block; width: auto;">
+                                    <p style="font-size: 10px;">
+                                        <i class="bi bi-exclamation-diamond-fill" style="color: goldenrod"></i>
+                                        &nbsp;Il prezzo è al netto di IVA e spese di trasporto
+                                    </p>
+                                </div>
+                            </div>
+                    </center>
+
+                    <br />
+
+
+
+                    <%-- DETTAGLI DEL MODELLO --%>
+                    <div class="content" id="divDettaglio" runat="server">
+                        <div class="col">
+                            <%--<asp:Image ID="ImgModello" runat="server"></asp:Image>--%>
+                            <img id="ImgModello" runat="server" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <asp:Label ID="lblNome" runat="server"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblDescrizione" runat="server"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblPrezzoListino" runat="server"></asp:Label>
+                        <br />
+                        <asp:Label ID="lblGenere" runat="server"></asp:Label>
+                        <asp:Label ID="lblCollezione" runat="server"></asp:Label>
                     </div>
                 </div>
-            </EmptyDataTemplate>
-            <HeaderStyle BackColor="#7952b3" Font-Bold="true" ForeColor="White" />
-            <Columns>
-                <asp:BoundField DataField="Taglia" HeaderText="Taglia" />
-                <asp:BoundField DataField="Colore" HeaderText="Colore" />
-                <asp:BoundField DataField="PuntoVendita" HeaderText="Punto Vendita" />
-                <asp:BoundField DataField="CodModello" HeaderText="Codice modello" />
-                <asp:ButtonField
-                    Text="Dettagli"
-                    ImageUrl="~/Images/Icone/caret-right-fill.svg"
-                    ButtonType="Link"
-                    CommandName="DettagliCapo"
-                    ControlStyle-CssClass="btn btn-info IconaDettagli"
-                    HeaderText="Mostra dettagli" />
-                <%-- ######################## --%>
-                <asp:ButtonField
-                    Text="Rimuovi"
-                    ButtonType="Button"
-                    CommandName="EliminaCapo"
-                    ControlStyle-CssClass="btn btn-danger IconaRimuovi"
-                    HeaderText="Rimuovi un capo" />
-            </Columns>
-        </asp:GridView>
-
-
-
-
-
-
-        <div class="content" id="divDettaglio" runat="server">
-            <div class="col">
-                <%--<asp:Image ID="ImgModello" runat="server"></asp:Image>--%>
-                <img id="ImgModello" runat="server" />
             </div>
         </div>
-        <div class="col">
-            <asp:Label ID="lblNome" runat="server"></asp:Label>
-            <br />
-            <asp:Label ID="lblDescrizione" runat="server"></asp:Label>
-            <br />
-            <asp:Label ID="lblPrezzoListino" runat="server"></asp:Label>
-            <br />
-            <asp:Label ID="lblGenere" runat="server"></asp:Label>
-            <asp:Label ID="lblCollezione" runat="server"></asp:Label>
-        </div>
 
+        <%-- BOTTONE PAGA --%>
+        <center>
+            <div style="max-width: 400px">
+                <asp:LinkButton ID="btnPaga" runat="server" CssClass="btn  btn btn-outline-success btn-lg btn-block" role="button">
+                        <i class="bi bi-wallet-fill"></i>&nbsp;&nbsp;Paga&nbsp;&nbsp;
+                </asp:LinkButton>
+            </div>
+        </center>
 
     </asp:Panel>
+
+
+    <div style="height: 150px;">
+    </div>
 
     <%-- #################### AGGIUNGO UN'ICONA AI PULSANTI  #########################--%>
     <script>
         $(".IconaDettagli").html("<i class='bi bi-three-dots'></i> &nbsp;");
-        $(".IconaRimuovi").html("<i class='bi bi-bag-dash-fills'></i> &nbsp;");
+        $(".IconaRimuovi").html("<i class='bi bi-bag-dash-fill'></i> &nbsp;");
     </script>
-
-
-
 
 </asp:Content>

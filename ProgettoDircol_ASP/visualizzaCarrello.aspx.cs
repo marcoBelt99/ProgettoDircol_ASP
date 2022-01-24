@@ -125,8 +125,40 @@ namespace ProgettoDircol_ASP
             ///MI SALVO LA QUANTITA' DI CAPI NELLA SESSIONE
             Session["quantita"] = CAPI_UTENTE.Count;
 
+            /// MI CALCOLO IL PREZZO DI LISTINO
+            double x = Calcola_Totale_Di_Listino();
+
+            /// STAMPO IL PREZZO DI LISTINO
+            lblTotaleCarrello.Text = String.Format("{0:0.00}", x)+ " €";
 
 
+        }
+
+
+        public double Calcola_Totale_Di_Listino()
+        {
+            double totale = 0.0;
+            Modello m = new Modello();
+
+            // Recupero la lista dei modelli
+            List<Modello> ListaModelli = m.GetModelli(op.GetConnectionString());
+
+            // Faccio la query
+
+            // Per ogni capo della lista dei capi dentro al carrello di questo utente
+            foreach (var capo in CAPI_UTENTE)
+            {
+                // Trovami il giusto modello che ha CodModello pari al CodModello del capo corrente
+                foreach (var modello in ListaModelli)
+                {
+                    if (capo.CodModello == modello.CodModello)
+                        totale += modello.PrezzoListino;
+                    else
+                        continue;
+                }
+            }
+
+            return totale;
         }
 
 

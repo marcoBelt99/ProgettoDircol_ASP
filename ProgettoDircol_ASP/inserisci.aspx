@@ -13,6 +13,27 @@
         * ''
         * ''
     --%>
+
+
+    <header>
+        <%-- JQuery --%>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+        <%-- JQUERY UI --%>
+        <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+        <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.min.css">
+        <script src="jquery-ui/jquery-ui.min.js"></script>
+
+
+        <%-- IMPORT IL FONT CHE VOGLIO IO --%>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+        </style>
+
+
+         <%--   --%>
+    </header>
+
     <asp:Panel ID="pnInserimento" runat="server"
         HorizontalAlign="Center">
         <%-- ############################## --%>
@@ -633,7 +654,7 @@
                     </p>
 
 
-                     <%-- USERNAME UTENTE: ddlUsernameUtente_Transazioni --%>
+                    <%-- USERNAME UTENTE: ddlUsernameUtente_Transazioni --%>
                     <p>
                         <asp:Label Text="Username dell'utente che intende acquistare:" runat="server" ID="lblUsernameUtente_Transazioni" />
                         <asp:DropDownList ID="ddlUsernameUtente_Transazioni" runat="server"
