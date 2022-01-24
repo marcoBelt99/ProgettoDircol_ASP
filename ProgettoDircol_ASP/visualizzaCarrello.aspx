@@ -99,7 +99,7 @@
                             BorderWidth="0"
                             CssClass="EmptyDataClass" />
                         <EmptyDataTemplate>
-                            <div class="justify-content-center">
+                            <div class="justify-content-center border-white">
                                 <div class="alert alert-warning alert-alert-dismissible" role="alert">
                                     <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
                                     <center>
@@ -183,12 +183,20 @@
             </div>
         </div>
 
-        <%-- BOTTONE PAGA --%>
+        <%-- BOTTONE PROSEGUI CON GLI ACQUISTI
+             BOTTONE PAGA --%>
         <center>
             <div style="max-width: 400px">
-                <asp:LinkButton ID="btnPaga" runat="server" CssClass="btn  btn btn-outline-success btn-lg btn-block" role="button">
-                        <i class="bi bi-wallet-fill"></i>&nbsp;&nbsp;Paga&nbsp;&nbsp;
+                <asp:LinkButton ID="btnContinua" runat="server"
+                    CssClass="btn  btn btn-outline-dark btn-lg btn-block" role="button"
+                    OnClick="btnContinua_Click">
+                       <i class="bi bi-cart-plus-fill"></i>&nbsp;&nbsp;Continua con gli acquisti&nbsp;&nbsp;
                 </asp:LinkButton>
+                <asp:LinkButton ID="btnPaga" runat="server" CssClass="btn  btn btn-outline-success btn-lg btn-block" role="button"
+                    OnClick="btnPaga_Click">
+                        <i class="bi bi-wallet-fill"></i>&nbsp;&nbsp;Termina e Paga&nbsp;&nbsp;
+                </asp:LinkButton>
+
             </div>
         </center>
 

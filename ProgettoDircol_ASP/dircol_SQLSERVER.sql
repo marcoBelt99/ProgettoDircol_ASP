@@ -130,7 +130,35 @@ INSERT INTO capi (Taglia, Colore, PuntoVendita, CodModello) VALUES
 ('M', '#800000', '4', 3),
 ('L', '#8F00FF', '4', 4),
 ('L', '	#008000', '3', 2),
-('XXL', '#FF0000', '1', 3);
+('XXL', '#FF0000', '1', 3),
+('XXS', '#FF0000', '1', 1),
+('S', '#000000', '6', 2),
+('L', '#FFFF00', '1', 2),
+('XL', '#008000', '1', 1),
+('XS', '#0000FF', '5', 3),
+('M', '#800000', '4', 3),
+('L', '#8F00FF', '4', 4),
+('XL', '#044440', '3', 3),
+('S', '#077070', '3', 2),
+('L', '#008000', '2', 3),
+('M', '	#118000', '3', 2),
+('XXL', '#008111', '6', 1),
+('S', '#036785', '3', 2),
+('S', '	#457699', '6', 2),
+('L', '	#008000', '2', 2),
+('XXL', '#008000', '3', 3),
+('XS', '#008000', '2', 3),
+('M', '#789425', '1', 2),
+('M', '#133665', '6', 2),
+('M', '#475369', '1', 3),
+('S', '#acdbca', '3', 2),
+('L', '#111221', '1', 2),
+('XL', '#308330', '3', 1),
+('XS', '#808880', '3', 2),
+('S', '	#044040', '3', 3),
+('M', '	#228000', '3', 4),
+('XS', '#108100', '3', 5),
+('XXL', '#FF0000', '1', 1);
 
 
 -- --------------------------------------------------------
@@ -271,7 +299,7 @@ CREATE TABLE transazioni (
   PRIMARY KEY (ID),
   -- KEY IDCapo (IDCapo),
   FOREIGN KEY (Matricola) REFERENCES dipendenti (Matricola),
-  FOREIGN KEY (IDCapo) REFERENCES capi (ID),
+  --FOREIGN KEY (IDCapo) REFERENCES capi (ID),
   FOREIGN KEY (UsernameUtente) REFERENCES utenti (UsernameUtente)
 ) ;
 TRUNCATE TABLE transazioni;
@@ -279,9 +307,9 @@ TRUNCATE TABLE transazioni;
 -- Dump dei dati per la tabella `transazioni`
 --
 
-INSERT INTO transazioni (DataTransazione, PrezzoTransazione, Matricola, IDCapo, UsernameUtente) VALUES
-('2021-11-04', 444, '148881', 9, 'mark99'),
-('2021-08-11', 512, '369541', 5, 'grbele2000');
+--INSERT INTO transazioni (DataTransazione, PrezzoTransazione, Matricola, IDCapo, UsernameUtente) VALUES
+--('2021-11-04', 444, '148881', 9, 'mark99'),
+--('2021-08-11', 512, '369541', 5, 'grbele2000');
 
 
 --

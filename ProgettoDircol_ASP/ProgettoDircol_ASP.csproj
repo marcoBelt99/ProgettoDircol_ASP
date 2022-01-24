@@ -321,6 +321,7 @@
     <Content Include="jquery-ui\LICENSE.txt" />
     <Content Include="loginAdmin.aspx" />
     <Content Include="loginUtente.aspx" />
+    <Content Include="pagamento.aspx" />
     <Content Include="prove.aspx" />
     <Content Include="registrazioneUtente.aspx" />
     <Content Include="Scripts\bootstrap-Original.js" />
@@ -596,6 +597,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="pagamento.aspx.cs">
+      <DependentUpon>pagamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagamento.aspx.designer.cs">
+      <DependentUpon>pagamento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="prove.aspx.cs">
       <DependentUpon>prove.aspx</DependentUpon>

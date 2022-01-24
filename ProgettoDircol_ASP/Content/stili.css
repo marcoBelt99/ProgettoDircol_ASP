@@ -68,7 +68,7 @@ tr {
     box-shadow: 5px 5px 5px #5e0add;
     width: auto;
     /* 5 10 8 */
-    padding-right:30px;
+    padding-right: 30px;
 }
 
     .stileNavbar a:hover {
@@ -89,8 +89,10 @@ tr {
 
 .navbar-nav > li > .dropdown-menu {
     background-color: #7952b3;
-    margin:auto;
-    padding:0;
+    margin: auto;
+    padding: 0;
+    padding-top:4px;
+    padding-bottom:4px;
 }
 
     /* Cambio il colore dei link del dropdown menù della navbar */
@@ -109,18 +111,37 @@ tr {
         }
 
 div.dropdown-menu.dropdown-menu-dark.show {
-    padding: 0 !important;
-    margin: 0 !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    margin-top: 4px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
 }
+
 .dropdown-item {
-    padding: 0 !important;
-    margin: 0 !important;
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
 }
-.dropdown-item a {
-    padding:0 !important;
-    margin:0 !important;
-}
+
+    .dropdown-item a {
+        margin-top: 4px !important;
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+    }
+
 a.dropdown-item.active {
+    margin-top: 4px !important;
     background: #ceadff;
 }
 

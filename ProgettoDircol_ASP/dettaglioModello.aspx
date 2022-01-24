@@ -136,112 +136,115 @@
 
 
     <asp:Panel ID="pndettaglioModello_1" runat="server" HorizontalAlign="Center">
-
         <%-- Insieme di tutti i capi che sono classificati da questo modello --%>
         <h3>Insieme di tutti i capi che sono classificati da questo modello</h3>
-        <asp:ListView ID="lvCapi" runat="server"
-            DataKeyNames="ID" GroupItemCount="4"
-            ItemType="ProgettoDircol_ASP.Dati.Capo"
-            SelectMethod="GetCapiClassificati_1">
-            <EmptyDataTemplate>
-                <div class="justify-content-center">
-                    <div class="alert alert-info alert-alert-dismissible" role="alert">
-                        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-                        <center>
-                            <h6>Al momento non ci sono più capi disponibili per questo modello.</h6>
-                            <h6>La merce ritornerà in stock il prima possibile!</h6>
-                        </center>
-                    </div>
-                </div>
-            </EmptyDataTemplate>
-            <EmptyItemTemplate>
-                <td />
-            </EmptyItemTemplate>
-            <GroupTemplate>
-                <tr id="itemPlaceholderContainer" runat="server" class="bg-white">
-                    <td id="itemPlaceholder" runat="server" class="bg-white"></td>
-                </tr>
-            </GroupTemplate>
+        <section style="padding-left: 175px; padding-right: 175px">
+            <center>
+                <asp:ListView ID="lvCapi" runat="server"
+                    DataKeyNames="ID" GroupItemCount="4"
+                    ItemType="ProgettoDircol_ASP.Dati.Capo"
+                    SelectMethod="GetCapiClassificati_1">
+                    <emptydatatemplate>
+                        <div class="justify-content-center">
+                            <div class="alert alert-info alert-alert-dismissible" role="alert">
+                                <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                                <center>
+                                    <h6>Al momento non ci sono più capi disponibili per questo modello.</h6>
+                                    <h6>La merce ritornerà in stock il prima possibile!</h6>
+                                </center>
+                            </div>
+                        </div>
+                    </emptydatatemplate>
+                    <emptyitemtemplate>
+                        <td />
+                    </emptyitemtemplate>
+                    <grouptemplate>
+                        <tr id="itemPlaceholderContainer" runat="server" class="bg-white">
+                            <td id="itemPlaceholder" runat="server" class="bg-white"></td>
+                        </tr>
+                    </grouptemplate>
 
 
-            <ItemTemplate>
+                    <itemtemplate>
 
 
-                <td runat="server" class="bg-white">
-                    <div class="justify-content-center">
-                        <div class="list-group" id="listviewCapo" runat="server">
-                            <%-- ID --%>
-                            <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
-                            <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
-                            <%--<a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
+                        <td runat="server" class="bg-white">
+                            <div class="justify-content-center">
+                                <div class="list-group" id="listviewCapo" runat="server">
+                                    <%-- ID --%>
+                                    <%--<%#  GetIDCapoDaAggiungere(Item.ID); %>--%>
+                                    <%--<%#: IDCapo_DaAggiungereAlCarrello = Item.ID %>--%>
+                                    <%--<a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
                                 role="button" data-toggle="collapse" href="#divCollassabile<%#:Item.ID%>"
                                 style="background-color: #7952b3"
                                 aria-expanded="false" aria-controls="divCollassabile<%#:Item.ID%>">--%>
 
 
-                            <a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
-                                role="button"
-                                style="background-color: #7952b3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">ID:&nbsp;<%#:Item.ID %></h5>
-                                </div>
-                                <%--<p class="mb-1"><%#:Item.ID %> </p>--%>
-                            </a>
+                                    <a class="list-group-item list-group-item-action flex-column align-items-start btn text-white"
+                                        role="button"
+                                        style="background-color: #7952b3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">ID:&nbsp;<%#:Item.ID %></h5>
+                                        </div>
+                                        <%--<p class="mb-1"><%#:Item.ID %> </p>--%>
+                                    </a>
 
-                            <%-- TAGLIA --%>
-                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Taglia</h5>
-                                </div>
-                            <p class="mb-1"><%#:Item.Taglia %>  </p>
+                                    <%-- TAGLIA --%>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Taglia</h5>
+                                        </div>
+                                    <p class="mb-1"><%#:Item.Taglia %>  </p>
 
-                            <%-- COLORE --%>
-                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Colore</h5>
-                                </div>
-                                <%-- <p class="mb-1"><%#:Item.Colore %>  </p>--%>
-                                <center>
-                                    <p class="mb-1 justify-content-center" style="text-align: center;">
+                                    <%-- COLORE --%>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Colore</h5>
+                                        </div>
+                                        <%-- <p class="mb-1"><%#:Item.Colore %>  </p>--%>
                                         <center>
-                                            <input type="color" value="<%#:Item.Colore %>" style="text-align: center;" disabled
-                                                class="mb-1" />
+                                            <p class="mb-1 justify-content-center" style="text-align: center;">
+                                                <center>
+                                                    <input type="color" value="<%#:Item.Colore %>" style="text-align: center;" disabled
+                                                        class="mb-1" />
+                                                </center>
+                                            </p>
                                         </center>
-                                    </p>
-                                </center>
-                                <div style="padding-bottom: 25px"></div>
-                            </a>
+                                        <div style="padding-bottom: 25px"></div>
+                                    </a>
 
-                            <%-- PUNTO VENDITA --%>
-                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Punto Vendita</h5>
-                                </div>
-                                <p class="mb-1"><%#:Item.PuntoVendita %>  </p>
-                            </a>
-                            <div class="d-flex w-100 justify-content-between">
-                                <%-- ############################################################# --%>
-                                <%-- PASSO COME ARGOMENTO Item.ID AL GESTORE DELL'EVENTO CLICK --%>
-                                <%-- ############################################################# --%>
-                                <%--<asp:LinkButton CssClass="btn btn-secondary"
+                                    <%-- PUNTO VENDITA --%>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabilitaClick">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Punto Vendita</h5>
+                                        </div>
+                                        <p class="mb-1"><%#:Item.PuntoVendita %>  </p>
+                                    </a>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <%-- ############################################################# --%>
+                                        <%-- PASSO COME ARGOMENTO Item.ID AL GESTORE DELL'EVENTO CLICK --%>
+                                        <%-- ############################################################# --%>
+                                        <%--<asp:LinkButton CssClass="btn btn-secondary"
                                 ID="btnAggiungiAlCarrello" runat="server"
                                 CommandArgument='<%#Eval("ID")%>'
                                 OnClick="btnAggiungiAlCarrello_Click">
                             </asp:LinkButton>--%>
-                                <asp:Button CssClass="btn IconaAggiungi sfondoBtnAggiungi"
-                                    ID="LinkButton1" runat="server"
-                                    CommandArgument='<%#Eval("ID")%>'
-                                    OnClick="btnAggiungiAlCarrello_Click"
-                                    Text="Aggiungi al carrello"></asp:Button>
+                                        <asp:Button CssClass="btn IconaAggiungi"
+                                            BackColor="Aquamarine"
+                                            BorderColor="#0099ff"
+                                            ID="LinkButton1" runat="server"
+                                            CommandArgument='<%#Eval("ID")%>'
+                                            OnClick="btnAggiungiAlCarrello_Click"
+                                            Text="Aggiungi al carrello"></asp:Button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <br />
-                    <br />
+                            <br />
+                            <br />
 
 
 
-                    <script>
+                            <script>
                         // PREPARO I VETTORI
                         // Mi salvo questo valore (pari all'ID i-esimo)
                         // var x = document.getElementsByClassName("OK").value = "<%--<%#:Item.ID%>--%>";
@@ -252,31 +255,33 @@
                         // Provo ad aggiungerlo ad una stinga che sto costruendo.
                         // Nel prossimo script, qua sotto avrò finito di costruirla
                         // IDs_stringa = IDs_stringa + <%--<%#:Item.ID.ToString() %> --%>
-                    </script>
-                </td>
-            </ItemTemplate>
+                            </script>
+                        </td>
+                    </itemtemplate>
 
-            <LayoutTemplate>
-                <table style="width: 100%;">
-                    <tbody class="bg-white">
-                        <tr class="bg-white">
-                            <td class="bg-white">
-                                <table id="groupPlaceholderContainer" runat="server" class="bg-white">
-                                    <tr id="groupPlaceholder" class="bg-white"></tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <td class="bg-white"></td>
-                        </tr>
-                        <tr class="bg-white"></tr>
-                    </tbody>
-                </table>
-            </LayoutTemplate>
-            <ItemSeparatorTemplate>
-            </ItemSeparatorTemplate>
-        </asp:ListView>
-        <%-- Fine ListView --%>
+                    <layouttemplate>
+                        <table style="width: 100%;">
+                            <tbody class="bg-white">
+                                <tr class="bg-white">
+                                    <td class="bg-white">
+                                        <table id="groupPlaceholderContainer" runat="server" class="bg-white">
+                                            <tr id="groupPlaceholder" class="bg-white"></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="bg-white"></td>
+                                </tr>
+                                <tr class="bg-white"></tr>
+                            </tbody>
+                        </table>
+                    </layouttemplate>
+                    <itemseparatortemplate>
+                    </itemseparatortemplate>
+                </asp:ListView>
+                <%-- Fine ListView --%>
+            </center>
+        </section>
     </asp:Panel>
 
 

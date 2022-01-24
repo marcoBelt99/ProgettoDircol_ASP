@@ -169,20 +169,21 @@
 
                     <!-- Dropdown menù: Gestione utenti e Log-in mio personale / Accesso -->
                     <ul class="navbar-nav" <%--style="padding:0"--%>>
-                        <li class="nav-item dropdown drop" style="padding:0; margin-left:100px;">
+                        <li class="nav-item dropdown drop"
+                            style="padding-left: 0; padding-right: 0; margin-left: 100px;">
                             <a class="nav-link dropdown-toggle text-nowrap"
                                 href="#"
                                 id="navbarDropdownAccesso" runat="server"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="padding:0">
+                                style="padding: 0">
                                 <i class="bi bi-person-lines-fill"></i>&nbsp;Accesso
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownAccesso">
 
 
-                                 <%-- Visualizza Carrello --%>
+                                <%-- Visualizza Carrello --%>
                                 <a class="dropdown-item" runat="server" href="~/visualizzaCarrello" id="linkCarrelloAcquisti">
-                                    <i class="bi bi-cart4"></i>&nbsp;Carrello&nbsp;<span class="badge badge-light" 
+                                    <i class="bi bi-cart4"></i>&nbsp;Carrello&nbsp;<span class="badge badge-light"
                                         id="spanQuantitaCarrello" runat="server">  </span>
                                     <span class="sr-only">unread messages</span>
                                 </a>

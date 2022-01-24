@@ -105,6 +105,15 @@ namespace ProgettoDircol_ASP
         protected global::System.Web.UI.WebControls.Label lblCollezione;
 
         /// <summary>
+        /// Controllo btnContinua.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnContinua;
+
+        /// <summary>
         /// Controllo btnPaga.
         /// </summary>
         /// <remarks>

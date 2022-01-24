@@ -118,7 +118,7 @@ namespace ProgettoDircol_ASP
             // e la salvo in una variabile
             ListaCarrelli = JsonConvert.DeserializeObject<List<Carrello>>(json);
 
-            /// POPOLO LA GRID VIEW 
+            /// POPOLO LA GRID VIEW: costruisco la lista CAPI_UTENTE
             PopolaGridView();
 
 
@@ -129,11 +129,21 @@ namespace ProgettoDircol_ASP
             double x = Calcola_Totale_Di_Listino();
 
             /// STAMPO IL PREZZO DI LISTINO
-            lblTotaleCarrello.Text = String.Format("{0:0.00}", x)+ " €";
+            lblTotaleCarrello.Text = String.Format("{0:0.00}", x) + " €";
 
 
         }
 
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            /** Fase di rendering.
+              * Uso questo metodo se ho bisogno di modificare il markup di output di un controllo prima che esso venga renderizzato  */
+
+            /// Stato applicativo. È gestito mediante l’oggetto Application. Consente di mantenere i dati
+            /// permanentemente in memoria e di renderli accessibili a tutta l’applicazione.
+            Application["CAPI_UTENTE"] = CAPI_UTENTE;
+        }
 
         public double Calcola_Totale_Di_Listino()
         {
@@ -541,5 +551,19 @@ namespace ProgettoDircol_ASP
         }
 
 
+        /// <summary>
+        /// Redirect a pagina gestione modelli
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnContinua_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("gestioneModelli.aspx");
+        }
+
+        protected void btnPaga_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("pagamento.aspx");
+        }
     }
 }

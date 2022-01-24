@@ -291,13 +291,26 @@ namespace ProgettoDircol_ASP
             }
 
 
-            // Assegno dello stile al link in alto a destra della navbar
-            //navbarDropdownAccesso.Style.Add("margin-left", "-50px");
+            /// Assegno dello stile al link in alto a destra della navbar
+
+            // Tolgo il padding generico
             linkLoginUtente.Style.Add("padding", "0px");
             linkRegistrazioneUtente.Style.Add("padding", "0px");
             linkRegistrazioneUtente.Style.Add("padding", "0px");
             linkCarrelloAcquisti.Style.Add("padding", "0px");
             LinkButton1.Style.Add("padding", "0px");
+            // Aggiungo il padding top
+            linkLoginUtente.Style.Add("padding-top", "3px");
+            linkRegistrazioneUtente.Style.Add("padding-top", "4px");
+            linkRegistrazioneUtente.Style.Add("padding-top", "3px");
+            linkCarrelloAcquisti.Style.Add("padding-top", "3px");
+            LinkButton1.Style.Add("padding-top", "3px");
+            // Aggiungo il padding bottom
+            linkLoginUtente.Style.Add("padding-bottom", "3px");
+            linkRegistrazioneUtente.Style.Add("padding-bottom", "4px");
+            linkRegistrazioneUtente.Style.Add("padding-bottom", "3px");
+            linkCarrelloAcquisti.Style.Add("padding-bottom", "3px");
+            LinkButton1.Style.Add("padding-bottom", "3px");
         } // fine page load
 
 
