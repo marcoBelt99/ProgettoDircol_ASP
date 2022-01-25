@@ -358,6 +358,63 @@ namespace ProgettoDircol_ASP.Dati
         }
 
 
+
+
+        /// <summary>
+        /// Ritorna la lista dei dipendenti di qualifica venditore.
+        /// </summary>
+        /// <returns></returns>
+        public List<Dipendente> GetDipendentiVenditori()
+        {
+            //List<Dipendente> venditori = new List<Dipendente>();
+
+            // Dichiaro la lista che poi dovrò ritornare
+            List<Dipendente> listaDipendenti = new List<Dipendente>();
+
+            // Dichiaro una variabile per la connessione
+            SqlConnection con = new SqlConnection(connectionString);
+
+            // Stringa SQL: Seleziona tutti i dati dalla tabella 'dipendenti'
+            string selectSQL = "select * from dipendenti where Qualifica='Venditore' order by Matricola";
+
+            // Apro la connessione
+            con.Open();
+
+            // Imposto il comando SQL
+            SqlCommand cmd = new SqlCommand(selectSQL, con);
+
+            // Leggo le righe (in modo forward-only) dal database
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            // 
+            if (dr != null)
+            {
+                // Finchè leggi una riga (un record) dal database
+                while (dr.Read())
+                {
+                    // Crea un nuovo oggetto di tipo Dipendente
+                    Dipendente dipendente = new Dipendente();
+
+                    // Leggi e converti i dati dal record corrente
+                    dipendente.Matricola = dr["Matricola"].ToString();
+                    dipendente.Cognome = dr["Cognome"].ToString();
+                    dipendente.Nome = dr["Nome"].ToString();
+                    dipendente.CodiceFiscale = dr["CodiceFiscale"].ToString();
+                    dipendente.Qualifica = dr["Qualifica"].ToString();
+                    dipendente.PuntoVendita = Convert.ToInt32(dr["PuntoVendita"]);
+
+                    // Aggiungi il capo alla lista
+                    listaDipendenti.Add(dipendente);
+
+                }
+            }
+
+            // Ritorno la lista di dipendenti
+            return listaDipendenti;
+        }
+
+
+
         /// <summary>
         /// Ritorna la lista degli stati che vado a leggere dal file 'statiMembri.txt'
         /// La richiamo in 'registraUtente.aspx' per andare a popolare

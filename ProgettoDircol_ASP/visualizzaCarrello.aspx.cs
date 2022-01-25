@@ -66,6 +66,9 @@ namespace ProgettoDircol_ASP
 
         string NomeFileJson = HttpContext.Current.Server.MapPath("~/Carrelli.json");    // Prelevo il nome del file JSON
 
+        // Per contenere il prezzo di listino totale
+        double x;
+
 
         /// Creo un oggetto di tipo UtenteOrdinario che mi servirà per assicurarmi di star considerando
         /// l'utente della sessione corrente. In pratica lo uso per fare i confronti: if(utente == Session["utente"])
@@ -126,11 +129,28 @@ namespace ProgettoDircol_ASP
             Session["quantita"] = CAPI_UTENTE.Count;
 
             /// MI CALCOLO IL PREZZO DI LISTINO
-            double x = Calcola_Totale_Di_Listino();
+            x = Calcola_Totale_Di_Listino();
 
             /// STAMPO IL PREZZO DI LISTINO
             lblTotaleCarrello.Text = String.Format("{0:0.00}", x) + " €";
 
+
+            // Abilito / Disabilito il bottone paga in base alla quantità del carrello
+            lblCarrelloVuoto.Visible = false;
+            if (CAPI_UTENTE != null)
+            {
+                if (CAPI_UTENTE.Count < 1)
+                {
+                    btnPaga.Enabled = false;
+                    //lblCarrelloVuoto.Visible = true;
+                }
+                else
+                {
+                    btnPaga.Enabled = true;
+                    //lblCarrelloVuoto.Visible = false;
+                }
+
+            }
 
         }
 
@@ -563,7 +583,16 @@ namespace ProgettoDircol_ASP
 
         protected void btnPaga_Click(object sender, EventArgs e)
         {
-            Response.Redirect("pagamento.aspx");
+            if (CAPI_UTENTE != null && CAPI_UTENTE.Count < 1)
+            {
+                lblCarrelloVuoto.Visible = true;
+            }
+
+            /// USO DELLA VARIABILE APPLICATION: passo la lista dei capi presenti nel carrello (DataSource della gv)
+            Application["CAPI_UTENTE"] = CAPI_UTENTE;
+            /// USO DELLE QUERY STRING PER PASSARE IL TOTALE DI LISTINO
+            string queryString = String.Format("?totaleListino={0:0.00}", x);
+            Response.Redirect("pagamento.aspx" + queryString);
         }
     }
 }

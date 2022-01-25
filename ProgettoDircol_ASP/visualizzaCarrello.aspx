@@ -196,7 +196,7 @@
                     OnClick="btnPaga_Click">
                         <i class="bi bi-wallet-fill"></i>&nbsp;&nbsp;Termina e Paga&nbsp;&nbsp;
                 </asp:LinkButton>
-
+                <asp:Label ID="lblCarrelloVuoto" runat="server" CssClass="alert alert-warning">Per pagare devi prima aver acquistato almeno un capo! </asp:Label>
             </div>
         </center>
 

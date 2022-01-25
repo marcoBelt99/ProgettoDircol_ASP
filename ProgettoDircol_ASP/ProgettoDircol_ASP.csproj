@@ -280,9 +280,11 @@
     <Content Include="Images\fotoModelli\MagliaRossa.jpg" />
     <Content Include="Images\fotoModelli\MagliaVerde.jpg" />
     <Content Include="Images\fotoModelli\MaglioneZaraGiallo.jpg" />
+    <Content Include="Images\fotoModelli\nike_t_shirt.jpg" />
     <Content Include="Images\fotoModelli\PantaloniBlu.jpg" />
     <Content Include="Images\fotoModelli\ScarpeNikeDonna.jpg" />
     <Content Include="Images\fotoModelli\SharpaRossa.jpg" />
+    <Content Include="Images\fotoModelli\tommy_hilfiger_tshirt.jpg" />
     <Content Include="Images\Icone\caret-right-fill.svg" />
     <Content Include="Images\keyAdmin.png" />
     <Content Include="Images\LoginAdmin.png" />
