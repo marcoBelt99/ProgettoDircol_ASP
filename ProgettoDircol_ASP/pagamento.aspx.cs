@@ -186,6 +186,11 @@ namespace ProgettoDircol_ASP
 
                 // La inserisco nella tabella del DB
                 transazione.InserisciTransazione(op.GetConnectionString(), transazione);
+
+
+                Response.Redirect("pagamento.aspx");
+
+                /// ORA DEVO AGGIORNARE I DUE FILE: 'CapiAggiuntiAlCarrello.txt','Carrelli.JSON' ANDANDO A RIMUOVERE IL CAPO E L'ID DI QUESTO CAPO
             }
 
 
