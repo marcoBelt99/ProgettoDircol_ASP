@@ -35,13 +35,14 @@ Anzitutto, il [File .sql del database:](https://github.com/marcoBelt99/ProgettoD
 * Pagina  [visualizzaTabelle.aspx](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/visualizzaTabelle.aspx) in cui è presente un elemento bootstrap "*accordion*" che servirà all'amministratore del sito per visualizzare lo schema della base di dati.
 
 #### Classi implementate
-Collegati ad essi, all'interno del direttorio: [Dati](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati) si trovano tutte le classi delle relative *entità* di base succitate, tutte contenenti "operazioni di CRUD" (per ora solo inserimenti, successivamenti anche modifiche e cancellazioni. Per le modifiche e le cancellazioni si faccia riferimento al [Progetto dirocol in PHP]()):
+Collegati ad essi, all'interno del direttorio: [Dati](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati) si trovano tutte le classi delle relative *entità* di base succitate, tutte contenenti "operazioni di CRUD" (per ora solo inserimenti, successivamenti anche modifiche e cancellazioni. Per le modifiche e le cancellazioni si faccia riferimento al [Progetto dirocol in PHP](https://github.com/marcoBelt99/ProgettoDircol_PHP)):
 * [Capo.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Capo.cs), 
 * [Modello.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Modello.cs), 
 * [PuntoVendita.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/PuntoVendita.cs),
 * [Dipendente.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Dipendente.cs), 
 * [Transazione.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Transazione.cs).
-
+* [Utente.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Utente.cs).
+* [Amministratore](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Amministratore.cs)
 Inoltre, la classe [Operazione.cs](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/Dati/Operazione.cs) è di notevole utilità, poichè offre molte operazioni con le classi delle entità, che permettono di: estrarre alcune liste di elementi inseriti in alcune tabelle del database, contiene la stringa di connessione al DB, ed altri metodi per effettuare operaazioni utili.
 
 Si noti che, ogni pagina \*.aspx  è accompagnata dalla relativa pagina contente il **'Code Behind'**, ossia la '*business logic*' della pagina, avente estensione \*.aspx.cs
@@ -55,12 +56,7 @@ In pratica, vi saranno **3 tipi di utenti**: utente non registrato, utente ordin
 1. Utente non registrato: non ha accesso ad alcune pagine web, ed ad alcuni link, es. il *log-out*.
 2. Utente ordinario registrato: ha accesso a tutte le pagine web, tranne quelle riservate all'amministratore.
 3. Amministratore: ha accesso a tutte le pagine, tranne quella di registrazione di un utente e di gestione modelli (non può acquistare).
-In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Site.Master.cs) sto utilizzando la variabile **Session[]** per poter gestire i diversi ruoli utenti. Session è inizializzata nei due file di login degli utenti (ordinari ed amministratori). Tuttavia, per il momento tale variabile risulta sempre *null*. Ho bypassato questo problema inserendo alcune istruzioni di controllo nel *Site.Master.cs*. Di seguito riporto una tabella riepilogativa sull'accesso consentito e non consentito delle varie pagine del sito.
-
-#### Gestione del carrello acquisti:
-E' stato implementato utilizzando alcuni file ed alcune strutture dati. I file li ho usati come se fossero delle tabelle. Partiamo dai **file:
-* [CapiAggiuntiAlCarrello](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/CapiAggiuntiAlCarrello.txt) contiene l'elenco di tutti i capi aggiunti al carrello. E' come se fosse un "doppione" della tabella 'capi' del Database.
-* [Carrelli.json](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Carrelli.json) contiene un elenco di oggetti di tipo 'Carrello'. gli attributi sono 
+In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Site.Master.cs) sto utilizzando la variabile **Session[]** per poter gestire i diversi ruoli utenti. Session è inizializzata nei due file di login degli utenti (ordinari ed amministratori). Mi sono assicurato che non risulti*null* (ossia che venga inizializzata correttamente). Ho bypassato questo problema inserendo alcune istruzioni di controllo nel *Site.Master.cs*. Di seguito riporto una tabella riepilogativa sull'accesso consentito e non consentito delle varie pagine del sito.
 
 | Pagina\utente     | Utente non loggato | Utente loggato | Amministratore |
 | ---| --- | --- | --- |
@@ -68,11 +64,20 @@ E' stato implementato utilizzando alcuni file ed alcune strutture dati. I file l
 | *inserisci.aspx* | :x:  | :x: | :heavy_check_mark: |
 | *aggiorna.aspx*  | :x: | :x: | :heavy_check_mark:|
 | *elimina.aspx*   | :x: | :x: | :heavy_check_mark: |
-| *loginUtente.aspx* | :heavy_check_mark: | :x: | :x: |
-| *loginAdmin.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| *registrazioneUtente.aspx* | :heavy_check_mark: | :x: | :x: |
 | *visualizzaTabelle.aspx* | :x: | :x: | :heavy_check_mark: |
+| *loginAdmin.aspx* | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| *loginUtente.aspx* | :heavy_check_mark: | :x: | :x: |
+| *registrazioneUtente.aspx* | :heavy_check_mark: | :x: | :x: |
 | *gestioneModelli.aspx* | :x: | :heavy_check_mark: | :x: |
 | *dettaglioModello.aspx* | :x: | :heavy_check_mark: | :x: |
 | *visualizzaCarrello.aspx* | :x: | :heavy_check_mark: | :x: |
 | *pagamento.aspx* | :x: | :heavy_check_mark: | :x: |
+
+
+#### Gestione del carrello acquisti:
+E' stato implementato utilizzando alcuni file ed alcune strutture dati. I file li ho usati *come se fossero delle tabelle*. Partiamo dai **file:**
+* [CapiAggiuntiAlCarrello](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/CapiAggiuntiAlCarrello.txt) contiene l'elenco di tutti i capi aggiunti al carrello. E' come se fosse un "doppione" della tabella 'capi' del Database.
+* [Carrelli.json](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Carrelli.json) contiene un elenco di oggetti di tipo 'Carrello'.
+Le **strutture dati** utilizzate sono: alcune Liste (List<TipoOggetto>) e Dizionario. Sostanzialmente, si prelevano i dati dal file .txt (lettura) e si manipolano usando operazioni di join tra le due. Si fanno operazioni di ricerca, inserimento, eliminazione in lista, anche usando **LINQ**.
+Una volta che si è fatta l'operazione, che si è modificata strutturalmente la lista, potremo andare a riscriverla nei rispettivi file.
+ListaCarrelli, DizionarioCapiAggiuntiAlCarrello... .......................... (mettere immagine su draw.io)  
