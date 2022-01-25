@@ -14,7 +14,7 @@ provare a dare questo comando nella Console di gestione dei pacchetti di Visual 
 * Altri problemi ...
 
 ## Struttura del progetto
-Il progetto è costituito da alcuni file che rappresentano le operazioni di DML (Data Manipulation Language) delle principali entità (capo, modello, puntovendita, dipendente, vendita):
+Il progetto è costituito da alcune pagine che rappresentano le operazioni di DML (Data Manipulation Language) delle principali entità (capo, modello, puntovendita, dipendente, vendita). Gli altri file :
 
 #### Dump del Database
 Anzitutto, il [File .sql del database:](https://github.com/marcoBelt99/ProgettoDircol_ASP/tree/master/ProgettoDircol_ASP/dircol_SQLSERVER.sql), che contiene il codice per il 'dump' in ambiente SQL Server.
@@ -70,3 +70,5 @@ In [*Site.master.cs*](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/mas
 | *visualizzaTabelle.aspx* | :x: | :x: | :heavy_check_mark: |
 | *gestioneModelli.aspx* | :x: | :heavy_check_mark: | :x: |
 | *dettaglioModello.aspx* | :x: | :heavy_check_mark: | :x: |
+| *visualizzaCarrello.aspx* | :x: | :heavy_check_mark: | :x: |
+| *pagamento.aspx* | :x: | :heavy_check_mark: | :x: |
