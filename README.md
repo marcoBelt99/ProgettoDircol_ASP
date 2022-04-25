@@ -80,4 +80,37 @@ E' stato implementato utilizzando alcuni file ed alcune strutture dati. I file l
 * [Carrelli.json](https://github.com/marcoBelt99/ProgettoDircol_ASP/blob/master/ProgettoDircol_ASP/Carrelli.json) contiene un elenco di oggetti di tipo 'Carrello'.
 Le **strutture dati** utilizzate sono: alcune Liste (List<TipoOggetto>) e Dizionario. Sostanzialmente, si prelevano i dati dal file .txt (lettura) e si manipolano usando operazioni di join tra le due. Si fanno operazioni di ricerca, inserimento, eliminazione in lista, anche usando **LINQ**.
 Una volta che si è fatta l'operazione, che si è modificata strutturalmente la lista, potremo andare a riscriverla nei rispettivi file.
-ListaCarrelli, DizionarioCapiAggiuntiAlCarrello... .......................... (mettere immagine su draw.io)  
+ListaCarrelli, DizionarioCapiAggiuntiAlCarrello... .......................... (mettere immagine su draw.io).
+
+-----------------------------------------------------------------------------------------------------  
+  
+#Struttura del progetto:
+![Schermata da 2022-04-25 23-52-14](https://user-images.githubusercontent.com/74368037/165182336-72d2bd97-ac83-4ef3-b191-1155c33b2bb9.png)
+  
+![Schermata da 2022-04-25 23-52-31](https://user-images.githubusercontent.com/74368037/165182343-55e88005-3971-4ff6-8d70-2518c00b1d09.png)
+  
+![Schermata da 2022-04-25 23-52-56](https://user-images.githubusercontent.com/74368037/165182346-a9ae3c0f-9e76-4067-91ed-a472af409400.png)
+  
+![Schermata da 2022-04-25 23-53-53](https://user-images.githubusercontent.com/74368037/165182354-6b72ccab-2c01-416d-9072-f2269f8b3cd3.png)
+  
+![Schermata da 2022-04-25 23-54-04](https://user-images.githubusercontent.com/74368037/165182361-911b0829-1ec7-4f34-9c65-135e7d9d3091.png)
+  
+![Schermata da 2022-04-25 23-54-45](https://user-images.githubusercontent.com/74368037/165182365-e8120e5b-1711-4d27-8d97-239ed98317d7.png)
+  
+![Schermata da 2022-04-25 23-55-08](https://user-images.githubusercontent.com/74368037/165182369-1b27a74e-f599-4645-9282-54b2f31d7fb4.png)
+  
+![Schermata da 2022-04-25 23-55-56](https://user-images.githubusercontent.com/74368037/165182370-29c4db42-1d3a-4a45-ae0c-c8f57355d9a6.png)
+  
+![Schermata da 2022-04-25 23-56-08](https://user-images.githubusercontent.com/74368037/165182373-3a2cfbf4-3ca0-4c11-9755-1517daa371cf.png)
+  
+![Schermata da 2022-04-25 23-56-52](https://user-images.githubusercontent.com/74368037/165182384-06f30b64-aa69-4206-82a3-50642f9a3e51.png)
+  
+![Schermata da 2022-04-25 23-57-08](https://user-images.githubusercontent.com/74368037/165182388-8f47021b-04ac-4d97-9433-62a5ada24da8.png)
+  
+![Schermata da 2022-04-25 23-57-24](https://user-images.githubusercontent.com/74368037/165182391-5b7166a9-9c6e-4de6-8615-7e442dbd389c.png)
+  
+![Schermata da 2022-04-25 23-58-09](https://user-images.githubusercontent.com/74368037/165182393-50971eaf-5fe9-4b22-95b9-005d2ecdbfa5.png)
+  
+![Schermata da 2022-04-25 23-58-22](https://user-images.githubusercontent.com/74368037/165182397-bdd1fa7c-36bb-448f-997a-fdcd4fdc507b.png)
+
+
